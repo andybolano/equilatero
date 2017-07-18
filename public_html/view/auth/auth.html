@@ -1,0 +1,29 @@
+<div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">IN+</h1>
+
+            </div>
+            <h3>Welcome to IN+</h3>
+            <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+            </p>
+            <p>Login in. To see it in action.</p>
+            <form class="m-t" role="form">
+                <div class="form-group">
+                    <input type="text" id="user" ng-model="auth.user.usuario" name="email" class="form-control" placeholder="Usuario"  required=""> </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="pass" name="pass" ng-model="auth.user.password" class="form-control" placeholder="Contraseña" required=""> 
+                </div>
+                <button class="btn btn-warning block full-width m-b " ng-click="auth.login();" id="login">Iniciar Sesión</button>
+            </form>
+            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 © 2014</small> </p>
+        </div>
+
+<script>
+    $(document).ready(function() {
+        $('#user').focus();
+    });
+</script>

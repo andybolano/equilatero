@@ -1,0 +1,159 @@
+
+<div class="ibox-content" id="ibox-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Nuevo proyecto</h2>
+        </div>
+    </div>
+    <div id="vertical-timeline" class="dark-timeline">
+        <div class="vertical-timeline-block">
+            <div class="vertical-timeline-icon yellow-bg" title="Ingresar la información basica">
+                <i class="fa fa-question"></i>
+            </div>
+            <!--<div class="vertical-timeline-icon navy-bg">
+                <i class="fa fa-check"></i>
+            </div>-->
+            <div class="vertical-timeline-content" style="background-color: #FFF">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Información Basica</h2> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label>Logo:</label> 
+                        <div class="content-image" style="width: 180px;height: 180px !important;">
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Nombre del proyecto:</label> 
+                            <input type="text" placeholder="Ingresar nombre" class="form-control">
+                        </div>
+                         <div class="form-group">
+                            <label>Tipo:</label> 
+                            <select class="form-control">
+                                <option>Vivienda</option>
+                                <option>Apto</option>
+                                <option>Vivienda de interes social</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Dirección:</label> 
+                            <input type="text" placeholder="Ingresar direccion" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Ciudad:</label> 
+                            <select class="form-control">
+                                <option>Bogota</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción:</label> 
+                            <textarea placeholder="Ingresar descripción" class="form-control" rows="5"></textarea>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Cargar brochure:</label> 
+                        <input type="file">
+                         <div class="spacer" style="height: 125px;"></div>
+                        <button class="btn btn-primary pull-right"><i class="fa fa-save"></i> Crear proyecto</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        <div class="vertical-timeline-block">
+            <div class="vertical-timeline-icon yellow-bg" title="Ingresar imagen publicitaria">
+                <i class="fa fa-question"></i>
+            </div>
+            <div class="vertical-timeline-content" style="background-color: #FFF">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 style="margin-bottom: 0;padding: 0">Banner publicitario</h2>
+                        <small>Recomendación: imagen con buena resolución, mínimo de 1024px X 780px</small>
+                        <div class="spacer" style="height: 10px;"></div>
+                       
+                         <div class="content-image">
+
+                        </div>
+                   
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vertical-timeline-block">
+            <div class="vertical-timeline-icon yellow-bg" title="Ingresar galeria de imagenes">
+                <i class="fa fa-question"></i>
+            </div>
+            <div class="vertical-timeline-content" style="background-color: #FFF">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 style="margin-bottom: 0;padding: 0">Galeria de imagenes</h2>
+                        <small>Arrastra la imagen o haz clic aquí Recomendación: imagen con buena resolución, cuadradra, minimo de 500px X 500px</small>
+                        <div class="spacer" style="height: 10px;"></div>
+                    </div>
+                    <div class="col-lg-2">
+                        <!-- Add directive mdr-file -->
+                        <mdr-file url="php/upload.php" model="model" data="{proyecto:'1'}" headers="{token:'shhh'}" size="5" limit="10" formats="'jpg,png,gif'" disabled="false" multiple="true" text=""></mdr-file>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vertical-timeline-block">
+            <div class="vertical-timeline-icon yellow-bg" title="Ingresar tipos de viviendas">
+                <i class="fa fa-question"></i>
+            </div>
+            <div class="vertical-timeline-content" style="background-color: #FFF">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 style="margin-bottom: 0;padding: 0">Planos de viviendas</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vertical-timeline-block">
+            <div class="vertical-timeline-icon yellow-bg" title="Ingresar ubicación geografica">
+                <i class="fa fa-question"></i>
+            </div>
+            <div class="vertical-timeline-content" style="background-color: #FFF">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Ubicacion Geografica</h2>
+                        <small>Haga click sobre la ubicación exacta donde se realizará el proyecto.</small>
+                        <div id="world-map" style="height: 300px;"><div class="jvectormap-container" style="background-color: transparent;">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vertical-timeline-block">
+            <div class="vertical-timeline-icon yellow-bg" title="Ingresar ubicación geografica">
+                <i class="fa fa-question"></i>
+            </div>
+            <div class="vertical-timeline-content" style="background-color: #FFF">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Zonas Comunes</h2>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+

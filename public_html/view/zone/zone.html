@@ -1,0 +1,72 @@
+<div class="row" ng-init="vm.getAll()">
+    <div class="col-lg-4">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <div class="col-lg-12">
+                    <h5 ng-if="!vm.update">Registrar zona comun</h5>
+                    <h5 ng-if="vm.update">Actualizar zona comun : {{vm.Zone.nombre}}</h5>
+                </div>
+            </div>
+            <div class="ibox-content"> 
+                <div class="form-group">
+                    <label>Nombre:</label> 
+                    <input type="text" placeholder="Ingresar nombre" ng-model="vm.Zone.nombre" class="form-control">
+                </div>
+                <div ng-if="!vm.update">
+                <label>Subir imagen:</label>
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar imagen</span>
+                     <span class="fileinput-exists">Cambiar</span><input type="file" uploader-model="vm.Zone.imagen" name="images" id="files" /></span>
+                    <span class="fileinput-filename"></span>
+                </div><br>
+                 <small>Recomendación: imagen rectangular de 400px X 300px formato png</small>
+                 <div class="spacer" style="height:40px;"></div>
+                <div id="image" class="animated bounceIn">
+                    <div class="row">
+                        <div class="col-lg-12" style="text-align: center;padding-top:50px;">
+                            <i class="fa fa-image ico-bg"></i>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                 <div ng-if="vm.update">
+                              <label>Cambiar imagen:</label>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar imagen</span>
+                                <span class="fileinput-exists">Cambiar</span><input type="file" uploader-model="vm.Zone.imagen" name="images" id="files" /></span>
+                                <span class="fileinput-filename"></span>
+                             
+                            </div>
+                            <div id="image" class="animated bounceIn">
+                                <img src="{{vm.Zone.url}}" style="width:70% ;margin-left: 15%;">
+                            </div> 
+                        </div>
+                <div class="spacer" style="height:40px;"></div>
+                <button class="btn btn-primary pull-right" ng-click="vm.save();" ng-if="!vm.update" id="registrar"><i class="fa fa-save"></i> Guardar</button>
+                <button class="btn btn-success pull-right" ng-click="vm.put();" ng-if="vm.update" id="actualizar" style="margin-left: 20px;"><i class="fa fa-upload"></i> Actualizar</button>
+                <button class="btn btn-danger pull-right" ng-click="vm.abort_update();" ng-if="vm.update" id="cancelar"><i class="fa fa-times"></i> Cancelar</button>
+                
+                <div class="spacer" style="height:40px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <div class="col-lg-8">
+                    <h5>Listado de zonas comunes</h5>
+                </div>
+            </div>
+            <div class="ibox-content"> 
+                <div class="row">
+                    <div class="col-lg-2" ng-repeat="i in vm.zones | orderBy: 'nombre' " style="text-align: center">
+                         <a href="javascript:;" title="click para editar" ng-click="vm.show_update(i);">
+                            <img src="{{i.url}}" style="width:80px;height: 80px;"><br>
+                            <p style="margin-top:5px;">{{i.nombre}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
