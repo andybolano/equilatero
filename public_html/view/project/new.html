@@ -1,5 +1,5 @@
 <div id="Controller" ng-controller="ProjectController"></div>
-<div class="ibox-content" id="ibox-content" ng-init="vm.getPaises();vm.get_tipos_proyectos();vm.get_tipos_planos();" >
+<div class="ibox-content" id="ibox-content" ng-init="vm.getPaises(); vm.get_tipos_proyectos(); vm.get_tipos_planos(); vm.initMap();" >
     <div class="row">
         <div class="col-lg-6">
             <h2>Nuevo proyecto</h2>
@@ -95,7 +95,8 @@
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
+
         <div class="vertical-timeline-block">
             <div class="vertical-timeline-icon yellow-bg" title="Ingresar imagen publicitaria" ng-if="vm.proyecto_proccess.banner == 0">
                 <i class="fa fa-question"></i>
@@ -130,6 +131,7 @@
                 </div>
             </div>
         </div>
+
         <div class="vertical-timeline-block">
             <div class="vertical-timeline-icon yellow-bg" title="Ingresar galeria de imagenes" ng-if="vm.proyecto_proccess.galeria == 0">
                 <i class="fa fa-question"></i>
@@ -170,8 +172,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="spacer" style="height: 10px;"></div>
+                <button class="btn btn-primary pull-right" ng-click="vm.finish_proccess('galeria');" id="guardar_galeria"><i class="fa fa-check"></i> Proceso terminado</button>
             </div>
         </div>
+
         <div class="vertical-timeline-block">
             <div class="vertical-timeline-icon yellow-bg" title="Ingresar planos de viviendas" ng-if="vm.proyecto_proccess.planos == 0">
                 <i class="fa fa-question"></i>
@@ -180,61 +185,94 @@
                 <i class="fa fa-check"></i>
             </div>
             <div class="vertical-timeline-content" style="background-color: #FFF">
-                <!-- <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.galeria == 0" ></div>
-                     <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.planos == 1" ></div>-->
+                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.galeria == 0" ></div>
+                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.planos == 1" ></div>
                 <div class="row">
                     <div class="col-lg-12">
                         <small>Paso 4.</small>
                         <h2 style="margin-bottom: 0;padding: 0">Planos de viviendas</h2>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="fileinput fileinput-new" data-provides="fileinput">
-                            <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar Imagen</span>
-                                <span class="fileinput-exists">Cambiar</span><input type="file" uploader-model="vm.Project.plano" name="images" id="files" /></span>
-                        </div><br>
-                        <small>Recomendación: imagen cuadrada de 600px X 600px formato png</small>
+                    <div class="col-lg-8">
+                        <table style="width: 90%">
+                            <tr>
+                                <td style="width:240px;" valign="top">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar Imagen</span>
+                                            <span class="fileinput-exists">Cambiar</span><input type="file" uploader-model="vm.Plano.image" name="images" id="files_plano" /></span>
+                                    </div><br>
+                                    <small>Recomendación: imagen cuadrada de <br>600px X 600px formato png</small>
 
-                        <div id="image_plano" class="animated bounceIn content-image" style="width:400px;height:400px!important;">
-                            <div class="row">
-                                <div class="col-lg-12" style="text-align: center;">
-                                    <i class="fa fa-image ico-bg" style="font-size: 140px;margin-top: 120px"></i>
-                                </div>
-                            </div>
-                        </div>
+                                    <div id="image_plano" class="animated bounceIn content-image" style="width:240px;height:240px!important;">
+                                        <div class="row">
+                                            <div class="col-lg-12" style="text-align: center;">
+                                                <i class="fa fa-image ico-bg" style="font-size: 100px;margin-top: 80px"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="margin-left: 20px;margin-top: 30px;">
+                                        <div class="form-group">
+                                            <label>Titulo:</label> 
+                                            <input type="text" placeholder="Ingresar titulo" ng-model="vm.Plano.titulo"  class="form-control">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tipo:</label> 
+                                            <select class="form-control" ng-model="vm.Plano.tipo_plano" style="width: 80%;">
+                                                <option ng-repeat="i in vm.tipos_planos" value="{{i.id}}">{{i.nombre}}</option>
+                                            </select>
+                                            <a href="javascript:;" class="pull-right" style="margin-top:-30px" title="Agregar nuevo tipo de plano" onclick="$('#modal_plane').modal('show');"><i class="fa fa-plus-circle icon" style="font-size: 24px;"> </i></a>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Desde:</label> 
+                                            <input type="number" placeholder="Ingresar valor" ng-model="vm.Plano.desde"  class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Área balcón:</label><small>escribir valor en metros cuadrados, si no tiene escribir 0</small> 
+                                            <input type="number" placeholder="Ingresar valor" ng-model="vm.Plano.area_balcon"  class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Área construida:</label> <small>escribir valor en metros cuadrados</small> 
+                                            <input type="number" placeholder="Ingresar valor" ng-model="vm.Plano.area_construida"  class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Área privada:</label> <small>escribir valor en metros cuadrados</small> 
+                                            <input type="number" placeholder="Ingresar valor" ng-model="vm.Plano.area_privada"  class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Estrato:</label> 
+                                            <input type="number" placeholder="Ingresar valor" ng-model="vm.Plano.estrato"  class="form-control">
+                                        </div>
+                                        <div class="spacer" style="height: 10px;"></div>
+                                        <button class="btn btn-primary pull-right" ng-click="vm.save_plane();" id="guardar_plano"><i class="fa fa-plus-circle"></i> Guardar plano</button>            
+                                    </div>
+                                </td>
+                            </tr></table>
+
+
                     </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Titulo:</label> 
-                            <input type="text" placeholder="Ingresar tipo" ng-model="vm.Project.titulo"  class="form-control">
-                             
+                    <div class="col-lg-4">
+                        <h3>Planos agregados</h3>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <th>#</th>
+                            <th>titulo</th>
+                            <th>tipo</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="i in vm.planos">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{i.titulo}}</td>
+                                    <td>{{i.tipo_nombre}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div ng-if="vm.planos.length == 0">
+                            <h5>No hay planos agregados...</h5>
                         </div>
-                        <div class="form-group">
-                            <label>Tipo:</label> 
-                            <select class="form-control" ng-model="vm.Project.tipo_plano" style="width: 80%;">
-                                <option ng-repeat="i in vm.tipos_planos" value="{{i.id}}">{{i.nombre}}</option>
-                            </select>
-                            <a href="javascript:;" class="pull-right" style="margin-top:-30px" title="Agregar nuevo tipo de plano" onclick="$('#modal_plane').modal('show');"><i class="fa fa-plus-circle icon" style="font-size: 24px;"> </i></a>
-                        </div>
-                        <div class="form-group">
-                            <label>Desde:</label> 
-                            <input type="number" placeholder="Ingresar valor" ng-model="vm.Project.desde"  class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Área balcón:</label><small>escribir metros cuadrados, si no tiene escribir 0</small> 
-                            <input type="number" placeholder="Ingresar valor" ng-model="vm.Project.area_balcon"  class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Área construida desde:</label> 
-                            <input type="number" placeholder="Ingresar valor" ng-model="vm.Project.area_construida"  class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Área privada desde:</label> 
-                            <input type="number" placeholder="Ingresar valor" ng-model="vm.Project.area_privada"  class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Estrato:</label> 
-                            <input type="number" placeholder="Ingresar valor" ng-model="vm.Project.estrato"  class="form-control">
-                        </div>
+                        <div class="spacer" style="height:40px;"></div>
+                        <button class="btn btn-primary pull-right" ng-click="vm.finish_proccess('planos');" id=""><i class="fa fa-upload"></i> Proceso finalizado</button>       
                     </div>
                 </div>
             </div>
@@ -248,14 +286,14 @@
                 <i class="fa fa-check"></i>
             </div>
             <div class="vertical-timeline-content" style="background-color: #FFF">
-                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.planos == 0" ></div>
-                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.ubicacion_geografica == 1" ></div>
+                <!--<div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.planos == 0" ></div>
+                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.ubicacion_geografica == 1" ></div>-->
                 <div class="row">
                     <div class="col-lg-12">
                         <small>Paso 5.</small>
                         <h2>Ubicacion Geografica</h2>
                         <small>Haga click sobre la ubicación exacta donde se realizará el proyecto.</small>
-                        <div id="world-map" style="height: 300px;"><div class="jvectormap-container" style="background-color: transparent;">
+                        <div id="map" style="height: 400px;"><div class="jvectormap-container" style="background-color: transparent;">
 
                             </div>
                         </div>
@@ -263,6 +301,7 @@
                 </div>
             </div>
         </div>
+
         <div class="vertical-timeline-block">
             <div class="vertical-timeline-icon yellow-bg" title="Ingresar zonas comunes" ng-if="vm.proyecto_proccess.zonas_comunes == 0">
                 <i class="fa fa-question"></i>
@@ -306,6 +345,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal inmodal" id="modal_plane" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content animated bounceInRight">
@@ -325,8 +365,44 @@
         </div>
     </div>
 </div>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvO7t2jvpogY2DgybErVXBkRWYHHecbBA&callback=initMap">
+</script>
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 12
+        });
+        var infoWindow = new google.maps.InfoWindow({map: map});
 
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
 
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
 
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
 
+</script>
 
+}

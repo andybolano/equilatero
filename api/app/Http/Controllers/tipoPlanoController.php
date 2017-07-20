@@ -5,18 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use DB;
-use App\Tipos_planos;
+use App\Tipo_plano;
 
 class tipoPlanoController extends Controller {
     
      public function index(){
-        return Tipos_planos::All();
+        return Tipo_plano::All();
     }
     
      public function store(Request $request){
         try {
         $data = $request->all();
-        $tipo = new Tipos_Planos();
+        $tipo = new Tipo_Plano();
         $tipo->nombre = $data['nombre'];
         $tipo->save();
         
@@ -29,7 +29,7 @@ class tipoPlanoController extends Controller {
     
      public function show($id) {
         try {
-            return Tipos_planos::find($id);
+            return Tipo_plano::find($id);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -38,7 +38,7 @@ class tipoPlanoController extends Controller {
     public function update(Request $request, $id) {
         try {
             $data = $request->all();
-            $tipo = Tipos_planos::find($id);
+            $tipo = Tipo_plano::find($id);
             $tipo->nombre = $data['nombre'];
             $tipo->save();
             return JsonResponse::create(array('message' => "Tipo de plano " . $tipo->nombre . " Modificado Correctamente", "request" => json_encode($data)), 200);
@@ -49,7 +49,7 @@ class tipoPlanoController extends Controller {
     
     public function destroy($id) {
         try {
-            $tipo = Tipos_planos::find($id);
+            $tipo = Tipo_plano::find($id);
             $tipo->delete();
             return JsonResponse::create(array('message' => "Tipo de plano eliminado con exito!", "request" => json_encode($id)), 200);
         } catch (Exception $ex) {

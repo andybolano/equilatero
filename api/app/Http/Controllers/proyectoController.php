@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use DB;
 use App\Proyecto_basic;
+use App\Proyecto_plano;
 use App\Proyectos;
 use App\Tipos_proyectos;
 use App\Tipos_planos;
@@ -13,6 +14,30 @@ use App\Tipos_planos;
 define('URL_SERVER', 'http://' . $_SERVER['HTTP_HOST'] . '/equilatero/api/');
 
 class proyectoController extends Controller {
+    
+    public function save_plano(Request $request){
+         $data = $request->all();
+         if ($request->hasFile('imagen')) {
+              $id = $data['idProyecto'];
+                $tmpfname = time().substr(md5(microtime()), 0, rand(5, 12));
+                $proyecto_plano= new Proyecto_plano();
+                $proyecto_plano->url_plano = URL_SERVER . "images/planos/".$id."_".$tmpfname.".png";
+                $proyecto_plano->titulo = $data['titulo'];
+                $proyecto_plano->tipo = $data['tipo'];
+                $proyecto_plano->valor_desde = $data['valor_desde'];
+                $proyecto_plano->area_balcon = $data['area_balcon'];
+                $proyecto_plano->area_construida = $data['area_construida'];
+                $proyecto_plano->area_privada = $data['area_privada'];
+                $proyecto_plano->estrato = $data['estrato'];
+                $proyecto_plano->idProyecto = $data['idProyecto'];
+                $proyecto_plano->save();
+                
+                $request->file('imagen')->move("../images/planos", $id."_".$tmpfname.".png");
+                
+                $plano = DB::select(DB::raw("SELECT proyecto_plano.*, tipos_planos.nombre as tipo_nombre FROM proyecto_plano INNER JOIN tipos_planos ON tipos_planos.id = proyecto_plano.tipo WHERE idProyecto = $id"));
+                 return JsonResponse::create(array('message' => "Plano guardado Correctamente", "planos" => $plano), 200);
+         }
+    }
     
     public function save_galeria(Request $request){
         
@@ -95,6 +120,17 @@ class proyectoController extends Controller {
             }else{
                 return JsonResponse::create(array('message' => "No se encontro logo del proyecto"), 402);
             }
+    }
+    
+    public function finish_proccess(Request $request){
+        $data = $request->all();
+         $id = $data['idProyecto'];
+         $paso = $data['paso'];
+         $proyecto = Proyectos::find($id);
+         $proyecto->$paso = 1;
+         $proyecto->save();
+         
+         return JsonResponse::create(array('message' => "Paso '" . $data['paso'] . "' terminado correctamente", "request" => $proyecto), 200);
     }
     
 
