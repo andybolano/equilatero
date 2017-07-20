@@ -3,7 +3,7 @@
       (function(){
         'use strict';
         // Add Angular module mdr.file
-        angular.module('app', ['mdr.file','ui.router'])
+        angular.module('app', ['ui.router'])
        .constant('HOME', 'app.home')
        .constant('API_URL', 'http://localhost/equilatero/api/public/index.php/api')
        .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -65,5 +65,15 @@ angular.module('app').directive('uploaderModel', ['$parse', function($parse) {
             });
         }
     };
+}]);
+
+angular.module('app').directive('customOnChange', [function() {
+      return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var onChangeHandler = scope.$eval(attrs.customOnChange);
+      element.bind('change', onChangeHandler);
+    }
+  };
 }]);
   

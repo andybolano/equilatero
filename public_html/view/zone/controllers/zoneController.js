@@ -40,10 +40,11 @@
                         }
 
                         var formData = new FormData();
+                        formData.append('id',vm.Zone.id);
                         formData.append('imagen', vm.Zone.imagen);
                         formData.append('nombre', vm.Zone.nombre.toUpperCase());
                         $('#actualizar').attr("disabled", true);
-                        var promisePost = zoneService.put(vm.Zone.id, formData);
+                        var promisePost = zoneService.put(formData);
                         promisePost.then(function (d) {
                             vm.update = false;
                             $('#actualizar').attr("disabled", false);

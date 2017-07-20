@@ -24,10 +24,10 @@
                 defered.reject(error);
             }
         }
-        function put(id,object){
+        function put(object){
             var defered = $q.defer();
             var promise = defered.promise;
-            $http.put(API_URL + '/zone/'+id, object, {transformRequest: angular.identity,
+            $http.post(API_URL + '/zone/update', object, {transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}}).then(success, error);
             return promise;
             function success(p) {

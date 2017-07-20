@@ -9,11 +9,12 @@ use App\Zone;
 define('URL_SERVER', 'http://' . $_SERVER['HTTP_HOST'] . '/equilatero/api/');
 
 class zoneController extends Controller {
+    
      public function index() {
           return Zone::All();
     }
     
-      public function store(Request $request) {
+     public function store(Request $request) {
         try {
             $data = $request->all();
            
@@ -33,21 +34,23 @@ class zoneController extends Controller {
                 
             
         } catch (Exception $exc) {
-            return JsonResponse::create(array('message' => "No pudimos registrar su cancha, intentelo de nuevo", "exception" => $exc->getMessage(), "respuesta" => false, "request" => json_encode($data)), 401);
+            return JsonResponse::create(array('message' => "No pudimos registrar la zona, intentelo de nuevo", "exception" => $exc->getMessage(), "respuesta" => false, "request" => json_encode($data)), 401);
         }
     }
-     public function update(Request $request, $id) {
+    
+     public function update(Request $request) {
         try {
             $data = $request->all();
+            $id = $data['id'];
             $zone = Zone::find($id);
             $zone->nombre = $data['nombre'];
             $zone->save();
              if ($request->hasFile('imagen')) {
                  $request->file('imagen')->move("../images/zone", $zone->id . ".png");
              }
-            return JsonResponse::create(array('message' => "Zona comun " . $zone->nombre . " Modificada Correctamente", "request" => json_encode($data)), 200);
+            return JsonResponse::create(array('message' => "Zona comun  Modificada Correctamente", "request" => json_encode($data)), 200);
         } catch (Exception $exc) {
-            return JsonResponse::create(array('message' => "No se pudo Modificar la cancha", "exception" => $exc->getMessage(), "request" => json_encode($data)), 401);
+            return JsonResponse::create(array('message' => "No se pudo Modificar la zona", "exception" => $exc->getMessage(), "request" => json_encode($data)), 401);
         }
     }
     
