@@ -1,5 +1,5 @@
 <div id="Controller" ng-controller="ProjectController"></div>
-<div class="ibox-content" id="ibox-content" ng-init="vm.getPaises(); vm.get_tipos_proyectos(); vm.get_tipos_planos(); vm.initMap();" >
+<div class="ibox-content" id="ibox-content" ng-init="vm.getPaises(); vm.get_tipos_proyectos(); vm.get_tipos_planos();" >
     <div class="row">
         <div class="col-lg-6">
             <h2>Nuevo proyecto</h2>
@@ -369,40 +369,82 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvO7t2jvpogY2DgybErVXBkRWYHHecbBA&callback=initMap">
 </script>
 <script>
-    function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 12
-        });
-        var infoWindow = new google.maps.InfoWindow({map: map});
+            var map;
+            var markers = [];
+                    function initMap() {
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            center: {lat: -34.397, lng: 150.644},
+                            zoom: 12
+                        });
+                        var infoWindow = new google.maps.InfoWindow({map: map});
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+                        // Try HTML5 geolocation.
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                                var pos = {
+                                    lat: position.coords.latitude,
+                                    lng: position.coords.longitude
+                                };
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
+                                infoWindow.setPosition(pos);
+                                infoWindow.setContent('Ubicacion actual');
+                                map.setCenter(pos);
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      }
+
+                                google.maps.event.addListener(map, 'click', function (event) {
+                                    deleteMarkers();
+                                    addMarker(event.latLng, map);
+
+                                });
+
+
+
+
+
+                            }, function () {
+                                handleLocationError(true, infoWindow, map.getCenter());
+                            });
+                        } else {
+                            // Browser doesn't support Geolocation
+                            handleLocationError(false, infoWindow, map.getCenter());
+                        }
+                    }
+            function addMarker(location) {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    draggable: true
+                });
+
+                markers.push(marker);
+                console.log(marker.getPosition().lat() + "," + marker.getPosition().lng());
+                marker.addListener('dragend', function (event)
+                {
+                    console.log(this.getPosition().lat() + "," + this.getPosition().lng());
+                });
+            }
+
+            function setMapOnAll(map) {
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(map);
+                }
+            }
+            function clearMarkers() {
+                setMapOnAll(null);
+            }
+            function deleteMarkers() {
+                clearMarkers();
+                markers = [];
+            }
+
+
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+            }
 
 </script>
 
-}
+

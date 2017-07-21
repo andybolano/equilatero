@@ -2,7 +2,7 @@
     'use strict';
     angular
             .module('app')
-            .controller('ProjectController', ['ubicacionService', 'projectService', 'tipoProyectoService','tipoPlanoService','$scope', function (ubicacionService, projectService,tipoProyectoService, tipoPlanoService,$scope) {
+            .controller('ProjectController', ['ubicacionService', 'projectService', 'tipoProyectoService', 'tipoPlanoService', '$scope', function (ubicacionService, projectService, tipoProyectoService, tipoPlanoService, $scope) {
 
                     var vm = this;
                     vm.paises = [];
@@ -24,13 +24,14 @@
                     vm.proyecto_proccess.ubicacion_geografica = 0;
                     vm.proyecto_proccess.zonas_comunes = 0;
 
-                    vm.save_plane = function (){
-                      /* if (!vm.proyecto_proccess.id) {
+
+                    vm.save_plane = function () {
+                        if (!vm.proyecto_proccess.id) {
                             toastr['warning']("No se encuentra el proyecto cargado");
                             return 0;
-                        }*/
-                        
-                        if(!vm.Plano.image){
+                        }
+
+                        if (!vm.Plano.image) {
                             toastr['warning']("Cargar imagen del plano");
                             return 0;
                         }
@@ -38,15 +39,15 @@
                             toastr['warning']("Ingresar titulo del plano");
                             return 0;
                         }
-                         if (!vm.Plano.tipo_plano) {
+                        if (!vm.Plano.tipo_plano) {
                             toastr['warning']("Ingresar tipo del plano");
                             return 0;
                         }
-                         if (!vm.Plano.desde) {
+                        if (!vm.Plano.desde) {
                             toastr['warning']("Ingresar valor desde");
                             return 0;
                         }
-                         if (!vm.Plano.area_balcon) {
+                        if (!vm.Plano.area_balcon) {
                             toastr['warning']("Ingresar area del balcon, en caso de no tener balcon ingresar el numero cero (0)");
                             return 0;
                         }
@@ -54,7 +55,7 @@
                             toastr['warning']("Ingresar area construida");
                             return 0;
                         }
-                         if (!vm.Plano.area_privada) {
+                        if (!vm.Plano.area_privada) {
                             toastr['warning']("Ingresar area privada");
                             return 0;
                         }
@@ -62,8 +63,8 @@
                             toastr['warning']("Ingresar estrato");
                             return 0;
                         }
-                        
-                      
+
+
                         var formData = new FormData();
                         formData.append('imagen', vm.Plano.image);
                         formData.append('titulo', vm.Plano.titulo);
@@ -73,15 +74,15 @@
                         formData.append('area_construida', vm.Plano.area_construida);
                         formData.append('area_privada', vm.Plano.area_privada);
                         formData.append('estrato', vm.Plano.estrato);
-                        formData.append('idProyecto', 1/*vm.proyecto_proccess.id*/);
+                        formData.append('idProyecto', vm.proyecto_proccess.id);
                         $('#guardar_plano').attr("disabled", true);
-                        
-                          var promisePost = projectService.post_planos(formData);
+
+                        var promisePost = projectService.post_planos(formData);
                         promisePost.then(function (d) {
                             $('#guardar_plano').attr("disabled", false);
                             vm.Plano = {};
                             vm.planos = d.data.planos;
-                            
+
                             document.getElementById("image_plano").innerHTML = '<div class="row animated bounceIn">' +
                                     '<div class="col-lg-12" style="text-align: center;">' +
                                     '  <i class="fa fa-image ico-bg" style="font-size: 100px;margin-top: 80px"></i>' +
@@ -99,9 +100,9 @@
                             }
                         });
                     }
-                    
+
                     vm.get_tipos_proyectos = function () {
-                    var promisePost = tipoProyectoService.getAll();
+                        var promisePost = tipoProyectoService.getAll();
                         promisePost.then(function (d) {
                             vm.tipos_proyectos = d.data;
                         }, function (err) {
@@ -113,7 +114,7 @@
                             }
                         });
                     }
-                    
+
                     vm.get_tipos_planos = function () {
                         var promisePost = tipoPlanoService.getAll();
                         promisePost.then(function (d) {
@@ -126,15 +127,15 @@
                             }
                         });
                     }
-                    
+
                     vm.save_type_project = function () {
-                        if(!vm.type_project.nombre)
+                        if (!vm.type_project.nombre)
                         {
-                             toastr['warning']("Ingresar nombre de tipo de proyecto");
-                             return 0;
+                            toastr['warning']("Ingresar nombre de tipo de proyecto");
+                            return 0;
                         }
-                        var object ={
-                            nombre:vm.type_project.nombre
+                        var object = {
+                            nombre: vm.type_project.nombre
                         }
                         var promisePost = tipoProyectoService.post(object);
                         promisePost.then(function (d) {
@@ -150,19 +151,19 @@
                                 toastr["error"]("Ha ocurrido un problema!");
                             }
                         });
-                        
-                        
+
+
                     }
-                    
+
                     vm.save_type_plane = function () {
-                        if(!vm.type_plane.nombre)
+                        if (!vm.type_plane.nombre)
                         {
-                             toastr['warning']("Ingresar nombre de tipo de plano");
-                             return 0;
+                            toastr['warning']("Ingresar nombre de tipo de plano");
+                            return 0;
                         }
-                        
-                        var object ={
-                            nombre:vm.type_plane.nombre
+
+                        var object = {
+                            nombre: vm.type_plane.nombre
                         }
                         var promisePost = tipoPlanoService.post(object);
                         promisePost.then(function (d) {
@@ -221,15 +222,15 @@
                             }
                         });
                     }
-                    
-                    vm.finish_proccess = function(paso){
-                        
+
+                    vm.finish_proccess = function (paso) {
+
                         var object = {
-                            idProyecto : vm.proyecto_proccess.id,
-                            paso:paso        
+                            idProyecto: vm.proyecto_proccess.id,
+                            paso: paso
                         }
-                        
-                         var promisePost = projectService.finish_proccess(object);
+
+                        var promisePost = projectService.finish_proccess(object);
                         promisePost.then(function (d) {
                             vm.proyecto_proccess = d.data.request;
                             swal("Buen Trabajo!", d.data.message, "success");
@@ -241,8 +242,8 @@
                                 toastr["error"]("Ha ocurrido un problema!");
                             }
                         });
-                        
-                        
+
+
                     }
 
                     vm.save_banner = function () {
@@ -371,9 +372,8 @@
                             toastr.error("Problemas de conexion, por favor recargar pagina");
                         }
                     }
-                    
+
                    
-                    
 
                     setTimeout(function () {
                         document.getElementById('files').addEventListener('change', archivo, false);
