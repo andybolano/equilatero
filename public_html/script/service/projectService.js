@@ -6,6 +6,7 @@
     /* @ngInject */
     function projectService($http, $q, API_URL) {
         var service = {
+            getAll : getAll,
             post_basic: post_basic,
             post_banner:post_banner,
             post_galeria:post_galeria,
@@ -16,7 +17,18 @@
             
         };
         return service;
-        
+        function getAll(){
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http.get(API_URL + '/proyectos').then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            } 
+        }
         function post_zonas(object) {
             var defered = $q.defer();
             var promise = defered.promise;

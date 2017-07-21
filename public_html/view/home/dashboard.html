@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-init="vm.getProjects()">
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
@@ -25,21 +25,21 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Los Ciruelos <small>Apto 218</small></td>
-                                            <td>Vivienda</td>
-                                            <td>Calle 26 N° 1 - 36</td>
-                                            <td>
-                                                <a href="javascript:;" title="Click para activar"><span class="badge badge-danger">INACTIVO</span></a>
-                                                <!-- <a href="javascript:;" title="Click para desactivar"><span class="badge badge-primary">ACTIVO</span></a>-->
-                                            </td>
-                                             <td style="text-align: center;">
-                                                 <a href="javascript:;" title="Click para quitar del banner"><i class="fa fa-star text-success"></i></a>
-                                                 <!--<a href="javascript:;" title="Click para publicar en el banner"><i class="fa fa-star text-info"></i></a>-->
-                                             </td>
-                                            <td  style="text-align: center;"><a href="javascript:;"><i class="fa fa-eye text-navy"></i></a></td>
-                                        </tr>
+                                            <tr ng-repeat="i in vm.projects">
+                                                <td>{{i.proyecto.id}}</td>
+                                                <td>{{i.informacion_basica.nombre}}</td>
+                                                <td>{{i.informacion_basica.nombreTipoProyecto}}</td>
+                                                <td>{{i.informacion_basica.direccion}}</td>
+                                                <td>
+                                                    <a href="javascript:;" title="Click para activar" ng-if="i.proyecto.estado == 'INACTIVO'" ><span class="badge badge-danger">{{i.proyecto.estado}}</span></a>
+                                                    <a href="javascript:;" title="Click para desactivar" ng-if="i.proyecto.estado == 'ACTIVO'"><span class="badge badge-primary">{{i.proyecto.estado}}</span></a>
+                                                </td>
+                                                <td style="text-align: center">
+                                                  <a href="javascript:;" title="Click para quitar del banner" ng-if="i.proyecto.destacado == 1"><i class="fa fa-star text-success"></i></a>
+                                                  <a href="javascript:;" title="Click para publicar en el banner" ng-if="i.proyecto.destacado == 0"><i class="fa fa-star-o text-danger"></i></a>
+                                                </td>
+                                                <td  style="text-align: center;"><a href="javascript:;"><i class="fa fa-eye text-navy"></i></a></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                             </div>

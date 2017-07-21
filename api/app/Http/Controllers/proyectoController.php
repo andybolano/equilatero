@@ -20,12 +20,22 @@ class proyectoController extends Controller {
              $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p "));
               foreach ($proyectos as $key => $p) {
                   $informacion_basica = $this->get_informaction_basic($p->id);
-                  if($p->banner == 1){ 
-                      $banner = $this->get_banner($p->id); 
-                  }else{
-                      $banner = null;
-                  }
-                  $array_projects[$key]  = array( 'proyecto' => $p, 'informacion_basica' => $informacion_basica, 'banner' => $banner);
+                  
+                ($p->banner == 1) ? $banner = $this->get_banner($p->id)  :  $banner = null;
+                ($p->galeria == 1) ? $galeria = $this->get_galeria($p->id)  :  $galeria = null;
+                ($p->planos == 1) ? $planos = $this->get_planos($p->id)  :  $planos = null;
+                ($p->ubicacion_geografica  == 1) ? $ubicacion = $this->get_ubicacion($p->id)  :  $ubicacion = null;
+                 ($p->zonas_comunes  == 1) ?  $zonas = $this->get_zonas($p->id)  :  $zonas = null;
+                 
+                  $array_projects[$key]  = array( 
+                      'proyecto' => $p, 
+                      'informacion_basica' => $informacion_basica, 
+                      'banner' => $banner, 
+                      'galeria' => $galeria, 
+                      'planos' => $planos, 
+                      'ubicacion' => $ubicacion,
+                      'zonas' => $zonas
+                   );
               }
               
              return $array_projects;
@@ -33,9 +43,11 @@ class proyectoController extends Controller {
             return JsonResponse::create(array('message' => "No pudimos realizar la consulta de los proyectos", "exception" => $exc->getMessage(), "respuesta" => false), 401);
         }
     }
+
+    /************************get's**************************/
     
     private function get_informaction_basic($idProyecto){
-        $informacion_basica = DB::select(DB::raw("SELECT * FROM proyecto_informacion_basica WHERE idProyecto = $idProyecto "));
+        $informacion_basica = DB::select(DB::raw("SELECT ib.*, tp.nombre as nombreTipoProyecto FROM proyecto_informacion_basica as ib INNER JOIN tipos_proyectos as tp ON tp.id = ib.tipo WHERE idProyecto = $idProyecto "));
         return $informacion_basica[0];
     }
     
@@ -44,6 +56,27 @@ class proyectoController extends Controller {
         return $banner[0];
     }
     
+    private function get_galeria($idProyecto){
+        $galeria = DB::select(DB::raw("SELECT * FROM proyecto_galeria WHERE idProyecto = $idProyecto "));
+        return $galeria;
+    }
+    
+    private function get_planos($idProyecto){
+        $planos = DB::select(DB::raw("SELECT pp.*, tp.nombre as nombreTipoPlano FROM proyecto_plano pp INNER JOIN tipos_planos as tp ON tp.id = pp.tipo WHERE pp.idProyecto = $idProyecto "));
+        return $planos;
+    }
+    
+    private function get_ubicacion($idProyecto){
+        $ubicacion = DB::select(DB::raw("SELECT * FROM proyecto_ubicacion WHERE idProyecto = $idProyecto "));
+        return $ubicacion;
+    }
+    
+    private function get_zonas($idProyecto){
+        $zonas = DB::select(DB::raw("SELECT zc.nombre,zc.url, pz.id as idProyectoZona FROM proyecto_zona as pz INNER JOIN zonas_comunes as zc ON zc.id = pz.idZona  WHERE pz.idProyecto = $idProyecto "));
+        return $zonas;
+    }
+    
+    /*************save's************************/
     
     public function save_zonas(Request $request){
         $data = $request->all();
