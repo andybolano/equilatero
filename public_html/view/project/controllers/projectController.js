@@ -1,8 +1,9 @@
+var _position = {};
 (function () {
     'use strict';
     angular
             .module('app')
-            .controller('ProjectController', ['ubicacionService', 'projectService', 'tipoProyectoService', 'tipoPlanoService', '$scope', function (ubicacionService, projectService, tipoProyectoService, tipoPlanoService, $scope) {
+            .controller('ProjectController', ['ubicacionService', 'projectService', 'tipoProyectoService', 'tipoPlanoService','zoneService', '$scope','$state', 'HOME', function (ubicacionService, projectService, tipoProyectoService, tipoPlanoService, zoneService,$scope,$state, HOME) {
 
                     var vm = this;
                     vm.paises = [];
@@ -16,6 +17,7 @@
                     vm.Plano = {};
                     vm.planos = [];
                     vm.galeria = [];
+                    vm.zones = [];
                     vm.proyecto_proccess = {};
                     vm.proyecto_proccess.informacion_basica = 0;
                     vm.proyecto_proccess.banner = 0;
@@ -24,7 +26,61 @@
                     vm.proyecto_proccess.ubicacion_geografica = 0;
                     vm.proyecto_proccess.zonas_comunes = 0;
 
-
+                    vm.save_zonas_comunes = function(){
+                        var zonas_add = $('[name="duallistbox_demo1[]"]').val();
+                        var object = {
+                            zonas:zonas_add,
+                            idProyecto:vm.proyecto_proccess.id
+                        }
+                         $('#guardar_zonas').attr("disabled", true);
+                        var promisePost = projectService.post_zonas(object);
+                        promisePost.then(function (d) {
+                            vm.proyecto_proccess = d.data.request;
+                            swal("Buen Trabajo!", d.data.message, "success");
+                            
+                            swal("Hemos finalizado!", 'Has guardado toda la informacion con exito, El proyecto esta listo para ser publicado!', "success");
+                            
+                            setTimeout(function(){
+                                $state.go(HOME);
+                            },2000);
+                            
+                        }, function (err) {
+                            $('#guardar_zonas').attr("disabled", false);
+                            if (err.status == 402) {
+                                toastr["error"](err.data.respuesta);
+                            } else {
+                                toastr["error"]("Ha ocurrido un problema!");
+                            }
+                        });
+                    }
+                    
+                    vm.save_position = function(){
+                        if(!_position.lat){
+                            toastr['warning']("Ingresar pocisión del proyecto");
+                            return 0;
+                        }
+                        
+                        var object = {
+                            lat:_position.lat,
+                            lng:_position.lng,
+                            idProyecto : vm.proyecto_proccess.id
+                        }
+                        $('#guardar_ubicacion').attr("disabled", true);
+                        var promisePost = projectService.post_position(object);
+                        promisePost.then(function (d) {
+                            vm.proyecto_proccess = d.data.request;
+                            swal("Buen Trabajo!", d.data.message, "success");
+                        }, function (err) {
+                            $('#guardar_ubicacion').attr("disabled", false);
+                            if (err.status == 402) {
+                                toastr["error"](err.data.respuesta);
+                            } else {
+                                toastr["error"]("Ha ocurrido un problema!");
+                            }
+                        });
+                        
+                    }
+                    
                     vm.save_plane = function () {
                         if (!vm.proyecto_proccess.id) {
                             toastr['warning']("No se encuentra el proyecto cargado");
@@ -373,7 +429,29 @@
                         }
                     }
 
-                   
+                    vm.getZonasComunes = function(){
+                         var promisePost = zoneService.getAll();
+                        promisePost.then(function (d) {
+                            vm.zones = d.data;
+                            for(var i = 0; i < vm.zones.length; i++){
+                                $("#zones").append($('<option>',{
+                                    value:vm.zones[i].id,
+                                    text:vm.zones[i].nombre
+                                }));
+                            }
+                            setTimeout(function(){
+                               $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox();
+                            },1000);
+                            
+                          
+                        }, function (err) {
+                            if (err.status == 402) {
+                                toastr["error"](err.data.respuesta);
+                            } else {
+                                toastr["error"]("Ha ocurrido un problema!");
+                            }
+                        });
+                    }
 
                     setTimeout(function () {
                         document.getElementById('files').addEventListener('change', archivo, false);
@@ -383,8 +461,7 @@
                     }, 1000);
                 }]);
 
-
-
+            
     function archivo(evt) {
         var files = evt.target.files;
         for (var i = 0, f; f = files[i]; i++) {
@@ -450,6 +527,74 @@
     }
 
 })();
+
+/************************ map ******************/
+
+var map;
+    var markers = [];
+    function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: - 34.397, lng: 150.644},
+            zoom: 12
+    });
+    var infoWindow = new google.maps.InfoWindow({map: map});
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+    var pos = {
+    lat: position.coords.latitude,
+            lng: position.coords.longitude
+    };
+    infoWindow.setPosition(pos);
+    infoWindow.setContent('Ubicacion actual');
+    map.setCenter(pos);
+    google.maps.event.addListener(map, 'click', function (event) {
+    deleteMarkers();
+    addMarker(event.latLng, map);
+    });
+    }, function () {
+    handleLocationError(true, infoWindow, map.getCenter());
+    });
+    } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+    }
+    }
+    function addMarker(location) {
+    var marker = new google.maps.Marker({
+    position: location,
+            map: map,
+            draggable: true
+    });
+    markers.push(marker);
+    _position = {'lat':marker.getPosition().lat(), 'lng':marker.getPosition().lng()};
+
+            marker.addListener('dragend', function (event)
+            {
+            _position = {'lat':this.getPosition().lat(), 'lng':this.getPosition().lng()};
+            });
+    }
+
+    function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+    }
+    }
+    function clearMarkers() {
+    setMapOnAll(null);
+    }
+    function deleteMarkers() {
+    clearMarkers();
+    markers = [];
+    }
+
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+    }
 
 
 

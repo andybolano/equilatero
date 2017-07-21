@@ -15,6 +15,68 @@ define('URL_SERVER', 'http://' . $_SERVER['HTTP_HOST'] . '/equilatero/api/');
 
 class proyectoController extends Controller {
     
+    public function index() {
+         try {
+             $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p "));
+              foreach ($proyectos as $key => $p) {
+                  $informacion_basica = $this->get_informaction_basic($p->id);
+                  if($p->banner == 1){ 
+                      $banner = $this->get_banner($p->id); 
+                  }else{
+                      $banner = null;
+                  }
+                  $array_projects[$key]  = array( 'proyecto' => $p, 'informacion_basica' => $informacion_basica, 'banner' => $banner);
+              }
+              
+             return $array_projects;
+        } catch (Exception $exc) {
+            return JsonResponse::create(array('message' => "No pudimos realizar la consulta de los proyectos", "exception" => $exc->getMessage(), "respuesta" => false), 401);
+        }
+    }
+    
+    private function get_informaction_basic($idProyecto){
+        $informacion_basica = DB::select(DB::raw("SELECT * FROM proyecto_informacion_basica WHERE idProyecto = $idProyecto "));
+        return $informacion_basica[0];
+    }
+    
+    private function get_banner($idProyecto){
+        $banner = DB::select(DB::raw("SELECT * FROM proyecto_banner WHERE idProyecto = $idProyecto "));
+        return $banner[0];
+    }
+    
+    
+    public function save_zonas(Request $request){
+        $data = $request->all();
+        $id = $data['idProyecto'];
+        $zonas = $data['zonas'];
+        $proyecto = Proyectos::find($id);
+        $proyecto->zonas_comunes = 1;
+        $proyecto->save();
+        
+        foreach ($zonas as $key => $r) {
+                        $array[$key] = array('idZona' => $r, 'idProyecto' => $id);
+            }
+            
+        $respuesta = DB::table('proyecto_zona')->insert($array);
+        return JsonResponse::create(array('message' => "Zonas guardadas correctamente", "request" => $proyecto), 200);
+        
+    }
+    
+    public function save_position(Request $request){
+        $data = $request->all();
+        $id = $data['idProyecto'];
+        $proyecto = Proyectos::find($id);
+        $proyecto->ubicacion_geografica = 1;
+        $proyecto->save();
+        
+        DB::table('proyecto_ubicacion')->insert(
+                    ['lat' => $data['lat'], 'lng' => $data['lng'] , 'idProyecto' => $id]
+          );
+
+        return JsonResponse::create(array('message' => "Ubicación guardada correctamente", "request" => $proyecto), 200);
+        
+    }
+    
     public function save_plano(Request $request){
          $data = $request->all();
          if ($request->hasFile('imagen')) {
