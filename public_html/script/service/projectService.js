@@ -13,10 +13,127 @@
             post_planos:post_planos,
             post_position:post_position,
             post_zonas:post_zonas,
-            finish_proccess:finish_proccess
+            finish_proccess:finish_proccess,
+            update : update,
+            update_logo:update_logo,
+            update_basic:update_basic,
+            update_banner:update_banner,
+            get_galeria:get_galeria,
+            delete_galeria:delete_galeria,
+            get_planos:get_planos,
+            update_plano :update_plano
             
         };
         return service;
+        
+        function update_plano(object){
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http.post(API_URL + '/proyectos/update/plano', object, {transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}}).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+        }
+        
+        function delete_galeria(object){
+             var defered = $q.defer();
+            var promise = defered.promise;
+            $http.post(API_URL + '/proyectos/delete/galeria',object).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            } 
+        }
+        
+        function update_banner(object){
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http.post(API_URL + '/proyectos/update/banner', object, {transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}}).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+        }
+        
+        function update_basic(object){
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http.post(API_URL + '/proyectos/update/basic', object, {transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}}).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+        }
+        
+        function update_logo(object) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http.post(API_URL + '/proyectos/logo', object, {transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}}).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+        }
+        
+        function get_planos(idProyecto){
+             var defered = $q.defer();
+            var promise = defered.promise;
+            $http.get(API_URL + '/proyectos/planos/'+idProyecto).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            } 
+        }
+        
+        function get_galeria(idProyecto){
+             var defered = $q.defer();
+            var promise = defered.promise;
+            $http.get(API_URL + '/proyectos/galeria/'+idProyecto).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            } 
+        }
+        
+        function update(object){
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http.put(API_URL + '/proyectos/'+object.id, object).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            } 
+        }
+        
         function getAll(){
             var defered = $q.defer();
             var promise = defered.promise;
@@ -29,6 +146,7 @@
                 defered.reject(error);
             } 
         }
+        
         function post_zonas(object) {
             var defered = $q.defer();
             var promise = defered.promise;
@@ -41,8 +159,7 @@
                 defered.reject(error);
             }
         }
-        
-        
+
         function post_position(object) {
             var defered = $q.defer();
             var promise = defered.promise;

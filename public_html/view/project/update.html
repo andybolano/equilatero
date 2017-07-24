@@ -1,23 +1,20 @@
-<div id="Controller" ng-controller="ProjectController"></div>
-
-<div class="ibox-content" id="ibox-content" ng-init="vm.getPaises(); vm.get_tipos_proyectos(); vm.get_tipos_planos();vm.getZonasComunes();" >
+<div class="ibox-content" id="ibox-content" ng-init="vm.getPaises(); vm.get_tipos_proyectos(); vm.get_tipos_planos();vm.getZonasComunes();vm.getProject();" >
     <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-         <h2>Nuevo proyecto</h2>
+         <h2>Gestión de proyecto</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="javascript:;" ui-sref="app.home">Administrador de proyectos</a>
             </li>
             <li class="active">
-                <strong>Nuevo</strong>
+                <strong>Gestión de proyecto</strong>
             </li>
         </ol>
     </div>
     <div class="col-lg-2">
-
+        
     </div>
 </div>
-  
     <div id="vertical-timeline" class="dark-timeline">
 
         <div class="vertical-timeline-block">
@@ -37,11 +34,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.informacion_basica == 1" title="Informacion basica guardada"></div>
                     <div class="col-lg-3">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
                             <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar logo</span>
-                                <span class="fileinput-exists">Cambiar</span><input type="file" uploader-model="vm.Project.logo" name="images" id="files" /></span>
+                                <span class="fileinput-exists">Cambiar</span><input type="file" custom-on-change="update_logo"  name="images" name="images" id="files" /></span>
                         </div><br>
                         <small>Recomendación: imagen cuadrada de 400px X 400px formato png</small>
 
@@ -60,8 +56,8 @@
                         </div>
                         <div class="form-group">
                             <label>Tipo:</label> 
-                            <select class="form-control" ng-model="vm.Project.tipo_proyecto" style="width: 80%">
-                                <option ng-repeat="i in vm.tipos_proyectos" value="{{i.id}}">{{i.nombre}}</option>
+                            <select class="form-control" ng-model="vm.Project.tipo_proyecto"  ng-options="i as i.nombre for i in vm.tipos_proyectos track by i.id" style="width: 80%">
+                                
                             </select>
                             <a href="javascript:;" class="pull-right" style="margin-top:-30px" title="Agregar nuevo tipo de proyecto" onclick="$('#modal_project').modal('show');"><i class="fa fa-plus-circle icon" style="font-size: 24px;"> </i></a>
                         </div>
@@ -74,20 +70,20 @@
                     <div class="col-lg-3">
                         <div class="form-group">
                             <label>País:</label>
-                            <select class="form-control" ng-model="vm.Project.pais" ng-change="vm.getDepartamentos()">
-                                <option ng-repeat="i in vm.paises" value="{{i.id}}" >{{i.nombre}}</option>
+                            <select class="form-control" ng-model="vm.Project.pais" ng-options="i as i.nombre for i in vm.paises track by i.id" ng-change="vm.getDepartamentos()" id="pais">
+                             
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Departamento:</label>
-                            <select class="form-control" ng-model="vm.Project.departamento" ng-change="vm.getMunicipios()">
-                                <option ng-repeat="i in vm.departamentos" value="{{i.iddepartamento}}">{{i.nombre}}</option>
+                            <select class="form-control" ng-model="vm.Project.departamento"  ng-options="i as i.nombre for i in vm.departamentos track by i.iddepartamento" ng-change="vm.getMunicipios()" id="departamento">
+                             
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Municipio:</label>
-                            <select class="form-control" ng-model="vm.Project.municipio">
-                                <option ng-repeat="i in vm.municipios" value="{{i.idmunicipio}}">{{i.nombreMunicipio}}</option>
+                            <select class="form-control" ng-model="vm.Project.municipio" ng-options="i as i.nombreMunicipio for i in vm.municipios track by i.idmunicipio" id="municipio">
+                                
                             </select>
                         </div> 
 
@@ -98,15 +94,16 @@
                             <label>Descripción:</label> 
                             <textarea placeholder="Ingresar descripción" class="form-control" rows="5" ng-model="vm.Project.descripcion"></textarea>
                         </div>
-                        <label>Cargar brochure:</label> 
+                        <a href="{{vm.Project.brochure}}" target="blank"><i class="fa fa-file-pdf-o"></i> ver brochure</a><br>
+                        <label>Cargar nuevo brochure:</label> 
                         <input type="file" uploader-model="vm.Project.brochure">
                         <div class="spacer" style="height: 20px;"></div>
-                        <button class="btn btn-primary pull-right" ng-click="vm.save_information_basic();" id="guardar"><i class="fa fa-upload"></i> Crear proyecto</button>
+                        <button class="btn btn-success pull-right" ng-click="vm.update_information_basic();" id="guardar"><i class="fa fa-upload"></i> Actualizar proyecto</button>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="vertical-timeline-block">
             <div class="vertical-timeline-icon yellow-bg" title="Ingresar imagen publicitaria" ng-if="vm.proyecto_proccess.banner == 0">
                 <i class="fa fa-question"></i>
@@ -116,8 +113,6 @@
             </div>
             <div class="vertical-timeline-content" style="background-color: #FFF">
                 <div class="row">
-                    <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.informacion_basica == 0" ></div>
-                    <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.banner == 1" title="Banner guardardo"></div>
                     <div class="col-lg-12">
                         <small>Paso 2.</small>
                         <h2 style="margin-bottom: 0;padding: 0">Banner publicitario</h2>
@@ -136,12 +131,12 @@
                             </div>
                         </div>
                         <div class="spacer" style="height: 10px;"></div>
-                        <button class="btn btn-primary pull-right" ng-click="vm.save_banner();" id="guardar_banner"><i class="fa fa-upload"></i> Guardar imagen</button>
+                        <button class="btn btn-success pull-right" ng-click="vm.update_banner();" id="guardar_banner"><i class="fa fa-upload"></i> Actualizar imagen</button>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="vertical-timeline-block">
             <div class="vertical-timeline-icon yellow-bg" title="Ingresar galeria de imagenes" ng-if="vm.proyecto_proccess.galeria == 0">
                 <i class="fa fa-question"></i>
@@ -150,8 +145,6 @@
                 <i class="fa fa-check"></i>
             </div>
             <div class="vertical-timeline-content" style="background-color: #FFF">
-                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.banner == 0" ></div>
-                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.galeria == 1" title="Galeria terminada" ></div>
                 <div class="row">
                     <div class="col-lg-12">
                         <small>Paso 3.</small>
@@ -184,10 +177,10 @@
                     </div>
                 </div>
                 <div class="spacer" style="height: 10px;"></div>
-                <button class="btn btn-primary pull-right" ng-click="vm.finish_proccess('galeria');" id="guardar_galeria"><i class="fa fa-check"></i> Proceso terminado</button>
+                <button class="btn btn-success pull-right" ng-click="vm.finish_proccess('galeria');" id="guardar_galeria"><i class="fa fa-check"></i> Proceso terminado</button>
             </div>
         </div>
-
+        
         <div class="vertical-timeline-block">
             <div class="vertical-timeline-icon yellow-bg" title="Ingresar planos de viviendas" ng-if="vm.proyecto_proccess.planos == 0">
                 <i class="fa fa-question"></i>
@@ -196,8 +189,7 @@
                 <i class="fa fa-check"></i>
             </div>
             <div class="vertical-timeline-content" style="background-color: #FFF">
-                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.galeria == 0" ></div>
-                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.planos == 1" ></div>
+
                 <div class="row">
                     <div class="col-lg-12">
                         <small>Paso 4.</small>
@@ -230,8 +222,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Tipo:</label> 
-                                            <select class="form-control" ng-model="vm.Plano.tipo_plano" style="width: 80%;">
-                                                <option ng-repeat="i in vm.tipos_planos" value="{{i.id}}">{{i.nombre}}</option>
+                                            <select class="form-control" ng-model="vm.Plano.tipo_plano" ng-options="i as i.nombre for i in vm.tipos_planos track by i.id" style="width: 80%;">
+                                               
                                             </select>
                                             <a href="javascript:;" class="pull-right" style="margin-top:-30px" title="Agregar nuevo tipo de plano" onclick="$('#modal_plane').modal('show');"><i class="fa fa-plus-circle icon" style="font-size: 24px;"> </i></a>
                                         </div>
@@ -268,7 +260,9 @@
                                             <input type="number" placeholder="Ingresar valor" ng-model="vm.Plano.estrato"  class="form-control">
                                         </div>
                                         <div class="spacer" style="height: 10px;"></div>
-                                        <button class="btn btn-primary pull-right" ng-click="vm.save_plane();" id="guardar_plano"><i class="fa fa-plus-circle"></i> Guardar plano</button>            
+                                        <button class="btn btn-primary pull-right" ng-click="vm.save_plane();" id="guardar_plano" ng-if="vm.updatePlano == false"><i class="fa fa-plus-circle"></i> Nuevo plano</button>
+                                        <button class="btn btn-success pull-right" ng-click="vm.update_plane();" id="actualizar_plano" ng-if="vm.updatePlano == true" style="margin-left:10px;"><i class="fa fa-upload"></i> Actualizar Plano</button>
+                                         <button class="btn btn-danger pull-right" ng-click="vm.cancelar_update_plane();" id="actualizar_plano" ng-if="vm.updatePlano == true"><i class="fa fa-times"></i> Cancelar</button>
                                     </div>
                                 </td>
                             </tr></table>
@@ -282,12 +276,14 @@
                             <th>#</th>
                             <th>titulo</th>
                             <th>tipo</th>
+                            <th></th>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="i in vm.planos">
                                     <td>{{$index + 1}}</td>
                                     <td>{{i.titulo}}</td>
                                     <td>{{i.nombreTipoPlano}}</td>
+                                    <td><a href="javascript:;" ng-click="vm.view_plano(i)" title="ver plano"><i class="fa fa-eye"></i> </a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -295,13 +291,13 @@
                             <h5>No hay planos agregados...</h5>
                         </div>
                         <div class="spacer" style="height:40px;"></div>
-                        <button class="btn btn-primary pull-right" ng-click="vm.finish_proccess('planos');" id=""><i class="fa fa-upload"></i> Proceso finalizado</button>       
+                        <button class="btn btn-success pull-right" ng-click="vm.finish_proccess('planos');" id=""><i class="fa fa-upload"></i> Proceso finalizado</button>       
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="vertical-timeline-block">
+        
+         <div class="vertical-timeline-block">
             <div class="vertical-timeline-icon yellow-bg" title="Ingresar ubicación geografica" ng-if="vm.proyecto_proccess.ubicacion_geografica == 0">
                 <i class="fa fa-question"></i>
             </div>
@@ -309,8 +305,6 @@
                 <i class="fa fa-check"></i>
             </div>
             <div class="vertical-timeline-content" style="background-color: #FFF">
-                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.planos == 0" ></div>
-                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.ubicacion_geografica == 1" ></div>
                 <div class="row">
                     <div class="col-lg-12">
                         <small>Paso 5.</small>
@@ -321,12 +315,12 @@
                             </div>
                         </div>
                         <div class="spacer" style="height: 10px;"></div>
-                        <button class="btn btn-primary pull-right" ng-click="vm.save_position();" id="guardar_ubicacion"><i class="fa fa-check"></i> Guardar ubicacion</button>
+                        <button class="btn btn-success pull-right" ng-click="vm.update_position();" id="guardar_ubicacion"><i class="fa fa-check"></i> Actualizar ubicacion</button>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="vertical-timeline-block">
             <div class="vertical-timeline-icon yellow-bg" title="Ingresar zonas comunes" ng-if="vm.proyecto_proccess.zonas_comunes == 0">
                 <i class="fa fa-question"></i>
@@ -335,8 +329,6 @@
                 <i class="fa fa-check"></i>
             </div>
             <div class="vertical-timeline-content" style="background-color: #FFF">
-                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.ubicacion_geografica == 0" ></div>
-                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.zonas_comunes == 1" ></div>
                 <div class="row">
                     <div class="col-lg-12">
                         <small>Paso 6.</small>
@@ -347,7 +339,7 @@
 
                                     </select>
                                     <br>
-                                    <button  class="btn btn-primary" ng-click="vm.save_zonas_comunes();" id="guardar_zonas"><i class="fa fa-upload"></i> Guardar zonas comunes</button>
+                                    <button  class="btn btn-success" ng-click="vm.update_zonas_comunes();" id="guardar_zonas"><i class="fa fa-upload"></i> Actualizar zonas comunes</button>
                              </div>
                         </div>
 
@@ -355,8 +347,8 @@
                 </div>
             </div>
         </div>
+        
     </div>
-
 </div>
 
 <div class="modal inmodal" id="modal_project" tabindex="-1" role="dialog" aria-hidden="true">
@@ -402,6 +394,3 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvO7t2jvpogY2DgybErVXBkRWYHHecbBA&callback=initMap">
 </script>
-
-
-

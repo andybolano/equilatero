@@ -33,6 +33,11 @@
                     templateUrl: 'view/project/new.html',
                     controller: 'ProjectController as vm'
                 })
+                .state('app.update_project', {
+                    url: '/project/update',
+                    templateUrl: 'view/project/update.html',
+                    controller: 'updateProjectController as vm'
+                })
             //rutas publicas  
             .state('auth', {
                     url: '/auth',
@@ -76,4 +81,6 @@ angular.module('app').directive('customOnChange', [function() {
     }
   };
 }]);
+
+
   

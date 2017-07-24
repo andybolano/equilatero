@@ -31,14 +31,14 @@
                                                 <td>{{i.informacion_basica.nombreTipoProyecto}}</td>
                                                 <td>{{i.informacion_basica.direccion}}</td>
                                                 <td>
-                                                    <a href="javascript:;" title="Click para activar" ng-if="i.proyecto.estado == 'INACTIVO'" ><span class="badge badge-danger">{{i.proyecto.estado}}</span></a>
-                                                    <a href="javascript:;" title="Click para desactivar" ng-if="i.proyecto.estado == 'ACTIVO'"><span class="badge badge-primary">{{i.proyecto.estado}}</span></a>
+                                                    <a href="javascript:;" title="Click para activar" ng-if="i.proyecto.estado == 'INACTIVO'" ng-click="vm.updateProject('estado',i.proyecto,'ACTIVO');"><span class="badge badge-danger">{{i.proyecto.estado}}</span></a>
+                                                    <a href="javascript:;" title="Click para desactivar" ng-if="i.proyecto.estado == 'ACTIVO'" ng-click="vm.updateProject('estado',i.proyecto,'INACTIVO');"><span class="badge badge-primary">{{i.proyecto.estado}}</span></a>
                                                 </td>
                                                 <td style="text-align: center">
-                                                  <a href="javascript:;" title="Click para quitar del banner" ng-if="i.proyecto.destacado == 1"><i class="fa fa-star text-success"></i></a>
-                                                  <a href="javascript:;" title="Click para publicar en el banner" ng-if="i.proyecto.destacado == 0"><i class="fa fa-star-o text-danger"></i></a>
+                                                  <a href="javascript:;" title="Click para quitar del banner" ng-if="i.proyecto.destacado == 1" ng-click="vm.updateProject('destacado',i.proyecto,0);"><i class="fa fa-star text-success"></i></a>
+                                                  <a href="javascript:;" title="Click para publicar en el banner" ng-if="i.proyecto.destacado == 0" ng-click="vm.updateProject('destacado',i.proyecto,1);"><i class="fa fa-star-o text-danger"></i></a>
                                                 </td>
-                                                <td  style="text-align: center;"><a href="javascript:;"><i class="fa fa-eye text-navy"></i></a></td>
+                                                <td  style="text-align: center;"><a href="javascript:;" ng-click=" vm.viewProject(i)" title="Gestionar proyecto"><i class="fa fa-eye text-navy"></i></a></td>
                                             </tr>
                                         </tbody>
                                     </table>
