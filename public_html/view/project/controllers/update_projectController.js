@@ -213,17 +213,11 @@ var _position = {};
                             idProyecto:vm.proyecto_proccess.id
                         }
                          $('#guardar_zonas').attr("disabled", true);
-                        var promisePost = projectService.put_zonas(object);
+                        var promisePost = projectService.post_zonas(object);
                         promisePost.then(function (d) {
                             vm.proyecto_proccess = d.data.request;
                             swal("Buen Trabajo!", d.data.message, "success");
-                            
-                            swal("Hemos finalizado!", 'Has guardado toda la informacion con exito, El proyecto esta listo para ser publicado!', "success");
-                            
-                            setTimeout(function(){
-                                $state.go(HOME);
-                            },2000);
-                            
+            
                         }, function (err) {
                             $('#guardar_zonas').attr("disabled", false);
                             if (err.status == 402) {
@@ -442,7 +436,7 @@ var _position = {};
                         
                    }
 
-                    vm.update_banner = function () {
+                    vm.save_banner = function () {
                      
                         if (!vm.proyecto_proccess.id) {
                             toastr['warning']("No se encuentra el proyecto cargado");
@@ -456,10 +450,10 @@ var _position = {};
                         var project = JSON.parse(sessionStorage.getItem('proyecto'))
                         var formData = new FormData();
                         formData.append('banner', vm.Project.banner);
-                        formData.append('id', project.banner.id);
+                        formData.append('idProyecto', vm.proyecto_proccess.id);
                         $('#guardar_banner').attr("disabled", true);
 
-                        var promisePost = projectService.update_banner(formData);
+                        var promisePost = projectService.post_banner(formData);
                         promisePost.then(function (d) {
                             swal("Buen Trabajo!", d.data.message, "success");
                         }, function (err) {
@@ -574,10 +568,14 @@ var _position = {};
                          var promisePost = zoneService.getAll();
                         promisePost.then(function (d) {
                             vm.zones = d.data;
+                          
                             if(project.proyecto.zonas_comunes == 1){
+                          
                               for(var i = 0; i < vm.zones.length; i++){
                                for(var y=0; y < project.zonas.length; y++){
-                                   if(project.zonas[y].idProyectoZona == vm.zones[i].id){
+
+                         
+                                   if(project.zonas[y].idZona == vm.zones[i].id){
                                        band = true;
                                        break;
                                     }

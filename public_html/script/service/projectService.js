@@ -17,7 +17,6 @@
             update : update,
             update_logo:update_logo,
             update_basic:update_basic,
-            update_banner:update_banner,
             get_galeria:get_galeria,
             delete_galeria:delete_galeria,
             get_planos:get_planos,
@@ -51,20 +50,6 @@
             function error(error) {
                 defered.reject(error);
             } 
-        }
-        
-        function update_banner(object){
-            var defered = $q.defer();
-            var promise = defered.promise;
-            $http.post(API_URL + '/proyectos/update/banner', object, {transformRequest: angular.identity,
-                headers: {'Content-Type': undefined}}).then(success, error);
-            return promise;
-            function success(p) {
-                defered.resolve(p);
-            }
-            function error(error) {
-                defered.reject(error);
-            }
         }
         
         function update_basic(object){

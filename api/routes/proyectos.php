@@ -9,10 +9,8 @@ Route::post("proyectos/position","proyectoController@save_position");
 Route::post("proyectos/zonas","proyectoController@save_zonas");
 
 Route::post("proyectos/update/basic","proyectoController@update_informaction_basic");
-Route::post("proyectos/update/banner","proyectoController@update_banner");
 Route::post("proyectos/update/plano","proyectoController@update_plano");
 Route::post("proyectos/delete/galeria","proyectoController@delete_galeria");
-
 
 Route::post("proyectos/logo","proyectoController@update_logo");
 Route::get("proyectos/galeria/{idProyecto}","proyectoController@getter_galeria");

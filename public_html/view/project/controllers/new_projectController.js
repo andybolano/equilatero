@@ -62,7 +62,7 @@ var _position = {};
                             
                             setTimeout(function(){
                                 $state.go(HOME);
-                            },2000);
+                            },5000);
                             
                         }, function (err) {
                             $('#guardar_zonas').attr("disabled", false);
