@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/landing.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Sep 2015 13:17:12 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"  content='width=1400'>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Equilatero</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+   
+    <!-- Animation CSS -->
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+     <link href="css/flexslider.css" rel="stylesheet" type="text/css"/>
+</head>
+<body ng-app="app" id="page-top" class="landing-page">
+
+
+<div ui-view="">
+        </div>
+
+
+    
+         <script src="js/angular.js" type="text/javascript"></script>
+        <script src="js/angular-ui-router.min.js" type="text/javascript"></script>
+        <script src="js/ui-utils.min.js" type="text/javascript"></script>
+        <script src="script/app.js" type="text/javascript"></script>
+<!-- Mainly scripts -->
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/flexslider/jquery.flexslider.js" type="text/javascript"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+<script src="js/plugins/pace/pace.min.js"></script>
+<script src="js/plugins/wow/wow.min.js"></script>
+
+<script src="script/controllers/homeController.js" type="text/javascript"></script>
+<script>
+    
+    
+        
+    function active(id){
+    for(i=1; i<=5; i++){
+             $('#'+i).removeClass("active");
+             if(i==id){
+                 $('#'+i).addClass("active");
+                 break;
+             }
+         }
+              
+   }
+    
+    // Activate WOW.js plugin for animation on scrol
+    new WOW().init();
+
+</script>
+
+</body>
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/landing.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Sep 2015 13:18:12 GMT -->
+</html>

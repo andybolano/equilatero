@@ -144,36 +144,42 @@ class proyectoController extends Controller {
 
     //informacion banner********************************
     public function save_banner(Request $request) {
-        if ($request->hasFile('banner')) {
+      
             $data = $request->all();
             $id = $data['idProyecto'];
+            $titulo = $data['titulo'];
+            $descripcion = $data['descripcion'];
             $proyecto = Proyectos::find($id);
             if($proyecto->banner == 1) {
-
-
-                $request->file('banner')->move("../images/banner", $id . ".jpg");
+                 if ($request->hasFile('banner')) {
+                     $request->file('banner')->move("../images/banner", $id . ".jpg");
+                 }
+                DB::select(DB::raw("UPDATE banner SET titulo = '$titulo' , descripcion = '$descripcion'  WHERE idProyecto = $id "));
 
                 return JsonResponse::create(array('message' => "Banner actualizado", "request" => json_encode($data)), 200);
+                  
             }
             if($proyecto->banner == 0) {
+                 if ($request->hasFile('banner')) {
                 $proyecto->banner = 1;
                 $proyecto->save();
 
-                DB::table('proyecto_banner')->insert(
-                        ['banner_url' => URL_SERVER . "images/banner/" . $id . ".jpg", 'idProyecto' => $id]
+                
+                DB::table('banner')->insert(
+                        ['titulo' => $titulo,'descripcion' => $descripcion ,'banner_url' => URL_SERVER . "images/banner/" . $id . ".jpg", 'idProyecto' => $id]
                 );
                 $request->file('banner')->move("../images/banner", $id . ".jpg");
 
 
                 return JsonResponse::create(array('message' => "Banner guardado Correctamente", "request" => $proyecto), 200);
-            }
+                 }
         } else {
             return JsonResponse::create(array('message' => "No se encontro banner del proyecto"), 402);
         }
     }
 
     private function get_banner($idProyecto) {
-        $banner = DB::select(DB::raw("SELECT * FROM proyecto_banner WHERE idProyecto = $idProyecto "));
+        $banner = DB::select(DB::raw("SELECT id, banner_url, titulo , descripcion FROM banner WHERE idProyecto = $idProyecto "));
         return $banner[0];
     }
 
@@ -181,12 +187,10 @@ class proyectoController extends Controller {
     public function getter_galeria($idProyecto) {
         return $this->get_galeria($idProyecto);
     }
-
     private function get_galeria($idProyecto) {
         $galeria = DB::select(DB::raw("SELECT * FROM proyecto_galeria WHERE idProyecto = $idProyecto "));
         return $galeria;
     }
-
     public function save_galeria(Request $request) {
         if ($request->hasFile('galeria')) {
             $data = $request->all();
@@ -209,7 +213,6 @@ class proyectoController extends Controller {
             return JsonResponse::create(array('message' => "No se encontro imagen"), 402);
         }
     }
-
     public function delete_galeria(Request $request) {
         $data = $request->all();
         $idProyecto = $data['idProyecto'];
@@ -234,12 +237,10 @@ class proyectoController extends Controller {
     public function getter_planos($idProyecto) {
         return $this->get_planos($idProyecto);
     }
-
     private function get_planos($idProyecto) {
         $planos = DB::select(DB::raw("SELECT pp.*, tp.nombre as nombreTipoPlano FROM proyecto_plano pp INNER JOIN tipos_planos as tp ON tp.id = pp.tipo WHERE pp.idProyecto = $idProyecto "));
         return $planos;
     }
-
     public function save_plano(Request $request) {
         if ($request->hasFile('imagen')) {
             $data = $request->all();
@@ -265,7 +266,6 @@ class proyectoController extends Controller {
             return JsonResponse::create(array('message' => "Plano guardado Correctamente", "planos" => $plano), 200);
         }
     }
-
     public function update_plano(Request $request) {
 
         $data = $request->all();
@@ -311,7 +311,6 @@ class proyectoController extends Controller {
         $respuesta = DB::table('proyecto_zona')->insert($array);
         return JsonResponse::create(array('message' => "Zonas guardadas correctamente", "request" => $proyecto), 200);
     }
-
     private function get_zonas($idProyecto) {
         $zonas = DB::select(DB::raw("SELECT zc.nombre,zc.url, pz.id as idProyectoZona, pz.idZona  FROM proyecto_zona as pz INNER JOIN zonas_comunes as zc ON zc.id = pz.idZona  WHERE pz.idProyecto = $idProyecto "));
         return $zonas;
@@ -340,12 +339,10 @@ class proyectoController extends Controller {
             return JsonResponse::create(array('message' => "Ubicación actualizada correctamente", "request" => $proyecto), 200);
         }
     }
-
     private function get_ubicacion($idProyecto) {
         $ubicacion = DB::select(DB::raw("SELECT * FROM proyecto_ubicacion WHERE idProyecto = $idProyecto "));
         return $ubicacion;
     }
-
     public function finish_proccess(Request $request) {
         $data = $request->all();
         $id = $data['idProyecto'];
