@@ -73,7 +73,7 @@
                     vm.save = function () {
 
                         if (!vm.Banner.nombre) {
-                            toastr['warning']("Ingresar nombre de la zona común");
+                            toastr['warning']("Ingresar titulo de banner");
                             return 0;
                         }
 

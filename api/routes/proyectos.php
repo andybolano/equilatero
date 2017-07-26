@@ -15,6 +15,8 @@ Route::post("proyectos/delete/galeria","proyectoController@delete_galeria");
 Route::post("proyectos/logo","proyectoController@update_logo");
 Route::get("proyectos/galeria/{idProyecto}","proyectoController@getter_galeria");
 Route::get("proyectos/planos/{idProyecto}","proyectoController@getter_planos");
+
+Route::get("proyectos/destacados/show","proyectoController@leerDestacados");
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

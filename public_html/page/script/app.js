@@ -5,6 +5,7 @@
         // Add Angular module mdr.file
         angular.module('app', ['ui.router'])
        .constant('HOME', 'app.home')
+        .constant('API_URL', 'http://localhost/equilatero/api/public/index.php/api')
        .config(function($stateProvider, $urlRouterProvider,) {
 
          

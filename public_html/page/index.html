@@ -19,8 +19,10 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
+        <link href="css/toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/style.css" rel="stylesheet">
      <link href="css/flexslider.css" rel="stylesheet" type="text/css"/>
+ 
 </head>
 <body ng-app="app" id="page-top" class="landing-page">
 
@@ -45,14 +47,39 @@
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
 <script src="js/plugins/wow/wow.min.js"></script>
+<script src="js/plugins/toastr/toastr.min.js" type="text/javascript"></script>
 
 <script src="script/controllers/homeController.js" type="text/javascript"></script>
 <script src="script/controllers/nosotrosController.js" type="text/javascript"></script>
 <script src="script/controllers/templateController.js" type="text/javascript"></script>
+
+<script src="script/services/projectService.js" type="text/javascript"></script>
 <script>
 
     // Activate WOW.js plugin for animation on scrol
     new WOW().init();
+    
+   
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            
+           
+       
 
 </script>
 

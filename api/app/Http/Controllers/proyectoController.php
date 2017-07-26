@@ -45,6 +45,31 @@ class proyectoController extends Controller {
             return JsonResponse::create(array('message' => "No pudimos realizar la consulta de los proyectos", "exception" => $exc->getMessage(), "respuesta" => false), 401);
         }
     }
+    
+    public function leerDestacados() {
+        $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE destacado = 1"));
+            foreach ($proyectos as $key => $p) {
+                $informacion_basica = $this->get_informaction_basic($p->id);
+
+                ($p->banner == 1) ? $banner = $this->get_banner($p->id) : $banner = null;
+                ($p->galeria == 1) ? $galeria = $this->get_galeria($p->id) : $galeria = null;
+                ($p->planos == 1) ? $planos = $this->get_planos($p->id) : $planos = null;
+                ($p->ubicacion_geografica == 1) ? $ubicacion = $this->get_ubicacion($p->id) : $ubicacion = null;
+                ($p->zonas_comunes == 1) ? $zonas = $this->get_zonas($p->id) : $zonas = null;
+
+                $array_projects[$key] = array(
+                    'proyecto' => $p,
+                    'informacion_basica' => $informacion_basica,
+                    'banner' => $banner,
+                    'galeria' => $galeria,
+                    'planos' => $planos,
+                    'ubicacion' => $ubicacion,
+                    'zonas' => $zonas
+                );
+            }
+
+            return $array_projects;
+    }
 
     //utilizado para actualizar los estados
     public function update(Request $request, $id) {

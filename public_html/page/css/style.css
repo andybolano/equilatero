@@ -8385,11 +8385,16 @@ p{
 }
 
 .content-slider-nosotros{
-    width: 60%;margin-left: 20%;height:320px;padding-top: 30px;background-color:rgba(255,255,255,0.7);
+    width: 60%;
+    margin-left: 20%;
+    height:320px;padding-top: 20px;
+    background-color:rgba(255,255,255,0.7);
 }
 .slider-nosotros{
-    text-align: center;
-   height:240px !important;background-color: transparent !important;width:90% !important;
+   text-align: center;
+   height:240px !important;
+   background-color: transparent !important;
+   width:90% !important;
    margin-left: 5% !important;
 }
 
@@ -8400,4 +8405,15 @@ p{
 .cont-img img{
     height:400px;
     width: 100%;
+}
+
+
+.content-descripcion{
+   height:43px;
+   overflow: hidden;
+   display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+   white-space:initial;
+   text-overflow: ellipsis;
 }

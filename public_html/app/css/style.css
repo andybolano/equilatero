@@ -8166,3 +8166,17 @@ width: 100%;
     background-position: 50% 50%;
     display: block
 }
+
+.btn-primary{
+    background-color: #226B29;
+    border-color:#226B29;
+}
+
+.btn-primary:hover{
+     background-color: #174a1c;
+    border-color:#174a1c;
+}
+
+.navbar-brand{
+    background-color: #226B29 !important;
+}
