@@ -1,6 +1,6 @@
 
 
-<div class="navbar-wrapper">
+<div class="navbar-wrapper" ng-controller="templateController">
         <nav id="cabecera" class="navbar navbar-default navbar-fixed-top" role="navigation" style="border-radius: 0;">
                 <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -25,7 +25,7 @@
                             <div class="cont-phone">
                                 +57 (1) 401 3636
                             </div>
-                            <div class="cont-btn">
+                            <div class="cont-btn" id="contact" ng-click="vm.to('contact')" >
                                 CONTACTO
                             </div>
                         </li>
@@ -42,7 +42,7 @@
 <section id="contact" class="contact">
     <div class="container">
         <div class="row">
-            <div class='col-lg-5 col-lg-offset-1'>
+            <div class='col-md-5 col-md-offset-1'>
                 <h1>CONTÁCTANOS</h1>
                 <input type='email' class='input-contact' placeholder="E-Mail">
                 <textarea class='input-contact' placeholder="Escríbenos un mensaje" rows="4" style="margin-top: 20px;"></textarea>
@@ -54,7 +54,7 @@
                 </div>
                 
             </div>
-            <div class='col-lg-5 contact-info'>
+            <div class='col-md-5 contact-info'>
                 <div  style="margin-top:50px;">
                 <a href="javascript:;">Términos y condiciones</a>
                 <a href="javascript:;">Política de privacidad</a>
@@ -86,3 +86,4 @@
         </div>
     </div>
 </section>
+

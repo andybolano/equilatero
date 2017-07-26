@@ -25,7 +25,7 @@
                 .state('app.nosotros', {
                     url: '/nosotros',
                     templateUrl: 'view/nosotros.html',
-                    //controller: 'HomeController as vm'
+                    controller: 'NosotrosController as vm'
                 })
                 .state('app.compromiso', {
                     url: '/compromiso',
