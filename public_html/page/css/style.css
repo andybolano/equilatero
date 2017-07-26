@@ -8234,6 +8234,24 @@ h1{
      border-bottom: 2px solid #1b7033;
 }
 
+.content-compromiso{
+    background-image: url('../img/bg-destacado.png');
+    background-repeat: no-repeat;
+    background-size:18%;
+    background-position-x:0%;
+    height: 400px;
+   border-bottom: 2px solid #1b7033;
+}
+.content-compromiso p{
+    text-align: left;
+    font-size:20px !important;
+    color:#919191;
+    height:400px;
+     overflow:hidden;
+    text-overflow: ellipsis;
+    font-family: 'MrEavesBold';
+
+}
 .content-destacado h4{
     color:#1b7033;
     font-size:20px;
@@ -8287,10 +8305,10 @@ h1{
   font-family: 'MrEavesBook';
 }
 
-::-webkit-input-placeholder { color: #F48128; } /* WebKit */
-:-moz-placeholder { color: #F48128; } /* Firefox 18- */
-::-moz-placeholder { color: #F48128; } /* Firefox 19+ */
-:-ms-input-placeholder { color:#F48128; } /* IE 10+ */
+::-webkit-input-placeholder { color: #F48128;font-family: 'MrEavesBold'; } /* WebKit */
+:-moz-placeholder { color: #F48128; font-family: 'MrEavesBold';} /* Firefox 18- */
+::-moz-placeholder { color: #F48128;font-family: 'MrEavesBold'; } /* Firefox 19+ */
+:-ms-input-placeholder { color:#F48128;font-family: 'MrEavesBold'; } /* IE 10+ */
 
 .ico-social{
     font-size:32px;
@@ -8310,7 +8328,7 @@ h1{
 }
 .container-banner-2 h1{
     color:#FFF;
-    font-size:54px;
+    font-size:60px;
     text-shadow: 5px 5px 5px #000;
       font-family: 'MrEavesBold';
 }
@@ -8323,6 +8341,15 @@ h1{
 
 .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
+    height: 500px; 
+    background-position-y: 92px;
+    background-repeat: no-repeat;
+    background-attachment: fixed!important;
+}
+
+
+.compromiso{
+    background-image: url('../img/compromiso/bg-compromiso.png');
     height: 500px; 
     background-position-y: 92px;
     background-repeat: no-repeat;
@@ -8362,5 +8389,15 @@ p{
 }
 .slider-nosotros{
     text-align: center;
-   height:240px !important;background-color: transparent !important;width:90% !important;margin-left: 5% !important;
+   height:240px !important;background-color: transparent !important;width:90% !important;
+   margin-left: 5% !important;
+}
+
+.cont-img{
+    height: 400px;
+}
+
+.cont-img img{
+    height:400px;
+    width: 100%;
 }
