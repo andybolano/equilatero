@@ -30,6 +30,14 @@
                         });
                  }
                  
+                 vm.construir_imagen = function(url, id){
+                     $("#img-destacado-"+id).css({
+                         "background-image":"url("+url+")",
+                         "background-size": "cover",
+                         "background-repeat":"no-repeat",
+                     });
+                 }
+                 
                  vm.impar = function(n){
                      var tipo=(n%2) ? true:false;
 		     return tipo;

@@ -8245,7 +8245,7 @@ h1{
 .content-compromiso p{
     text-align: left;
     font-size:20px !important;
-    color:#919191;
+    color:#606060;
     height:400px;
      overflow:hidden;
     text-overflow: ellipsis;
@@ -8261,7 +8261,7 @@ h1{
 .content-destacado p{
     text-align: left;
     font-size:18px !important;
-    color:#919191;
+    color:#606060 !important;
     height:180px;
      overflow:hidden;
     text-overflow: ellipsis;
@@ -8380,8 +8380,9 @@ h1{
 p{
     text-align:center;
     font-size:18px !important;
-    color:#919191;
+    color:#606060 !important;
     font-family: 'MrEavesBook';
+    font-weight: 900;
 }
 
 .content-slider-nosotros{

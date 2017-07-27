@@ -62,8 +62,8 @@
     <div class="spacer" style="height:60px;" ></div>
     <div ng-repeat="i in vm.projects">
     <div class="row" ng-if="vm.par($index);">
-        <div class="col-md-5 col-md-offset-1 text-center wow fadeInLeft">
-            <img src="{{i.banner.banner_url}}" style="width:100%;height:400px"/>
+        <div class="col-md-5 col-md-offset-1 text-center wow fadeInLeft" style="height: 400px;" id="img-destacado-{{$index}}">
+            {{vm.construir_imagen(i.banner.banner_url, $index);}}
         </div>
         <div class="col-md-5 text-center  wow fadeInRight content-destacado " style='border-right: 2px solid #1b7033;'>
             <div style='text-align: left'>
@@ -93,14 +93,14 @@
             </p>
             <button class="btn btn-warning" style='font-size: 18px;' ng-click="vm.verProyecto(i)">VER PROYECTO</button>
         </div>
-         <div class="col-md-5 text-center wow fadeInRight">
-            <img src="{{i.banner.banner_url}}" style="width:100%;height:400px"/>
+         <div class="col-md-5 text-center wow fadeInRight" style="height: 400px;" id="img-destacado-{{$index}}">
+            {{vm.construir_imagen(i.banner.banner_url, $index);}}
         </div>
     </div>
             <div class="spacer" style="height:100px;" ></div>
     </div>
 </section>
-<div class="spacer" style="height:100px;" ></div>
+<div class="spacer" style="height:20px;" ></div>
 
 
 
