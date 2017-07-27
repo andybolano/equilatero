@@ -3,16 +3,15 @@
     angular
             .module('app')
                .controller('HomeController', ['projectService',function (projectService) {
-                var vm = this;
+               var vm = this;
                vm.projects = [];
         
                 
                 
-                  vm.leerDestacados = function(){
+                vm.leerDestacados = function(){
                      var promisePost = projectService.leerDestacados();
                         promisePost.then(function (d) {
                            vm.projects = d.data;
-                           console.log(vm.projects)
                            setTimeout(function(){
                     $('.flexslider').flexslider({
                       animation: "slide",
@@ -30,7 +29,7 @@
                         });
                  }
                  
-                 vm.construir_imagen = function(url, id){
+                vm.construir_imagen = function(url, id){
                      $("#img-destacado-"+id).css({
                          "background-image":"url("+url+")",
                          "background-size": "cover",
@@ -38,12 +37,12 @@
                      });
                  }
                  
-                 vm.impar = function(n){
+                vm.impar = function(n){
                      var tipo=(n%2) ? true:false;
 		     return tipo;
                  }
                  
-                 vm.par = function(n){
+                vm.par = function(n){
                      var tipo=(n%2) ? false:true;
 		     return tipo;
                  }

@@ -6,23 +6,16 @@
 
                      var vm = this;
    
-            vm.to = function(id){
-           alert()
-               /* $('html, body').stop().animate({
-                    scrollTop: $(id).offset().top - 50
-                }, 500);
-                event.preventDefault();*/
+      
+            
+          vm.to = function(id){
+               var posicion = $("#"+id).offset().top;
+               $("html, body").animate({scrollTop:posicion+"px"});
             }
         
-            function active(id){
-            for(i=1; i<=5; i++){
-                     $('#'+i).removeClass("active");
-                     if(i==id){
-                         $('#'+i).addClass("active");
-                         break;
-                     }
-                 }
-
+            vm.active = function(id){
+                $('li').removeClass("active");
+                $('#'+id).addClass("active");
            }
         
          }]);

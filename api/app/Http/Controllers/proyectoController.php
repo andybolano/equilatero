@@ -47,7 +47,7 @@ class proyectoController extends Controller {
     }
     
     public function leerDestacados() {
-        $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE destacado = 1"));
+        $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE destacado = 1 AND estado = 'ACTIVO'"));
             foreach ($proyectos as $key => $p) {
                 $informacion_basica = $this->get_informaction_basic($p->id);
 

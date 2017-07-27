@@ -70,7 +70,7 @@ h5 {
   color: #999c9e;
 }
 .nav > li.active > a {
-  color: #ffffff;
+  color: #1B7033;
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus {
@@ -124,6 +124,7 @@ h5 {
   top: 100%;
   z-index: 1000;
 }
+
 .dropdown-menu > li > a {
   border-radius: 3px;
   color: inherit;
@@ -6557,7 +6558,7 @@ box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.44);
 }
 .landing-page .navbar-default .navbar-nav > .active > a:focus {
   background: transparent;
-  color: #ffffff;
+  color: #1B7033;
 }
 .landing-page .navbar-default.navbar-scroll .navbar-nav > .active > a:focus {
   background: transparent;
@@ -8417,4 +8418,20 @@ p{
   -webkit-box-orient: vertical;  
    white-space:initial;
    text-overflow: ellipsis;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: #eee;
+    border:0;
+    border-color: #F58C3B;
+}
+
+.landing-page .navbar-default .navbar-nav > .active > a, .landing-page .navbar-default .navbar-nav > .active > a:hover {
+    border-top: 0;
+}
+
+.landing-page .navbar-default .navbar-nav > .active > a, .landing-page .navbar-default .navbar-nav > .active > a:hover {
+    background: transparent;
+    color: #1B7033;
+    border-top: 6px solid #FFF;
 }

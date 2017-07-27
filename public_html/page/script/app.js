@@ -28,6 +28,16 @@
                     templateUrl: 'view/nosotros.html',
                     controller: 'NosotrosController as vm'
                 })
+                .state('app.proyectos_realizados', {
+                    url: '/proyectos/realizados',
+                    templateUrl: 'view/proyectos_realizados.html',
+                    //controller: 'HomeController as vm'
+                })
+                .state('app.proyectos_actuales', {
+                    url: '/proyectos/actuales',
+                    templateUrl: 'view/proyectos_actuales.html',
+                    //controller: 'HomeController as vm'
+                })
                 .state('app.compromiso', {
                     url: '/compromiso',
                     templateUrl: 'view/compromiso.html',
