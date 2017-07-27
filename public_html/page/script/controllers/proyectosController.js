@@ -2,26 +2,22 @@
     'use strict';
     angular
             .module('app')
-               .controller('HomeController', ['projectService',function (projectService) {
+               .controller('ProyectosController', ['projectService',function (projectService) {
                var vm = this;
-               vm.projects = [];
-               vm.banners = [];
-                
+               vm.anios = [];
+               vm.ciudad = [];
+               vm.tipo = [];
+               vm.consulta = {};
+               vm.proyectos =[];
+        
                 $("html, body").animate({scrollTop: "0px"});
                 
-                vm.leerBanners = function(){
-                     var promisePost = projectService.leerBanners();
+                vm.leerCondiciones = function(){
+                     var promisePost = projectService.leerCondiciones();
                         promisePost.then(function (d) {
-                           vm.banners = d.data;
-                            vm.leerDestacados();
-                           setTimeout(function(){
-                    $('.flexslider').flexslider({
-                      animation: "slide",
-                       start:function(slider){
-                        $('.flex-direction-nav').css({visibility:'hidden'});
-                    }
-                    });
-                },100);
+                          vm.anios = d.data.anios;
+                          vm.ciudad = d.data.ciudad;
+                          vm.tipos = d.data.tipos;
                         }, function (err) {
                             if (err.status == 402) {
                                 toastr["error"](err.data.respuesta);
@@ -31,10 +27,20 @@
                         });
                  }
                  
-                 vm.leerDestacados = function(){
-                     var promisePost = projectService.leerDestacados();
+                 vm.verProyectos = function(tipo){
+                     $('.cont-tab').removeClass('active');
+                     $('#'+tipo).addClass('active');
+                     if(tipo == 'realizados'){
+                         vm.getProyectos(1);
+                     }else{
+                         vm.getProyectos(0);
+                     }
+                 }
+                 
+                 vm.getProyectos = function(param){
+                     var promisePost = projectService.leerProyectos(param);
                         promisePost.then(function (d) {
-                           vm.projects = d.data;
+                         vm.proyectos = d.data;
                         }, function (err) {
                             if (err.status == 402) {
                                 toastr["error"](err.data.respuesta);
@@ -44,24 +50,17 @@
                         });
                  }
                  
-                vm.construir_imagen = function(url, id){
-                     $("#img-destacado-"+id).css({
+              
+                 
+               vm.construir_imagen = function(url, id){
+                     $("#img-"+id).css({
                          "background-image":"url("+url+")",
                          "background-size": "cover",
                          "background-repeat":"no-repeat",
                      });
                  }
                  
-                vm.impar = function(n){
-                     var tipo=(n%2) ? true:false;
-		     return tipo;
-                 }
-                 
-                vm.par = function(n){
-                     var tipo=(n%2) ? false:true;
-		     return tipo;
-                 }
-                
+      
         
          }]);
 

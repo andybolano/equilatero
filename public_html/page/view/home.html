@@ -1,8 +1,8 @@
 
-<div class="banner"  ng-init="vm.leerDestacados();">
+<div class="banner"  ng-init="vm.leerBanners();">
     <div class="flexslider">
         <ul class="slides">
-            <li ng-repeat="i in vm.projects">
+            <li ng-repeat="i in vm.banners">
                 <img src="{{i.banner.banner_url}}" />
                 <div class="container">
                     <div class="container-banner">
@@ -70,7 +70,7 @@
             <h4>{{i.informacion_basica.nombre}}</h4>
             <h4>{{i.informacion_basica.nombreTipoProyecto}}</h4>
             <h4>{{i.informacion_basica.direccion}}</h4>
-            <h4>{{i.informacion_basica.departamento}}, 2011</h4>
+            <h4>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</h4>
             </div>
             <div class='spacer' style='height:10px;'></div>
             <p>
@@ -85,7 +85,7 @@
            <h4>{{i.informacion_basica.nombre}}</h4>
             <h4>{{i.informacion_basica.nombreTipoProyecto}}</h4>
             <h4>{{i.informacion_basica.direccion}}</h4>
-            <h4>{{i.informacion_basica.departamento}}, 2011</h4>
+            <h4>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</h4>
             </div>
             <div class='spacer' style='height:10px;'></div>
             <p>

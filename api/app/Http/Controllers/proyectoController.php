@@ -22,7 +22,6 @@ class proyectoController extends Controller {
             $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p "));
             foreach ($proyectos as $key => $p) {
                 $informacion_basica = $this->get_informaction_basic($p->id);
-
                 ($p->banner == 1) ? $banner = $this->get_banner($p->id) : $banner = null;
                 ($p->galeria == 1) ? $galeria = $this->get_galeria($p->id) : $galeria = null;
                 ($p->planos == 1) ? $planos = $this->get_planos($p->id) : $planos = null;
@@ -46,6 +45,7 @@ class proyectoController extends Controller {
         }
     }
     
+    //page
     public function leerDestacados() {
         $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE destacado = 1 AND estado = 'ACTIVO'"));
             foreach ($proyectos as $key => $p) {
@@ -70,6 +70,86 @@ class proyectoController extends Controller {
 
             return $array_projects;
     }
+    
+    public function leerBanners() {
+        $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE banner_show = 1 AND estado = 'ACTIVO'"));
+            foreach ($proyectos as $key => $p) {
+                $informacion_basica = $this->get_informaction_basic($p->id);
+
+                ($p->banner == 1) ? $banner = $this->get_banner($p->id) : $banner = null;
+                ($p->galeria == 1) ? $galeria = $this->get_galeria($p->id) : $galeria = null;
+                ($p->planos == 1) ? $planos = $this->get_planos($p->id) : $planos = null;
+                ($p->ubicacion_geografica == 1) ? $ubicacion = $this->get_ubicacion($p->id) : $ubicacion = null;
+                ($p->zonas_comunes == 1) ? $zonas = $this->get_zonas($p->id) : $zonas = null;
+
+                $array_projects[$key] = array(
+                    'proyecto' => $p,
+                    'informacion_basica' => $informacion_basica,
+                    'banner' => $banner,
+                    'galeria' => $galeria,
+                    'planos' => $planos,
+                    'ubicacion' => $ubicacion,
+                    'zonas' => $zonas
+                );
+            }
+
+            return $array_projects;
+    }
+    
+    public function leerCondiciones(){
+        $tipos = $this->getTiposProyectos();
+        $anios = $this->getAnios();
+        $ciudades = $this->getCiudades();
+                
+        return JsonResponse::create(array('tipos' => $tipos , "anios" => $anios, "ciudad" => $ciudades), 200);
+        
+    }
+    
+    private function getCiudades() {
+         $anios = DB::select(DB::raw("SELECT p.municipio, m.nombreMunicipio FROM proyecto_informacion_basica as p  INNER JOIN municipio as m ON m.idmunicipio = p.municipio GROUP BY p.municipio"));
+        return $anios;
+    }
+    
+    private function getAnios() {
+         $anios = DB::select(DB::raw("SELECT anio FROM proyecto_informacion_basica GROUP BY anio"));
+        return $anios;
+    }
+    
+    private function getTiposProyectos() {
+        $tipos = DB::select(DB::raw("SELECT * FROM tipos_proyectos"));
+        return $tipos;
+    }
+    
+    public function getByRealizado($state){
+         try {
+            $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE realizado = $state "));
+            foreach ($proyectos as $key => $p) {
+                $informacion_basica = $this->get_informaction_basic($p->id);
+                ($p->banner == 1) ? $banner = $this->get_banner($p->id) : $banner = null;
+                ($p->galeria == 1) ? $galeria = $this->get_galeria($p->id) : $galeria = null;
+                ($p->planos == 1) ? $planos = $this->get_planos($p->id) : $planos = null;
+                ($p->ubicacion_geografica == 1) ? $ubicacion = $this->get_ubicacion($p->id) : $ubicacion = null;
+                ($p->zonas_comunes == 1) ? $zonas = $this->get_zonas($p->id) : $zonas = null;
+
+                $array_projects[$key] = array(
+                    'proyecto' => $p,
+                    'informacion_basica' => $informacion_basica,
+                    'banner' => $banner,
+                    'galeria' => $galeria,
+                    'planos' => $planos,
+                    'ubicacion' => $ubicacion,
+                    'zonas' => $zonas
+                );
+            }
+
+            return $array_projects;
+        } catch (Exception $exc) {
+            return JsonResponse::create(array('message' => "No pudimos realizar la consulta de los proyectos", "exception" => $exc->getMessage(), "respuesta" => false), 401);
+        }
+    }
+    
+    
+    //end page
 
     //utilizado para actualizar los estados
     public function update(Request $request, $id) {
@@ -84,6 +164,8 @@ class proyectoController extends Controller {
             $p->zonas_comunes = $data['zonas_comunes'];
             $p->estado = $data['estado'];
             $p->destacado = $data['destacado'];
+            $p->banner_show = $data['banner_show'];
+            $p->realizado = $data['realizado'];
             $p->save();
 
             return JsonResponse::create(array('message' => "Proyecto actualizado correctamente", "request" => json_encode($data)), 200);
@@ -107,6 +189,7 @@ class proyectoController extends Controller {
                 $proyecto_basic->logo_url = URL_SERVER . "images/logos/" . $proyecto->id . ".png";
                 $proyecto_basic->nombre = $data['nombre'];
                 $proyecto_basic->tipo = $data['tipo'];
+                $proyecto_basic->anio = $data['anio'];
                 $proyecto_basic->direccion = $data['direccion'];
                 $proyecto_basic->pais = $data['pais'];
                 $proyecto_basic->departamento = $data['departamento'];
@@ -137,6 +220,7 @@ class proyectoController extends Controller {
             $proyecto_basic = Proyecto_basic::find($id);
             $proyecto_basic->nombre = $data['nombre'];
             $proyecto_basic->tipo = $data['tipo'];
+            $proyecto_basic->anio = $data['anio'];
             $proyecto_basic->direccion = $data['direccion'];
             $proyecto_basic->pais = $data['pais'];
             $proyecto_basic->departamento = $data['departamento'];
@@ -154,7 +238,10 @@ class proyectoController extends Controller {
     }
 
     private function get_informaction_basic($idProyecto) {
-        $informacion_basica = DB::select(DB::raw("SELECT ib.*, tp.nombre as nombreTipoProyecto FROM proyecto_informacion_basica as ib INNER JOIN tipos_proyectos as tp ON tp.id = ib.tipo WHERE idProyecto = $idProyecto "));
+        $informacion_basica = DB::select(DB::raw("SELECT ib.*, tp.nombre as nombreTipoProyecto, m.nombreMunicipio FROM proyecto_informacion_basica as ib "
+                . "INNER JOIN tipos_proyectos as tp ON tp.id = ib.tipo "
+                . "INNER JOIN municipio as m ON m.idmunicipio = ib.municipio "
+                . "WHERE idProyecto = $idProyecto "));
         return $informacion_basica[0];
     }
 
@@ -212,10 +299,12 @@ class proyectoController extends Controller {
     public function getter_galeria($idProyecto) {
         return $this->get_galeria($idProyecto);
     }
+    
     private function get_galeria($idProyecto) {
         $galeria = DB::select(DB::raw("SELECT * FROM proyecto_galeria WHERE idProyecto = $idProyecto "));
         return $galeria;
     }
+    
     public function save_galeria(Request $request) {
         if ($request->hasFile('galeria')) {
             $data = $request->all();
@@ -238,6 +327,7 @@ class proyectoController extends Controller {
             return JsonResponse::create(array('message' => "No se encontro imagen"), 402);
         }
     }
+    
     public function delete_galeria(Request $request) {
         $data = $request->all();
         $idProyecto = $data['idProyecto'];
@@ -262,10 +352,12 @@ class proyectoController extends Controller {
     public function getter_planos($idProyecto) {
         return $this->get_planos($idProyecto);
     }
+    
     private function get_planos($idProyecto) {
         $planos = DB::select(DB::raw("SELECT pp.*, tp.nombre as nombreTipoPlano FROM proyecto_plano pp INNER JOIN tipos_planos as tp ON tp.id = pp.tipo WHERE pp.idProyecto = $idProyecto "));
         return $planos;
     }
+    
     public function save_plano(Request $request) {
         if ($request->hasFile('imagen')) {
             $data = $request->all();
@@ -291,6 +383,7 @@ class proyectoController extends Controller {
             return JsonResponse::create(array('message' => "Plano guardado Correctamente", "planos" => $plano), 200);
         }
     }
+    
     public function update_plano(Request $request) {
 
         $data = $request->all();
@@ -336,6 +429,7 @@ class proyectoController extends Controller {
         $respuesta = DB::table('proyecto_zona')->insert($array);
         return JsonResponse::create(array('message' => "Zonas guardadas correctamente", "request" => $proyecto), 200);
     }
+    
     private function get_zonas($idProyecto) {
         $zonas = DB::select(DB::raw("SELECT zc.nombre,zc.url, pz.id as idProyectoZona, pz.idZona  FROM proyecto_zona as pz INNER JOIN zonas_comunes as zc ON zc.id = pz.idZona  WHERE pz.idProyecto = $idProyecto "));
         return $zonas;
@@ -364,10 +458,12 @@ class proyectoController extends Controller {
             return JsonResponse::create(array('message' => "Ubicación actualizada correctamente", "request" => $proyecto), 200);
         }
     }
+    
     private function get_ubicacion($idProyecto) {
         $ubicacion = DB::select(DB::raw("SELECT * FROM proyecto_ubicacion WHERE idProyecto = $idProyecto "));
         return $ubicacion;
     }
+    
     public function finish_proccess(Request $request) {
         $data = $request->all();
         $id = $data['idProyecto'];

@@ -8180,3 +8180,7 @@ width: 100%;
 .navbar-brand{
     background-color: #226B29 !important;
 }
+
+.icon{
+    font-size: 16px;
+}

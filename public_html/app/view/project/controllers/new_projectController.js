@@ -374,6 +374,10 @@ var _position = {};
                             toastr['warning']("Ingresar tipo del proyecto");
                             return 0;
                         }
+                        if (!vm.Project.anio) {
+                            toastr['warning']("Ingresar año del proyecto");
+                            return 0;
+                        }
                         if (!vm.Project.direccion) {
                             toastr['warning']("Ingresar dirección del proyecto");
                             return 0;
@@ -404,6 +408,7 @@ var _position = {};
                         formData.append('nombre', vm.Project.nombre);
                         formData.append('tipo', vm.Project.tipo_proyecto);
                         formData.append('direccion', vm.Project.direccion);
+                        formData.append('anio', vm.Project.anio);
                         formData.append('pais', vm.Project.pais);
                         formData.append('departamento', vm.Project.departamento);
                         formData.append('municipio', vm.Project.municipio);

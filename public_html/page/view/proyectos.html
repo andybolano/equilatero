@@ -1,0 +1,81 @@
+<div style="margin-top: 140px" ng-init="vm.leerCondiciones();vm.getProyectos(1);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>NUESTROS PROYECTOS REALIZADOS</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <input type="text" class="form-control box-text-orange" placeholder="BUSCAR" ng-model="filtro"> 
+                    <span class="input-group-btn"> 
+                        <button type="button" class="btn btn-primary btn-search"><i class="fa fa-search" style="color:#F48128;font-size:20px;"></i></button> 
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="cont-tab active" id="realizados" style="margin-right: 0;width: 50%;text-align: center" ng-click="vm.verProyectos('realizados')">
+                    REALIZADOS
+                </div>
+                <div class="cont-tab" id="actuales" style="margin-left: 0;width: 50%;text-align: center" ng-click="vm.verProyectos('actuales')">
+                    ACTUALES
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="spacer" style="height: 21px"></div>
+                <select class="form-control box-text-green" ng-model="vm.consulta.anio">
+                    <option value="" disabled selected>AÑO</option>
+                     <option ng-repeat="i in vm.anios | orderBy:'-anio'"   value="{{i.anio}}" style="text-transform: uppercase">
+                        {{i.anio}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <div class="spacer" style="height: 21px"></div>
+                <select class="form-control box-text-green" ng-model="vm.consulta.ciudad">
+                     <option value="" disabled selected>CIUDAD</option>
+                    <option ng-repeat="i in vm.ciudad | orderBy:'nombreMunicipio'" value="{{i.idmunicipio}}" style="text-transform: uppercase">
+                        {{i.nombreMunicipio}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <div class="spacer" style="height: 21px"></div>
+                <select class="form-control box-text-green" ng-model="vm.consulta.tipo_proyecto" style="text-transform: uppercase">
+                    <option value="" disabled selected>TIPO DE PROYECTO</option>
+                    <option ng-repeat="i in vm.tipos | orderBy:'nombre'" value="{{i.id}}" style="text-transform: uppercase">
+                        {{i.nombre}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="spacer" style="height:50px;"></div>
+        <div class="row">
+            <div class="col-lg-3" ng-repeat="i in vm.proyectos | filter:filtro">
+                <div class="ibox">
+                        <div class="ibox-content product-box wow bounceIn" style="position: relative;">
+                            <div class="product-imitation" id="img-{{$index}}">
+                                {{vm.construir_imagen(i.banner.banner_url, $index)}}
+                            </div>
+                            <div class="product-desc" style="text-align: center;">
+                                <a href="javascript:;" class="product-name">{{i.informacion_basica.nombre}}</a>
+                            </div>
+                            <div class="mask">
+                                <img src="{{i.informacion_basica.logo_url}}" style="width:120px;">
+                                <h2>{{i.informacion_basica.nombre}}</h2>
+                                <div style="margin-top:8px;background-color: #FFF">
+                                <h3 style="margin: 0">{{i.informacion_basica.nombreTipoProyecto}}</h3>
+                                <h3  style="margin: 0">{{i.informacion_basica.direccion}}</h3>
+                                <h3 style="margin: 0">{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+

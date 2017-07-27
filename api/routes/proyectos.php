@@ -16,7 +16,11 @@ Route::post("proyectos/logo","proyectoController@update_logo");
 Route::get("proyectos/galeria/{idProyecto}","proyectoController@getter_galeria");
 Route::get("proyectos/planos/{idProyecto}","proyectoController@getter_planos");
 
-Route::get("proyectos/destacados/show","proyectoController@leerDestacados");
+//page
+Route::get("proyectos/page/destacados/show","proyectoController@leerDestacados");
+Route::get("proyectos/page/banners/show","proyectoController@leerBanners");
+Route::get("proyectos/page/condiciones","proyectoController@leerCondiciones");
+Route::get("proyectos/page/realizados/{state}","proyectoController@getByRealizado");
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

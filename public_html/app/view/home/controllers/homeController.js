@@ -52,13 +52,34 @@
                      if(param == 'destacado'){
                           if(estado == 1){
                             var valid;
-                                valid = ( project.banner == 0 ) ? toastr['warning']("No se puede promocionar en el banner, Agregar imagen de banner al proyecto.") : true ;
+                                valid = ( project.estado == 'INACTIVO' ) ? toastr['warning']("No se puede agregar como destacado por que el proyecto esta inactivo") : true ;
                                 if(valid !== true){
                                         return 0;
                                  }
 
                         }
                          project.destacado = estado;
+                     }
+                     
+                     if(param == 'banner'){
+                          if(estado == 1){
+                            var valid;
+                                valid = ( project.banner == 0 ) ? toastr['warning']("No se puede agregar al banner, Agregar imagen de banner al proyecto.") : true ;
+                                if(valid !== true){
+                                        return 0;
+                                 }
+                                 
+                                 valid = ( project.estado == 'INACTIVO' ) ? toastr['warning']("No se puede agregar como destacado por que el proyecto esta inactivo.") : true ;
+                                if(valid !== true){
+                                        return 0;
+                                 }
+
+                        }
+                         project.banner_show = estado;
+                     }
+                     
+                     if(param == 'realizado'){
+                         project.realizado = estado;
                      }
                      
                   
