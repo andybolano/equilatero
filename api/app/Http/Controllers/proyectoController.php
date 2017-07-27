@@ -122,7 +122,8 @@ class proyectoController extends Controller {
     
     public function getByRealizado($state){
          try {
-            $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE realizado = $state "));
+            $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE estado = 'ACTIVO' AND realizado = $state  "));
+            if(count($proyectos)>0){
             foreach ($proyectos as $key => $p) {
                 $informacion_basica = $this->get_informaction_basic($p->id);
                 ($p->banner == 1) ? $banner = $this->get_banner($p->id) : $banner = null;
@@ -141,8 +142,11 @@ class proyectoController extends Controller {
                     'zonas' => $zonas
                 );
             }
-
-            return $array_projects;
+            
+                return $array_projects;
+            }else{
+                return 'NULL';
+            }
         } catch (Exception $exc) {
             return JsonResponse::create(array('message' => "No pudimos realizar la consulta de los proyectos", "exception" => $exc->getMessage(), "respuesta" => false), 401);
         }

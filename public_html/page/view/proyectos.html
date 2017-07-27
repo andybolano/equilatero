@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="spacer" style="height:50px;"></div>
-        <div class="row">
+        <div class="row" ng-if="vm.proyectos.length > 0" >
             <div class="col-lg-3" ng-repeat="i in vm.proyectos | filter:filtro">
                 <div class="ibox">
                         <div class="ibox-content product-box wow bounceIn" style="position: relative;">
@@ -64,7 +64,7 @@
                                 <a href="javascript:;" class="product-name">{{i.informacion_basica.nombre}}</a>
                             </div>
                             <div class="mask">
-                                <img src="{{i.informacion_basica.logo_url}}" style="width:120px;">
+                                <img src="{{i.informacion_basica.logo_url}}" style="width:120px;height:120px;">
                                 <h2>{{i.informacion_basica.nombre}}</h2>
                                 <div style="margin-top:8px;background-color: #FFF">
                                 <h3 style="margin: 0">{{i.informacion_basica.nombreTipoProyecto}}</h3>
@@ -74,6 +74,11 @@
                             </div>
                         </div>
                     </div>
+            </div>
+        </div>
+        <div class="row" ng-if="vm.proyectos.length === 0" >
+            <div class="col-lg-12">
+                <h3>Concidencias no encontradas...</h3>
             </div>
         </div>
     </div>

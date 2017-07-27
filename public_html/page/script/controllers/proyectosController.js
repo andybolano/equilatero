@@ -40,6 +40,12 @@
                  vm.getProyectos = function(param){
                      var promisePost = projectService.leerProyectos(param);
                         promisePost.then(function (d) {
+                         if(d.data == 'NULL'){
+                              toastr["warning"]("No hay proyectos como lo estas buscando..");
+                              vm.proyectos = {};
+                              vm.proyectos.length = 0;
+                             return 0;
+                         }
                          vm.proyectos = d.data;
                         }, function (err) {
                             if (err.status == 402) {
