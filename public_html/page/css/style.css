@@ -8513,3 +8513,12 @@ p{
     color:#606060;
 }
 
+.vacio{
+    width: 100%;
+    height: 100%;
+    background-color: #FFF !important;
+    text-align: center;
+}
+.vacio h1{
+    color:#DBDBDB;
+}

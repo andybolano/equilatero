@@ -50,6 +50,7 @@ class proyectoController extends Controller {
     //page
     public function leerDestacados() {
         $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE destacado = 1 AND estado = 'ACTIVO'"));
+         if(count($proyectos)>0){
             foreach ($proyectos as $key => $p) {
                 $informacion_basica = $this->get_informaction_basic($p->id);
 
@@ -72,10 +73,15 @@ class proyectoController extends Controller {
             }
 
             return $array_projects;
+            
+            }else{
+                return 'NULL';
+            }
     }
     
     public function leerBanners() {
         $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE banner_show = 1 AND estado = 'ACTIVO'"));
+        if(count($proyectos)>0){
             foreach ($proyectos as $key => $p) {
                 $informacion_basica = $this->get_informaction_basic($p->id);
 
@@ -98,6 +104,9 @@ class proyectoController extends Controller {
             }
 
             return $array_projects;
+            }else{
+                return 'NULL';
+            }
     }
     
     public function leerCondiciones(){

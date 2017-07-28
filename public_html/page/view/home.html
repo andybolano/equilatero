@@ -1,6 +1,11 @@
 
 <div class="banner"  ng-init="vm.leerBanners();">
-    <div class="flexslider">
+    <div ng-if="vm.banners == 'NULL' " class="vacio banner wow bounceIn">
+         <div class="spacer" style="height:30px;" ></div>
+        <img src="img/vacio.svg" style="width: 30%">
+        <h1>Muy pronto publicaremos contenido</h1>
+    </div>
+    <div class="flexslider animated bounceInLeft" ng-if="vm.banners.length > 0 && vm.banners !== 'NULL' ">
         <ul class="slides">
             <li ng-repeat="i in vm.banners">
                 <img src="{{i.banner.banner_url}}" />
@@ -60,7 +65,12 @@
         </div>
     </div>
     <div class="spacer" style="height:60px;" ></div>
-    <div ng-repeat="i in vm.projects">
+     <div ng-if="vm.projects == 'NULL' " class="vacio banner wow bounceIn">
+        <img src="img/crane.svg" style="width:30%">
+         <div class="spacer" style="height:20px;" ></div>
+         <h1>Pronto te mostraremos<br> nuestros proyectos destacados</h1>
+    </div>
+    <div ng-repeat="i in vm.projects"  ng-if="vm.projects.length > 0 && vm.projects !== 'NULL' ">
     <div class="row" ng-if="vm.par($index);">
         <div class="col-md-5 col-md-offset-1 text-center wow fadeInLeft" style="height: 400px;" id="img-destacado-{{$index}}">
             {{vm.construir_imagen(i.banner.banner_url, $index);}}
