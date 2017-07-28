@@ -21,7 +21,7 @@ var _position = {};
                     vm.updatePlano = false;
                     vm.proyecto_proccess = {};
                    
-                    
+                    initMap();
                    vm.view_plano = function(plano){
                        vm.updatePlano = true;
                        vm.Plano = plano;
@@ -131,6 +131,10 @@ var _position = {};
                        vm.proyecto_proccess = project.proyecto;
                        vm.Project = project.informacion_basica;
                        
+                       if(vm.proyecto_proccess.aviso_legal == 1){
+                       vm.Project.aviso_legal = project.aviso_legal[0].text;
+                       }
+                       
                        if(vm.proyecto_proccess.banner == 1){
                        vm.Project.titulo_banner = project.banner.titulo;
                        vm.Project.descripcion_banner = project.banner.descripcion;
@@ -159,6 +163,37 @@ var _position = {};
                        if(vm.proyecto_proccess.planos == 1){
                            vm.getPlanos();
                        }
+                       
+                       vm.getPaises(); 
+                       vm.get_tipos_proyectos(); 
+                       vm.get_tipos_planos();
+                       vm.getZonasComunes();
+                    }
+                    
+                   vm.save_aviso_legal = function(){
+                        if(!vm.Project.aviso_legal){
+                            toastr['warning']("Ingresar texto de aviso");
+                            return 0;
+                        }
+                        
+                         var object = {
+                            aviso:vm.Project.aviso_legal,
+                            idProyecto : vm.proyecto_proccess.id
+                        }
+                        $('#guardar_aviso').attr("disabled", true);
+                        var promisePost = projectService.post_aviso(object);
+                        promisePost.then(function (d) {
+                                $('#guardar_aviso').attr("disabled", false)
+                            vm.proyecto_proccess = d.data.request;
+                            swal("Buen Trabajo!", d.data.message, "success");
+                        }, function (err) {
+                            $('#guardar_aviso').attr("disabled", false);
+                            if (err.status == 402) {
+                                toastr["error"](err.data.respuesta);
+                            } else {
+                                toastr["error"]("Ha ocurrido un problema!");
+                            }
+                        });
                     }
                     
                    vm.getGaleria = function() {

@@ -26,7 +26,7 @@ var _position = {};
                     vm.proyecto_proccess.ubicacion_geografica = 0;
                     vm.proyecto_proccess.zonas_comunes = 0;
                     
-                    
+                    initMap();
                     vm.delete_galeria = function (imagen){
                         
                         var object ={
@@ -67,6 +67,31 @@ var _position = {};
                             
                         }, function (err) {
                             $('#guardar_zonas').attr("disabled", false);
+                            if (err.status == 402) {
+                                toastr["error"](err.data.respuesta);
+                            } else {
+                                toastr["error"]("Ha ocurrido un problema!");
+                            }
+                        });
+                    }
+                    
+                    vm.save_aviso_legal = function(){
+                        if(!vm.Project.aviso_legal){
+                            toastr['warning']("Ingresar texto de aviso");
+                            return 0;
+                        }
+                        
+                         var object = {
+                            aviso:vm.Project.aviso_legal,
+                            idProyecto : vm.proyecto_proccess.id
+                        }
+                        $('#guardar_aviso').attr("disabled", true);
+                        var promisePost = projectService.post_aviso(object);
+                        promisePost.then(function (d) {
+                            vm.proyecto_proccess = d.data.request;
+                            swal("Buen Trabajo!", d.data.message, "success");
+                        }, function (err) {
+                            $('#guardar_aviso').attr("disabled", false);
                             if (err.status == 402) {
                                 toastr["error"](err.data.respuesta);
                             } else {

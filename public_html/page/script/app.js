@@ -5,10 +5,10 @@
         // Add Angular module mdr.file
         angular.module('app', ['ui.router'])
        .constant('HOME', 'app.home')
-        .constant('API_URL', 'http://localhost/equilatero/api/public/index.php/api')
-       .config(function($stateProvider, $urlRouterProvider,) {
+       .constant('API_URL', 'http://localhost/equilatero/api/public/index.php/api')
+       .config(function($stateProvider, $urlRouterProvider,$compileProvider) {
 
-         
+          $compileProvider.debugInfoEnabled(false);
             $urlRouterProvider.otherwise('/');
 
             $stateProvider
@@ -33,6 +33,11 @@
                     templateUrl: 'view/proyectos.html',
                     controller: 'ProyectosController as vm'
                 })
+                .state('app.verproyecto', {
+                    url: '/proyecto/ver',
+                    templateUrl: 'view/ver_proyecto.html',
+                    controller: 'VerProyectoController as vm'
+                })
                 .state('app.compromiso', {
                     url: '/compromiso',
                     templateUrl: 'view/compromiso.html',
@@ -49,6 +54,11 @@
         })
 
 })();
+
+
+
+  
+    
 
 
   

@@ -2,7 +2,7 @@
     'use strict';
     angular
             .module('app')
-               .controller('HomeController', ['projectService',function (projectService) {
+               .controller('HomeController', ['projectService','$state',function (projectService,$state) {
                var vm = this;
                vm.projects = [];
                vm.banners = [];
@@ -50,6 +50,11 @@
                          "background-size": "cover",
                          "background-repeat":"no-repeat",
                      });
+                 }
+                 
+                 vm.verProyecto = function(proyecto){
+                      $state.go('app.verproyecto');
+                      sessionStorage.setItem('proyecto',JSON.stringify(proyecto));
                  }
                  
                 vm.impar = function(n){

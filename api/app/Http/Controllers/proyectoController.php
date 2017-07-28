@@ -27,7 +27,8 @@ class proyectoController extends Controller {
                 ($p->planos == 1) ? $planos = $this->get_planos($p->id) : $planos = null;
                 ($p->ubicacion_geografica == 1) ? $ubicacion = $this->get_ubicacion($p->id) : $ubicacion = null;
                 ($p->zonas_comunes == 1) ? $zonas = $this->get_zonas($p->id) : $zonas = null;
-
+                ($p->aviso_legal == 1) ? $aviso = $this->get_aviso($p->id) : $aviso = null;
+                
                 $array_projects[$key] = array(
                     'proyecto' => $p,
                     'informacion_basica' => $informacion_basica,
@@ -35,7 +36,8 @@ class proyectoController extends Controller {
                     'galeria' => $galeria,
                     'planos' => $planos,
                     'ubicacion' => $ubicacion,
-                    'zonas' => $zonas
+                    'zonas' => $zonas,
+                    'aviso_legal' => $aviso
                 );
             }
 
@@ -56,7 +58,7 @@ class proyectoController extends Controller {
                 ($p->planos == 1) ? $planos = $this->get_planos($p->id) : $planos = null;
                 ($p->ubicacion_geografica == 1) ? $ubicacion = $this->get_ubicacion($p->id) : $ubicacion = null;
                 ($p->zonas_comunes == 1) ? $zonas = $this->get_zonas($p->id) : $zonas = null;
-
+                ($p->aviso_legal == 1) ? $aviso = $this->get_aviso($p->id) : $aviso = null;
                 $array_projects[$key] = array(
                     'proyecto' => $p,
                     'informacion_basica' => $informacion_basica,
@@ -64,7 +66,8 @@ class proyectoController extends Controller {
                     'galeria' => $galeria,
                     'planos' => $planos,
                     'ubicacion' => $ubicacion,
-                    'zonas' => $zonas
+                    'zonas' => $zonas,
+                    'aviso_legal' => $aviso
                 );
             }
 
@@ -81,7 +84,7 @@ class proyectoController extends Controller {
                 ($p->planos == 1) ? $planos = $this->get_planos($p->id) : $planos = null;
                 ($p->ubicacion_geografica == 1) ? $ubicacion = $this->get_ubicacion($p->id) : $ubicacion = null;
                 ($p->zonas_comunes == 1) ? $zonas = $this->get_zonas($p->id) : $zonas = null;
-
+                ($p->aviso_legal == 1) ? $aviso = $this->get_aviso($p->id) : $aviso = null;
                 $array_projects[$key] = array(
                     'proyecto' => $p,
                     'informacion_basica' => $informacion_basica,
@@ -89,7 +92,8 @@ class proyectoController extends Controller {
                     'galeria' => $galeria,
                     'planos' => $planos,
                     'ubicacion' => $ubicacion,
-                    'zonas' => $zonas
+                    'zonas' => $zonas,
+                    'aviso_legal' => $aviso
                 );
             }
 
@@ -122,7 +126,7 @@ class proyectoController extends Controller {
     
     public function getByRealizado($state){
          try {
-            $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE estado = 'ACTIVO' AND realizado = $state  "));
+            $proyectos = DB::select(DB::raw("SELECT p.id,p.informacion_basica,p.banner,p.galeria,p.planos,p.ubicacion_geografica,p.zonas_comunes,p.estado,p.destacado,p.banner_show,p.realizado,p.aviso_legal FROM proyectos as p WHERE estado = 'ACTIVO' AND realizado = $state  "));
             if(count($proyectos)>0){
             foreach ($proyectos as $key => $p) {
                 $informacion_basica = $this->get_informaction_basic($p->id);
@@ -131,7 +135,8 @@ class proyectoController extends Controller {
                 ($p->planos == 1) ? $planos = $this->get_planos($p->id) : $planos = null;
                 ($p->ubicacion_geografica == 1) ? $ubicacion = $this->get_ubicacion($p->id) : $ubicacion = null;
                 ($p->zonas_comunes == 1) ? $zonas = $this->get_zonas($p->id) : $zonas = null;
-
+                ($p->aviso_legal == 1) ? $aviso = $this->get_aviso($p->id) : $aviso = null;
+                
                 $array_projects[$key] = array(
                     'proyecto' => $p,
                     'informacion_basica' => $informacion_basica,
@@ -139,7 +144,8 @@ class proyectoController extends Controller {
                     'galeria' => $galeria,
                     'planos' => $planos,
                     'ubicacion' => $ubicacion,
-                    'zonas' => $zonas
+                    'zonas' => $zonas,
+                    'aviso_legal' => $aviso
                 );
             }
             
@@ -466,6 +472,33 @@ class proyectoController extends Controller {
     private function get_ubicacion($idProyecto) {
         $ubicacion = DB::select(DB::raw("SELECT * FROM proyecto_ubicacion WHERE idProyecto = $idProyecto "));
         return $ubicacion;
+    }
+    
+    //informacion aviso***************
+     public function save_aviso(Request $request) {
+        $data = $request->all();
+        $id = $data['idProyecto'];
+        $proyecto = Proyectos::find($id);
+
+        if ($proyecto->aviso_legal == 0) {
+            $proyecto->aviso_legal = 1;
+            $proyecto->save();
+            DB::table('aviso_legal')->insert(
+                    ['text' => $data['aviso'], 'idProyecto' => $id]
+            );
+            return JsonResponse::create(array('message' =>"Aviso legal guardado correctamente", "request" => $proyecto), 200);
+        }
+
+        if ($proyecto->aviso_legal == 1) {
+            $aviso = $data['aviso'];
+            DB::select(DB::raw("UPDATE aviso_legal SET text = '$aviso' WHERE idProyecto = $id "));
+            return JsonResponse::create(array('message' => "Aviso legal actualizado correctamente", "request" => $proyecto), 200);
+        }
+    }
+    
+    private function get_aviso($idProyecto) {
+        $aviso = DB::select(DB::raw("SELECT * FROM aviso_legal WHERE idProyecto = $idProyecto "));
+        return $aviso;
     }
     
     public function finish_proccess(Request $request) {

@@ -27,7 +27,7 @@
             <div class="col-md-3">
                 <div class="spacer" style="height: 21px"></div>
                 <select class="form-control box-text-green" ng-model="vm.consulta.anio">
-                    <option value="" disabled selected>AÑO</option>
+                    <option value="" selected>AÑO</option>
                      <option ng-repeat="i in vm.anios | orderBy:'-anio'"   value="{{i.anio}}" style="text-transform: uppercase">
                         {{i.anio}}
                     </option>
@@ -36,8 +36,8 @@
             <div class="col-md-3">
                 <div class="spacer" style="height: 21px"></div>
                 <select class="form-control box-text-green" ng-model="vm.consulta.ciudad">
-                     <option value="" disabled selected>CIUDAD</option>
-                    <option ng-repeat="i in vm.ciudad | orderBy:'nombreMunicipio'" value="{{i.idmunicipio}}" style="text-transform: uppercase">
+                     <option value=""  selected>CIUDAD</option>
+                    <option ng-repeat="i in vm.ciudad | orderBy:'nombreMunicipio'" value="{{i.nombreMunicipio}}" style="text-transform: uppercase">
                         {{i.nombreMunicipio}}
                     </option>
                 </select>
@@ -45,8 +45,8 @@
             <div class="col-md-3">
                 <div class="spacer" style="height: 21px"></div>
                 <select class="form-control box-text-green" ng-model="vm.consulta.tipo_proyecto" style="text-transform: uppercase">
-                    <option value="" disabled selected>TIPO DE PROYECTO</option>
-                    <option ng-repeat="i in vm.tipos | orderBy:'nombre'" value="{{i.id}}" style="text-transform: uppercase">
+                    <option value="" selected>TIPO DE PROYECTO</option>
+                    <option ng-repeat="i in vm.tipos | orderBy:'nombre'" value="{{i.nombre}}" style="text-transform: uppercase">
                         {{i.nombre}}
                     </option>
                 </select>
@@ -54,9 +54,9 @@
         </div>
         <div class="spacer" style="height:50px;"></div>
         <div class="row" ng-if="vm.proyectos.length > 0" >
-            <div class="col-lg-3" ng-repeat="i in vm.proyectos | filter:filtro">
+            <div class="col-lg-3" ng-repeat="i in vm.proyectos | filter:filtro | filter: vm.consulta.anio | filter:vm.consulta.ciudad | filter:vm.consulta.tipo_proyecto">
                 <div class="ibox">
-                        <div class="ibox-content product-box wow bounceIn" style="position: relative;">
+                    <div class="ibox-content product-box wow bounceIn" style="position: relative;" ng-click="vm.verProyecto(i)">
                             <div class="product-imitation" id="img-{{$index}}">
                                 {{vm.construir_imagen(i.banner.banner_url, $index)}}
                             </div>
@@ -64,7 +64,7 @@
                                 <a href="javascript:;" class="product-name">{{i.informacion_basica.nombre}}</a>
                             </div>
                             <div class="mask">
-                                <img src="{{i.informacion_basica.logo_url}}" style="width:120px;height:120px;">
+                                <img src="{{i.informacion_basica.logo_url}}" style="width:120px;max-height:120px;">
                                 <h2>{{i.informacion_basica.nombre}}</h2>
                                 <div style="margin-top:8px;background-color: #FFF">
                                 <h3 style="margin: 0">{{i.informacion_basica.nombreTipoProyecto}}</h3>
@@ -76,7 +76,7 @@
                     </div>
             </div>
         </div>
-        <div class="row" ng-if="vm.proyectos.length === 0" >
+        <div class="row" ng-if="vm.proyectos.length == 0" >
             <div class="col-lg-12">
                 <h3>Concidencias no encontradas...</h3>
             </div>

@@ -2,7 +2,7 @@
     'use strict';
     angular
             .module('app')
-               .controller('ProyectosController', ['projectService',function (projectService) {
+               .controller('ProyectosController', ['projectService','$state',function (projectService,$state) {
                var vm = this;
                vm.anios = [];
                vm.ciudad = [];
@@ -57,6 +57,10 @@
                  }
                  
               
+                 vm.verProyecto = function(proyecto){
+                      $state.go('app.verproyecto');
+                      sessionStorage.setItem('proyecto',JSON.stringify(proyecto));
+                 }
                  
                vm.construir_imagen = function(url, id){
                      $("#img-"+id).css({
@@ -65,6 +69,7 @@
                          "background-repeat":"no-repeat",
                      });
                  }
+                 
                  
       
         

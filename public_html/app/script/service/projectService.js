@@ -13,6 +13,7 @@
             post_planos:post_planos,
             post_position:post_position,
             post_zonas:post_zonas,
+            post_aviso:post_aviso,
             finish_proccess:finish_proccess,
             update : update,
             update_logo:update_logo,
@@ -25,6 +26,18 @@
         };
         return service;
         
+        function post_aviso(object){
+             var defered = $q.defer();
+            var promise = defered.promise;
+            $http.post(API_URL + '/proyectos/aviso', object).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+        }
         function update_plano(object){
             var defered = $q.defer();
             var promise = defered.promise;

@@ -53,9 +53,33 @@
 <script src="script/controllers/nosotrosController.js" type="text/javascript"></script>
 <script src="script/controllers/templateController.js" type="text/javascript"></script>
 <script src="script/controllers/proyectosController.js" type="text/javascript"></script>
-
+<script src="script/controllers/verproyectoController.js" type="text/javascript"></script>
 <script src="script/services/projectService.js" type="text/javascript"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvO7t2jvpogY2DgybErVXBkRWYHHecbBA&callback=initMap">
+</script>
+
 <script>
+var map;
+
+    function initMap() {
+    if(document.getElementById('map') == null){
+        return 0;
+    } 
+ 
+    var project = JSON.parse(sessionStorage.getItem('proyecto'));
+    
+       var uluru = {lat: parseFloat(project.ubicacion[0].lat), lng: parseFloat(project.ubicacion[0].lng)};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      
+    }
  
     // Activate WOW.js plugin for animation on scrol
     new WOW().init();

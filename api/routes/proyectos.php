@@ -7,6 +7,7 @@ Route::post("proyectos/plano","proyectoController@save_plano");
 Route::post("proyectos/finish_proccess","proyectoController@finish_proccess");
 Route::post("proyectos/position","proyectoController@save_position");
 Route::post("proyectos/zonas","proyectoController@save_zonas");
+Route::post("proyectos/aviso","proyectoController@save_aviso");
 
 Route::post("proyectos/update/basic","proyectoController@update_informaction_basic");
 Route::post("proyectos/update/plano","proyectoController@update_plano");

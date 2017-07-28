@@ -371,6 +371,32 @@
                 </div>
             </div>
         </div>
+         <div class="vertical-timeline-block">
+            <div class="vertical-timeline-icon yellow-bg" title="Ingresar zonas comunes" ng-if="vm.proyecto_proccess.aviso_legal == 0">
+                <i class="fa fa-question"></i>
+            </div>
+            <div class="vertical-timeline-icon navy-bg" title="Guardadas zonas comunes" ng-if="vm.proyecto_proccess.aviso_legal == 1">
+                <i class="fa fa-check"></i>
+            </div>
+            <div class="vertical-timeline-content" style="background-color: #FFF">
+                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.zonas_comunes == 0" ></div>
+                <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.aviso_legal == 1" ></div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <small>Paso 7.</small>
+                        <h2>Aviso Legal</h2>
+                        <div class="row">
+                            <div class="col-md-12">    
+                                <textarea class="form-control" ng-model="vm.Project.aviso" rows="5"></textarea>
+                                    <br>
+                                    <button  class="btn btn-primary" ng-click="vm.save_aviso_legal();" id="guardar_aviso"><i class="fa fa-upload"></i> Guardar aviso legal</button>
+                             </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -414,10 +440,6 @@
         </div>
     </div>
 </div>
-
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvO7t2jvpogY2DgybErVXBkRWYHHecbBA&callback=initMap">
-</script>
 
 
 
