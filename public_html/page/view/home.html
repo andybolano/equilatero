@@ -1,11 +1,11 @@
 
 <div class="banner"  ng-init="vm.leerBanners();">
-    <div ng-if="vm.banners == 'NULL' " class="vacio banner wow bounceIn">
-         <div class="spacer" style="height:30px;" ></div>
+    <div ng-if="vm.banners == 'NULL'" class="vacio banner wow bounceIn">
+        <div class="spacer" style="height:31    0px;" ></div>
         <img src="img/vacio.svg" style="width: 30%">
         <h1>Muy pronto publicaremos contenido</h1>
     </div>
-    <div class="flexslider animated bounceInLeft" ng-if="vm.banners.length > 0 && vm.banners !== 'NULL' ">
+    <div class="flexslider animated bounceInLeft" ng-if="vm.banners.length > 0 && vm.banners !== 'NULL'">
         <ul class="slides">
             <li ng-repeat="i in vm.banners">
                 <img src="{{i.banner.banner_url}}" />
@@ -18,22 +18,22 @@
                 </div>
                 <div class="footer-banner">
                     <div class="row">
-                    <div class="col-xs-10">
-                        <div class="content-descripcion">
-                        {{i.informacion_basica.descripcion}}
+                        <div class="col-xs-10">
+                            <div class="content-descripcion">
+                                {{i.informacion_basica.descripcion}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-2" style="text-align: right">
-                        <button class="btn btn-warning" style="margin-top: 3px;" ng-click="vm.verProyecto(i)">VER PROYECTO</button>
-                    </div>
+                        <div class="col-xs-2" style="text-align: right">
+                            <button class="btn btn-warning" style="margin-top: 3px;" ng-click="vm.verProyecto(i)">VER PROYECTO</button>
+                        </div>
                     </div>
                 </div>
             </li>
         </ul>
     </div>
 </div>
-<div class='spacer'style='height:80px;'>
-    
+<div class='spacer'style='height:50px;'>
+
 </div>
 <section id="features" class="container services" style="text-align: center">
     <div class="row">
@@ -41,16 +41,16 @@
             <img src="img/home/estructuracion.png" alt="" class="img-features wow bounceIn"/>
             <h3>ESTRUCTURACIÓN</h3>
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-             <!--p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
+            <!--p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
         </div>
         <div class="col-sm-4" style='border-right:1px solid #1b7033'>
             <img src="img/home/gerencia.png" alt=""  class="img-features wow bounceIn"/>
             <h3>GERENCIA</h3>
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-             <!--p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
+            <!--p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
         </div>
         <div class="col-sm-4">
-             <img src="img/home/proyectos.png" alt="" class="img-features wow bounceIn"/>
+            <img src="img/home/proyectos.png" alt="" class="img-features wow bounceIn"/>
             <h3>VENTA DE PROYECTOS INMOBILIARIOS</h3>
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
             <!--p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
@@ -65,49 +65,51 @@
         </div>
     </div>
     <div class="spacer" style="height:60px;" ></div>
-     <div ng-if="vm.projects == 'NULL' " class="vacio banner wow bounceIn">
+    <div ng-if="vm.projects == 'NULL'" class="vacio banner wow bounceIn">
         <img src="img/crane.svg" style="width:30%">
-         <div class="spacer" style="height:20px;" ></div>
-         <h1>Pronto te mostraremos<br> nuestros proyectos destacados</h1>
+        <div class="spacer" style="height:20px;" ></div>
+        <h1>Pronto te mostraremos<br> nuestros proyectos destacados</h1>
     </div>
-    <div ng-repeat="i in vm.projects"  ng-if="vm.projects.length > 0 && vm.projects !== 'NULL' ">
-    <div class="row" ng-if="vm.par($index);">
-        <div class="col-md-5 col-md-offset-1 text-center wow fadeInLeft" style="height: 400px;" id="img-destacado-{{$index}}">
-            {{vm.construir_imagen(i.banner.banner_url, $index);}}
-        </div>
-        <div class="col-md-5 text-center  wow fadeInRight content-destacado " style='border-right: 2px solid #1b7033;'>
-            <div style='text-align: left'>
-            <h4>{{i.informacion_basica.nombre}}</h4>
-            <h4>{{i.informacion_basica.nombreTipoProyecto}}</h4>
-            <h4>{{i.informacion_basica.direccion}}</h4>
-            <h4>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</h4>
+    <div ng-if="vm.projects.length > 0 && vm.projects !== 'NULL'">
+        <div ng-repeat="i in vm.projects">
+            <div class="row" ng-if="vm.par($index);">
+                <div class="col-md-5 col-md-offset-1 text-center wow fadeInLeft" style="height: 400px;" id="img-destacado-{{$index}}">
+                    {{vm.construir_imagen(i.banner.banner_url, $index);}}
+                </div>
+                <div class="col-md-5 text-center  wow fadeInRight content-destacado " style='border-right: 2px solid #1b7033;'>
+                    <div style='text-align: left'>
+                        <h4>{{i.informacion_basica.nombre}}</h4>
+                        <h4>{{i.informacion_basica.nombreTipoProyecto}}</h4>
+                        <h4>{{i.informacion_basica.direccion}}</h4>
+                        <h4>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</h4>
+                    </div>
+                    <div class='spacer' style='height:10px;'></div>
+                    <p>
+                        {{i.informacion_basica.descripcion}}
+                    </p>
+                    <button class="btn btn-warning" style='font-size: 18px;' ng-click="vm.verProyecto(i)">VER PROYECTO</button>
+                </div>
             </div>
-            <div class='spacer' style='height:10px;'></div>
-            <p>
-                {{i.informacion_basica.descripcion}}
-            </p>
-            <button class="btn btn-warning" style='font-size: 18px;' ng-click="vm.verProyecto(i)">VER PROYECTO</button>
-        </div>
-    </div>
-   <div class="row" ng-if="vm.impar($index);">
-        <div class="col-md-5 col-md-offset-1 text-center  wow fadeInLeft content-destacado" style='border-left: 2px solid #1b7033;'>
-            <div style='text-align: left'>
-           <h4>{{i.informacion_basica.nombre}}</h4>
-            <h4>{{i.informacion_basica.nombreTipoProyecto}}</h4>
-            <h4>{{i.informacion_basica.direccion}}</h4>
-            <h4>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</h4>
+            <div class="row" ng-if="vm.impar($index);">
+                <div class="col-md-5 col-md-offset-1 text-center  wow fadeInLeft content-destacado" style='border-left: 2px solid #1b7033;'>
+                    <div style='text-align: left'>
+                        <h4>{{i.informacion_basica.nombre}}</h4>
+                        <h4>{{i.informacion_basica.nombreTipoProyecto}}</h4>
+                        <h4>{{i.informacion_basica.direccion}}</h4>
+                        <h4>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</h4>
+                    </div>
+                    <div class='spacer' style='height:10px;'></div>
+                    <p>
+                        {{i.informacion_basica.descripcion}}
+                    </p>
+                    <button class="btn btn-warning" style='font-size: 18px;' ng-click="vm.verProyecto(i)">VER PROYECTO</button>
+                </div>
+                <div class="col-md-5 text-center wow fadeInRight" style="height: 400px;" id="img-destacado-{{$index}}">
+                    {{vm.construir_imagen(i.banner.banner_url, $index);}}
+                </div>
             </div>
-            <div class='spacer' style='height:10px;'></div>
-            <p>
-                {{i.informacion_basica.descripcion}}
-            </p>
-            <button class="btn btn-warning" style='font-size: 18px;' ng-click="vm.verProyecto(i)">VER PROYECTO</button>
-        </div>
-         <div class="col-md-5 text-center wow fadeInRight" style="height: 400px;" id="img-destacado-{{$index}}">
-            {{vm.construir_imagen(i.banner.banner_url, $index);}}
-        </div>
-    </div>
             <div class="spacer" style="height:100px;" ></div>
+        </div>
     </div>
 </section>
 <div class="spacer" style="height:20px;" ></div>

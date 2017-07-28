@@ -41,7 +41,6 @@
                      var promisePost = projectService.leerProyectos(param);
                         promisePost.then(function (d) {
                          if(d.data == 'NULL'){
-                              toastr["warning"]("No hay proyectos como lo estas buscando..");
                               vm.proyectos = {};
                               vm.proyectos.length = 0;
                              return 0;
