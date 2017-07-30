@@ -1,6 +1,6 @@
 
 
-<div class="navbar-wrapper" ng-controller="templateController as vm">
+<div class="navbar-wrapper" ng-controller="templateController as vm" ng-init="vm.leerUser();">
         <nav id="cabecera" class="navbar navbar-default navbar-fixed-top" role="navigation" style="border-radius: 0;">
                 <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -21,9 +21,9 @@
                         <li id="4"><a class="page-scroll" id="testimonials" href="javascript:;"  ui-sref="app.postventas" ng-click="vm.active(4)">POSTVENTAS</a></li>
                         <li id="5"><a class="page-scroll" id="pricing" href="javascript:;"  ui-sref="app.compromiso" ng-click="vm.active(5)">COMPRIMISO SOCIAL</a></li>
                         <li class="animated bounceInRight">
-                            <!--contacto@equilatero.com-->
+                            <span style="position: absolute;right:0px;top:10px;"><p style="color:#1B7033 !important;font-size:16px !important;">{{vm.user.email}}</p></span>
                             <div class="cont-phone">
-                                +57 (1) 401 3636
+                                {{vm.user.telefono}}
                             </div>
                             <div class="cont-btn"  ng-click="vm.to('contact')">
                                 CONTACTO
@@ -39,16 +39,16 @@
 <div ui-view="">
 </div>
 
-<section id="contact" class="contact">
+<section id="contact" class="contact" ng-controller="templateController as vm" ng-init="vm.leerUser();">
     <div class="container">
         <div class="row">
             <div class='col-md-5 col-md-offset-1 wow bounceInLeft'>
                 <h1>CONTÁCTANOS</h1>
-                <input type='email' class='input-contact' placeholder="E-Mail">
-                <textarea class='input-contact' placeholder="Escríbenos un mensaje" rows="4" style="margin-top: 20px;"></textarea>
+                <input type='email' class='input-contact' placeholder="E-Mail" ng-model="vm.contacto.email">
+                <textarea class='input-contact' placeholder="Escríbenos un mensaje" ng-model="vm.contacto.mensaje" rows="4" style="margin-top: 20px;"></textarea>
             
                 <div style="text-align: center;margin-top:20px;">
-                    <button class='btn-contact'>
+                    <button class='btn-contact' ng-click=" vm.contacto();">
                     ENVIAR
                 </button>
                 </div>
@@ -58,9 +58,9 @@
                 <div  style="margin-top:50px;">
                 <a href="javascript:;">Términos y condiciones</a>
                 <hr>
-                <a href="javascript:;">contacto@equilatero.com</a>
-                <a href="javascript:;">LLAMANOS: + 57 (1) 401 3636</a>
-                <a href="javascript:;">cALLE 67 N° 4A - 67 Bogotá, colombia</a>
+                <a href="javascript:;"> {{vm.user.email}}</a>
+                <a href="javascript:;">LLAMANOS:  {{vm.user.telefono}}</a>
+                <a href="javascript:;"> {{vm.user.direccion}}</a>
                     <div class="row">
                         <div  style="margin-top:20px;">
                         <div class="col-xs-2">

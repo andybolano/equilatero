@@ -1,4 +1,4 @@
-<div class="banner compromiso" style="width: 100%;margin-left: 0;height:500px;">
+<div class="banner compromiso" style="width: 100%;margin-left: 0;height:500px;" ng-init="vm.leerCompromisos();">
     <div class="container-banner-2">
         <h1 class="animated bounceInDown">COMPROMETIDOS CON LA SOCIEDAD</h1>
     </div>
@@ -7,43 +7,25 @@
 <div class="spacer" style="height:100px;" ></div>
 <section  class="container features" >
     <div class="spacer" style="height:60px;" ></div>
-    <div class="row">
+    <div ng-repeat="i in vm.compromises">
+    <div class="row" ng-if="vm.par($index);">
         <div class="col-md-5 col-md-offset-1 text-center wow fadeInLeft cont-img">
-            <img src="../page/img/compromiso/1.png" class="img-responsive"/>
+            <img src="{{i.url}}" class="img-responsive"/>
         </div>
         <div class="col-md-5 text-left  wow fadeInRight content-compromiso" style='border-right: 2px solid #1b7033;'>
-            <p> Equilátero está comprometido con el bienestar de la
-            comunidaad, en el mes de enero de 2014 donamos 120
-            casas para el ejercito nacional.
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-            sed diam nonummy nibh euismod tincidunt ut laoreet
-            dolore magna aliquam erat volutpat. Ut wisi enim ad
-            minim veniam, quis nostrud exerci tation ullamcorper
-            suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat. Duis autem vel eum iriure dolor in hendrerit
-            dolore eu feugiat nulla facilisis at vero eros et accumsan
-            et iusto odio dignissim qui blandit praesent luptatum </p>
+            <p> {{i.descripcion}}</p>
         </div>
     </div>
-    <div class="spacer" style="height:100px;" ></div>
-     <div class="row">
+     <div class="row" ng-if="vm.impar($index);">
         
         <div class="col-md-5 col-md-offset-1 text-center  wow fadeInLeft content-compromiso" style='border-left: 2px solid #1b7033;'>
-             <p> Equilátero está comprometido con el bienestar de la
-            comunidaad, en el mes de enero de 2014 donamos 120
-            casas para el ejercito nacional.
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-            sed diam nonummy nibh euismod tincidunt ut laoreet
-            dolore magna aliquam erat volutpat. Ut wisi enim ad
-            minim veniam, quis nostrud exerci tation ullamcorper
-            suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat. Duis autem vel eum iriure dolor in hendrerit
-            dolore eu feugiat nulla facilisis at vero eros et accumsan
-            et iusto odio dignissim qui blandit praesent luptatum </p>
+             <p> {{i.descripcion}}</p>
         </div>
          <div class="col-md-5 text-center wow fadeInRight cont-img">
-             <img src="../page/img/compromiso/1.png"/>
+             <img src="{{i.url}}"/>
         </div>
+    </div>
+        <div class="spacer" style="height:80px;" ></div>
     </div>
 </section>
 <div class="spacer" style="height:100px;" ></div>

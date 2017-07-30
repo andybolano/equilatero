@@ -28,6 +28,11 @@
                     templateUrl: 'view/zone/zone.html',
                     controller: 'ZoneController as vm'
                 })
+                .state('app.compromise', {
+                    url: '/compromise',
+                    templateUrl: 'view/compromise/compromise.html',
+                    controller: 'CompromiseController as vm'
+                })
                 .state('app.banner', {
                     url: '/banner',
                     templateUrl: 'view/banner/banner.html',
@@ -42,6 +47,11 @@
                     url: '/project/update',
                     templateUrl: 'view/project/update.html',
                     controller: 'updateProjectController as vm'
+                })
+                .state('app.configuracion', {
+                    url: '/configuracion',
+                    templateUrl: 'view/configuracion/configuracion.html',
+                    controller: 'configuracionController as vm'
                 })
             //rutas publicas  
             .state('auth', {

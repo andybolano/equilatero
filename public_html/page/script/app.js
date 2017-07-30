@@ -41,7 +41,7 @@
                 .state('app.compromiso', {
                     url: '/compromiso',
                     templateUrl: 'view/compromiso.html',
-                    //controller: 'HomeController as vm'
+                    controller: 'CompromisoController as vm'
                 })
                 .state('app.postventas', {
                     url: '/postventas',

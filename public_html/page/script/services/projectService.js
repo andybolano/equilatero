@@ -9,9 +9,25 @@
             leerDestacados : leerDestacados,
             leerBanners : leerBanners,
             leerCondiciones :leerCondiciones,
-            leerProyectos:leerProyectos
+            leerProyectos:leerProyectos,
+            getCompromisos:getCompromisos,
+            getUser:getUser,
+            postContacto:postContacto
         };
         return service;
+        function postContacto(object){
+           var defered = $q.defer();
+            var promise = defered.promise;
+            $http.post(API_URL + '/contacto',object).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+       }
+       
         function leerProyectos(param){
            var defered = $q.defer();
             var promise = defered.promise;
@@ -61,6 +77,32 @@
             function error(error) {
                 defered.reject(error);
             } 
+        }
+        
+        function getCompromisos(){
+             var defered = $q.defer();
+            var promise = defered.promise;
+            $http.get(API_URL+'/compromise/page/activos').then(success, error);
+            return promise;
+             function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+        }
+        
+        function getUser(){
+             var defered = $q.defer();
+            var promise = defered.promise;
+            $http.get(API_URL+'/user').then(success, error);
+            return promise;
+             function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
         }
         
        
