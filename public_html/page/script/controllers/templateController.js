@@ -28,9 +28,9 @@
                            sessionStorage.setItem('user',JSON.stringify(vm.user));
                         }, function (err) {
                             if (err.status == 402) {
-                                toastr["error"](err.data.respuesta);
+                                //toastr["error"](err.data.respuesta);
                             } else {
-                                toastr["error"]("Ha ocurrido un problema!");
+                               // toastr["error"]("Ha ocurrido un problema!");
                             }
                         });
                  }else{
@@ -39,7 +39,7 @@
             
             }
             
-            vm.contacto = function(){
+            vm.contactoPost = function(){
                 if(!vm.contacto.email){
                     toastr["warning"]("Por favor ingresar el email");
                     return 0;
@@ -57,11 +57,12 @@
                  var promisePost = projectService.postContacto(object);
                         promisePost.then(function (d) {
                             toastr["success"]("Su mensaje ha sido enviado con exito");
+                            vm.contacto = {};
                         }, function (err) {
                             if (err.status == 402) {
-                                toastr["error"](err.data.respuesta);
+                               // toastr["error"](err.data.respuesta);
                             } else {
-                                toastr["error"]("Ha ocurrido un problema!");
+                              //  toastr["error"]("Ha ocurrido un problema!");
                             }
                         });
             }

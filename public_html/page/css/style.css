@@ -8343,25 +8343,28 @@ h1{
 
 .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
-    height: 500px; 
+    height: auto; 
     background-position-y: 92px;
     background-repeat: no-repeat;
     background-attachment: fixed!important;
+    background-size: 100%;
 }
 
 
 .compromiso{
     background-image: url('../img/compromiso/bg-compromiso.png');
-    height: 500px; 
+    height: auto; 
     background-position-y: 92px;
     background-repeat: no-repeat;
     background-attachment: fixed!important;
+    background-size: 100%;
 }
 
 .nosotros-2{
     background-image: url('../img/nosotros/bg-nosotros.png');
-    height: 510px; 
+    height: auto; 
     background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .form-control{
@@ -8564,7 +8567,80 @@ b{
 .c-left{
     border-left: 2px solid #1b7033;
 }
+@media screen and (max-width: 1400px){
+    .nosotros{
+    background-image: url('../img/nosotros/bg-nosotros.png');
+    height:400px; 
+    background-repeat: no-repeat;
+    background-attachment: fixed!important;
+    background-size:cover;
+    background-position: center;
+}
+.nosotros-2{
+    background-image: url('../img/nosotros/bg-nosotros.png');
+    height:400px; 
+    background-repeat: no-repeat;
+     background-size:cover;
+    background-position: center;
+}
+
+.compromiso{
+    background-image: url('../img/compromiso/bg-compromiso.png');
+    height:400px; 
+    background-position-y: 92px;
+    background-repeat: no-repeat;
+    background-attachment: fixed!important;
+      background-size:cover;
+    background-position: center;
+}
+}
+
+@media screen and (max-width: 800px){
+    .content-slider-nosotros{
+    width: 100%;
+    margin-left:0;
+    height:220px;padding-top: 5px;
+    background-color:rgba(255,255,255,0.7);
+}
+.slider-nosotros{
+   text-align: center;
+   height:240px !important;
+   background-color: transparent !important;
+   width:90% !important;
+   margin-left: 5% !important;
+}
+.slider-nosotros h2{
+   font-size: 14px; 
+}
+}
 @media screen and (max-width: 480px){
+    
+.nosotros{
+    background-image: url('../img/nosotros/bg-nosotros.png');
+    height:400px; 
+    background-repeat: no-repeat;
+    background-attachment: fixed!important;
+    background-size:cover;
+    background-position: center;
+}
+.nosotros-2{
+    background-image: url('../img/nosotros/bg-nosotros.png');
+    height:400px; 
+    background-repeat: no-repeat;
+     background-size:cover;
+    background-position: center;
+}
+
+.compromiso{
+    background-image: url('../img/compromiso/bg-compromiso.png');
+    height:400px; 
+    background-position-y: 92px;
+    background-repeat: no-repeat;
+    background-attachment: fixed!important;
+      background-size:cover;
+    background-position: center;
+}
+
     .c-right{
     border-right: 0px solid #1b7033;
 }
@@ -8634,4 +8710,11 @@ b{
 html,body{
     overflow-x: hidden;
 }
+}
+
+
+select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
 }

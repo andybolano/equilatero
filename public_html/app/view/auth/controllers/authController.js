@@ -13,7 +13,7 @@
                                 usuario: vm.user.usuario,
                                 password: vm.user.password
                             }
-                            console.log(credentials)
+                           
                             $('#login').attr("disabled", true);
                             authService.authenticate(credentials).then(success, error);
                             function success(d) {

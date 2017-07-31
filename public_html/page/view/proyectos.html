@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-3 col-xs-12">
                 <div class="spacer" style="height: 21px"></div>
-                <select class="form-control box-text-green" ng-model="vm.consulta.anio">
+                <select class="form-control box-text-green" ng-model="vm.consulta.anio" style="color:#1B7033 !important">
                     <option value="" selected>AÑO</option>
                      <option ng-repeat="i in vm.anios | orderBy:'-anio'"   value="{{i.anio}}" style="text-transform: uppercase">
                         {{i.anio}}
@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-3 col-xs-12">
                 <div class="spacer" style="height: 21px"></div>
-                <select class="form-control box-text-green" ng-model="vm.consulta.ciudad">
+                <select class="form-control box-text-green" ng-model="vm.consulta.ciudad" style="color:#1B7033 !important">
                      <option value=""  selected>CIUDAD</option>
                     <option ng-repeat="i in vm.ciudad | orderBy:'nombreMunicipio'" value="{{i.nombreMunicipio}}" style="text-transform: uppercase">
                         {{i.nombreMunicipio}}
@@ -44,7 +44,7 @@
             </div>
             <div class="col-md-3 col-xs-12">
                 <div class="spacer" style="height: 21px"></div>
-                <select class="form-control box-text-green" ng-model="vm.consulta.tipo_proyecto" style="text-transform: uppercase">
+                <select class="form-control box-text-green" ng-model="vm.consulta.tipo_proyecto" style="text-transform: uppercase;color:#1B7033 !important" >
                     <option value="" selected>TIPO DE PROYECTO</option>
                     <option ng-repeat="i in vm.tipos | orderBy:'nombre'" value="{{i.nombre}}" style="text-transform: uppercase">
                         {{i.nombre}}

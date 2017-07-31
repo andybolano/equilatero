@@ -89,7 +89,7 @@ html[xmlns] .flexslider .slides {
   zoom: 1;
 }
 .flexslider .slides img {
-  height: 600px;
+  height: auto;
   -moz-user-select: none;
 }
 .flex-viewport {
@@ -264,8 +264,8 @@ html[xmlns] .flexslider .slides {
    width: 96%;
    margin-top: 90px;
    margin-left:2%;
-   height: 600px;
    background-color: #FFF;
+   height: auto;
 }
 .container-banner{
    z-index:999;

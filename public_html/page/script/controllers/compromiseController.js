@@ -13,9 +13,9 @@
                           vm.compromises = d.data;
                         }, function (err) {
                             if (err.status == 402) {
-                                toastr["error"](err.data.respuesta);
+                                //toastr["error"](err.data.respuesta);
                             } else {
-                                toastr["error"]("Ha ocurrido un problema!");
+                                //toastr["error"]("Ha ocurrido un problema!");
                             }
                         });
                     }
