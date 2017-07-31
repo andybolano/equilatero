@@ -1,0 +1,24 @@
+<div style="margin-top: 140px" ng-init="vm.getProyectos();">
+    <div class="container">
+
+        <div class="row wow fadeIn">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>SOLICITUD DE COTIZACIÓN</h2>
+                <select class="form-control" ng-model="vm.mensaje.proyecto">
+                    <option value="" selected disabled>ELIJA PROYECTO</option>
+                    <option ng-repeat ="i in vm.proyectos" value="{{i.informacion_basica.nombre}}">{{i.informacion_basica.nombre}}</option>
+                </select>
+                <input type="text" placeholder="NOMBRE COMPLETO" class="form-control" ng-model="vm.mensaje.nombre">
+
+                <input type="email" placeholder="E-MAIL" class="form-control" ng-model="vm.mensaje.email">
+    
+                 <textarea class="form-control" placeholder="COMENTARIOS" rows="17" ng-model="vm.mensaje.comentarios"></textarea>
+                 
+                <div class="spacer" style="height:30px;"></div>
+                <div style="text-align: center">
+                    <button class="btn btn-warning" style="padding:10px 30px 10px 30px" ng-click="vm.enviar()">ENVIAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

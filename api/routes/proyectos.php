@@ -22,6 +22,7 @@ Route::get("proyectos/page/destacados/show","proyectoController@leerDestacados")
 Route::get("proyectos/page/banners/show","proyectoController@leerBanners");
 Route::get("proyectos/page/condiciones","proyectoController@leerCondiciones");
 Route::get("proyectos/page/realizados/{state}","proyectoController@getByRealizado");
+Route::get("proyectos/page/postventa","proyectoController@getByPostventa");
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

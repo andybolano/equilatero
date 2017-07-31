@@ -7,7 +7,8 @@ Route::get("paises/","ubicacionController@getPaises");
 Route::get("departamentos/{pais}","ubicacionController@getDepartamentos");
 Route::get("municipios/{departamento}","ubicacionController@getMunicipios");
 Route::post("contacto","userController@postContacto");
-
+Route::post("postventa","userController@postPostventa");
+Route::post("cotizacion","userController@postCotizacion");
 include 'authenticate.php';
 include 'proyectos.php';
 include 'zonas_comunes.php';

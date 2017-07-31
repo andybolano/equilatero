@@ -48,6 +48,24 @@ class proyectoController extends Controller {
     }
     
     //page
+    
+    public function getByPostventa() {
+        $proyectos = DB::select(DB::raw("SELECT p.id FROM proyectos as p WHERE estado = 'ACTIVO'"));
+         if(count($proyectos)>0){
+            foreach ($proyectos as $key => $p) {
+                $informacion_basica = $this->get_informaction_basic($p->id);
+                $array_projects[$key] = array(
+                    'proyecto' => $p,
+                    'informacion_basica' => $informacion_basica,
+                );
+            }
+            return $array_projects;
+            
+            }else{
+                return 'NULL';
+            }
+    }
+    
     public function leerDestacados() {
         $proyectos = DB::select(DB::raw("SELECT p.* FROM proyectos as p WHERE destacado = 1 AND estado = 'ACTIVO'"));
          if(count($proyectos)>0){

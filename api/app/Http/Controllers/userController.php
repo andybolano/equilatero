@@ -16,20 +16,7 @@ class userController extends Controller {
     public function postContacto(Request $request){
         try {
              $data = $request->all();
-             
-            /*Mail::send('<!DOCTYPE html>
-            <html lang="es">
-               <head>
-                  <meta charset="utf-8">
-               </head>
-               <body>
-                  <h1>Hola Mundo</h1>
-               </body>
-            </html>', $data, function ($message) use ($user){
-                        $message->subject($data['mensaje']);
-                        $message->to($data['email']);
-                    });*/
-             
+
         $titulo = 'CONTACTO EQUILATERO';
         // mensaje
         $mensaje = $data['mensaje'];
@@ -39,6 +26,49 @@ class userController extends Controller {
        
         $cabeceras .= 'To: <'.$data['email'].'>' . "\r\n";
         $cabeceras .= 'From: equilatero.com <info@mundoapuestas.co>' . "\r\n";        
+
+        mail($data['email'], $titulo, $mensaje, $cabeceras);
+            
+            return JsonResponse::create(array('message' => "Su mensaje ha sido enviado con exito", "respuesta" => false), 200);
+        } catch (Exception $exc) {
+            return JsonResponse::create(array('message' => "No se pudo enviar su mensaje", "exception" => $exc->getMessage(), "request" => json_encode($data)), 401);
+        }
+    }
+    public function postPostventa(Request $request){
+        try {
+             $data = $request->all();
+
+        $titulo = 'POSTVENTA EQUILATERO';
+        // mensaje
+        $mensaje = $data['comentarios'];
+       
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+       
+        $cabeceras .= 'To: <'.$data['email'].'>' . "\r\n";
+        $cabeceras .= 'From:equilatero.com' . "\r\n";        
+
+        mail($data['email'], $titulo, $mensaje, $cabeceras);
+            
+            return JsonResponse::create(array('message' => "Su mensaje ha sido enviado con exito", "respuesta" => false), 200);
+        } catch (Exception $exc) {
+            return JsonResponse::create(array('message' => "No se pudo enviar su mensaje", "exception" => $exc->getMessage(), "request" => json_encode($data)), 401);
+        }
+    }
+    
+     public function postCotizacion(Request $request){
+        try {
+             $data = $request->all();
+
+        $titulo = 'POSTVENTA EQUILATERO';
+        // mensaje
+        $mensaje = $data['nombre'];
+       
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+       
+        $cabeceras .= 'To: <'.$data['email'].'>' . "\r\n";
+        $cabeceras .= 'From:equilatero.com' . "\r\n";        
 
         mail($data['email'], $titulo, $mensaje, $cabeceras);
             

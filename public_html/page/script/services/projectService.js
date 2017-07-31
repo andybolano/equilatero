@@ -12,7 +12,10 @@
             leerProyectos:leerProyectos,
             getCompromisos:getCompromisos,
             getUser:getUser,
-            postContacto:postContacto
+            postContacto:postContacto,
+            enviarPostventa:enviarPostventa,
+             enviarCotizacion:enviarCotizacion,
+            leerProyectosPostventa:leerProyectosPostventa
         };
         return service;
         function postContacto(object){
@@ -27,7 +30,43 @@
                 defered.reject(error);
             }
        }
+       function enviarPostventa(object){
+           var defered = $q.defer();
+            var promise = defered.promise;
+            $http.post(API_URL + '/postventa',object).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+       }
+       function enviarCotizacion(object){
+           var defered = $q.defer();
+            var promise = defered.promise;
+            $http.post(API_URL + '/cotizacion',object).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+       }
        
+       function leerProyectosPostventa(){
+           var defered = $q.defer();
+            var promise = defered.promise;
+            $http.get(API_URL + '/proyectos/page/postventa').then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+       }
         function leerProyectos(param){
            var defered = $q.defer();
             var promise = defered.promise;

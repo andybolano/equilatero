@@ -43,10 +43,20 @@
                     templateUrl: 'view/compromiso.html',
                     controller: 'CompromisoController as vm'
                 })
+                .state('app.terminos', {
+                    url: '/terminos',
+                    templateUrl: 'view/terminos.html',
+                    //controller: 'CompromisoController as vm'
+                })
                 .state('app.postventas', {
                     url: '/postventas',
                     templateUrl: 'view/postventas.html',
-                    //controller: 'HomeController as vm'
+                    controller: 'PostventasController as vm'
+                })
+                .state('app.cotizacion', {
+                    url: '/cotizacion',
+                    templateUrl: 'view/cotizacion.html',
+                    controller: 'CotizacionController as vm'
                 })
 
 
