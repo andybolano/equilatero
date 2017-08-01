@@ -262,17 +262,29 @@ html[xmlns] .flexslider .slides {
 
 .banner{
    width: 96%;
-   margin-top: 90px;
    margin-left:2%;
    background-color: #FFF;
    height: auto;
+   margin-top:-70px;
 }
 .container-banner{
    z-index:999;
-   position: relative;
+   position:relative;
    text-align: center;
-   margin-top:-400px;
+  top: 45%;
 }
+.container-banner h1{
+    color:#FFF;
+    font-size:80px;
+        text-shadow: 6px 6px 6px rgba(0, 0, 0, 0.5);
+}
+.container-banner h3{
+    color:#FFF;
+    font-size:30px;
+    font-weight: 100;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0,0.5);
+}
+
 .footer-banner{
     padding: 10px;
     color:#000;
@@ -284,23 +296,7 @@ html[xmlns] .flexslider .slides {
    font-size:16px;
    font-weight: 600;
   font-family: 'MrEavesBold';
-
- 
- 
 }
-
-.container-banner h1{
-    color:#FFF;
-    font-size:80px;
-    text-shadow: 5px 5px 5px #000;
-}
-.container-banner h3{
-    color:#FFF;
-    font-size:30px;
-    font-weight: 100;
-    text-shadow: 3px 3px 3px #000;
-}
-
 .cont-phone{
     margin-top:40px;
     margin-left:20px;
@@ -344,13 +340,13 @@ html[xmlns] .flexslider .slides {
         -moz-user-select: none;
       }
       .banner{
-            width: 100%;height: 280px;background-color: #FFF;margin-top: 40px;
+            width: 100%;height: 280px;background-color: #FFF;margin-top: 0px;
       }
      .container-banner{
-        z-index:999;
-        position: relative;
-        text-align: center;
-        margin-top:-180px;
+          z-index:999;
+   position:relative;
+   text-align: center;
+  top: 45%;
      }
         .footer-banner{
             padding: 10px;

@@ -1,4 +1,4 @@
-<div class="banner compromiso" style="width: 100%;margin-left: 0;height:500px;" ng-init="vm.leerCompromisos();">
+<div class="banner compromiso" style="width: 100%;margin-left: 0;height:500px;margin-top: 80px;" ng-init="vm.leerCompromisos();">
     <div class="container-banner-2">
         <h1 class="animated bounceInDown">COMPROMETIDOS CON LA SOCIEDAD</h1>
     </div>
@@ -13,14 +13,18 @@
         <div class="col-md-5 col-md-offset-1 text-center wow fadeInLeft cont-img">
             <img src="{{i.url}}" class="img-responsive"/>
         </div>
-        <div class="col-md-5 text-left  wow fadeInRight content-compromiso" style='border-right: 2px solid #1b7033;'>
+        <div class="col-md-5 text-left  wow fadeInRight"  style="padding-right: 20px;">
+            <div class='content-compromiso' style='border-right: 2px solid #1b7033;padding-right: 20px;'>
             <p> {{i.descripcion}}</p>
+            </div>
         </div>
     </div>
      <div class="row" ng-if="vm.impar($index);">
         
-        <div class="col-md-5 col-md-offset-1 text-center  wow fadeInLeft content-compromiso" style='border-left: 2px solid #1b7033;'>
+        <div class="col-md-5 col-md-offset-1 text-center  wow fadeInLeft" style="padding-left: 20px;">
+              <div class='content-compromiso'  style='border-left: 2px solid #1b7033;padding-left: 20px;'>
              <p> {{i.descripcion}}</p>
+            </div>
         </div>
          <div class="col-md-5 text-center wow fadeInRight cont-img">
              <img src="{{i.url}}"/>

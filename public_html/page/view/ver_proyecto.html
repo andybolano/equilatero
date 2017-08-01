@@ -1,11 +1,11 @@
 <div style="margin-top: 140px" ng-init="vm.getProyecto();">
     <div class="container wow fadeIn">
         <div class="row">
-            <div class="col-md-6 col-xs-8">
+            <div class="col-md-6 col-xs-8 content-destacado" style="border:0; height: auto;">
                 <h2>{{vm.proyecto.informacion_basica.nombre}}</h2>
-                <h3 style="color:#1B7033;margin: 0">{{vm.proyecto.informacion_basica.nombreTipoProyecto}}</h3>
-                <h3 style="color:#1B7033;margin: 0">{{vm.proyecto.informacion_basica.direccion}}</h3>
-                <h3 style="color:#1B7033;margin: 0">{{vm.proyecto.informacion_basica.nombreMunicipio}}, {{vm.proyecto.informacion_basica.anio}}</h3>
+                <span>{{vm.proyecto.informacion_basica.nombreTipoProyecto}}</span><br>
+                <span>{{vm.proyecto.informacion_basica.direccion}}</span><br>
+                <span>{{vm.proyecto.informacion_basica.nombreMunicipio}}, {{vm.proyecto.informacion_basica.anio}}</span>
             </div>
             <div class="col-md-6 col-xs-4" style="text-align: right">
                 <img src="{{vm.proyecto.informacion_basica.logo_url}}" style="width:100px">
@@ -94,7 +94,7 @@
             <div class="col-lg-12" style="text-align: center">
                 <h2>ZONAS COMUNES</h2>
                 <div class="row">
-                    <div class="col-md-2 col-xs-6" ng-repeat="i in vm.proyecto.zonas" style="height:130px;">
+                    <div class="col-md-2 col-xs-6" ng-repeat="i in vm.proyecto.zonas" style="height:140px;">
                         <img src="{{i.url}}" style="width: 100px;height: 100px">
                         <h3>{{i.nombre}}</h3>
                     </div>

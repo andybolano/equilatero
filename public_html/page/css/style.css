@@ -6525,9 +6525,9 @@ body.landing-page {
   background-color: #FFF;
   border-color: transparent;
   transition: all 0.3s ease-in-out 0s;
-  -webkit-box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.44);
--moz-box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.44);
-box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.44);
+     -webkit-box-shadow: 1px 4px 7px 0px rgba(244,129,40,0.44);
+    -moz-box-shadow: 1px 4px 7px 0px rgba(244,129,40,0.44);
+    box-shadow: 1px 4px 7px 0px rgba(244,129,40,0.44);
 }
 .landing-page .navbar-default .nav li a {
     padding-top:40px;
@@ -8232,8 +8232,9 @@ h1{
     background-repeat: no-repeat;
     background-size:18%;
     background-position-x:25%;
-    height: 410px;
-     border-bottom: 2px solid #1b7033;
+    height: 400px;
+    padding-left: 20px;
+   border-bottom: 2px solid #1b7033;
 }
 
 .content-compromiso{
@@ -8246,12 +8247,12 @@ h1{
 }
 .content-compromiso p{
     text-align: left;
-    font-size:20px !important;
-    color:#606060;
+    font-size:16px !important;
+    color:#8e9091;
     height:400px;
-     overflow:hidden;
+    overflow:hidden;
     text-overflow: ellipsis;
-    font-family: 'MrEavesBold';
+ 
 
 }
 .content-destacado h4{
@@ -8262,8 +8263,8 @@ h1{
 
 .content-destacado p{
     text-align: left;
-    font-size:18px !important;
-    color:#606060 !important;
+    font-size:16px !important;
+    color:#8e9091 !important;
     height:180px;
      overflow:hidden;
     text-overflow: ellipsis;
@@ -8321,24 +8322,25 @@ h1{
     background-size:40%;
     background-position-x:90%;
     background-position-y:90%;
+    
 }
 
 .container-banner-2{
+   top: 42%;
    position: relative;
    text-align: center;
-   padding-top:220px;
 }
 .container-banner-2 h1{
     color:#FFF;
     font-size:60px;
-    text-shadow: 5px 5px 5px #000;
+    text-shadow: 6px 6px 6px rgba(0,0,0,0.7);
       font-family: 'MrEavesBold';
 }
 .container-banner-2 h3{
     color:#FFF;
     font-size:20px;
     font-weight: 100;
-    text-shadow: 3px 3px 3px #000;
+    text-shadow: 3px 3px 3px rgba(0,0,0,0.7);
 }
 
 .nosotros{
@@ -8348,6 +8350,10 @@ h1{
     background-repeat: no-repeat;
     background-attachment: fixed!important;
     background-size: 100%;
+    width: 100%;
+    margin-left: 0;
+    height:500px;
+    margin-top: 80px;
 }
 
 
@@ -8358,6 +8364,7 @@ h1{
     background-repeat: no-repeat;
     background-attachment: fixed!important;
     background-size: 100%;
+  
 }
 
 .nosotros-2{
@@ -8384,8 +8391,8 @@ h1{
 
 p{
     text-align:center;
-    font-size:18px !important;
-    color:#606060 !important;
+    font-size:16px !important;
+    color:#8e9091 !important;
     font-family: 'MrEavesBook';
     font-weight: 900;
 }
@@ -8393,7 +8400,8 @@ p{
 .content-slider-nosotros{
     width: 60%;
     margin-left: 20%;
-    height:320px;padding-top: 20px;
+    height:320px;
+    padding-top: 20px;
     background-color:rgba(255,255,255,0.7);
 }
 .slider-nosotros{
@@ -8428,6 +8436,7 @@ p{
   -webkit-box-orient: vertical;  
    white-space:initial;
    text-overflow: ellipsis;
+   text-align: left;
 }
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
@@ -8514,7 +8523,11 @@ p{
 } 
 
 .mask h2,h3{
-    color:#606060;
+    color:#8e9091;
+}
+.mask h3{
+    text-transform: capitalize;
+    font-family: 'MrEavesBook';
 }
 
 .vacio{
@@ -8596,6 +8609,9 @@ b{
 }
 
 @media screen and (max-width: 800px){
+    .nosotros{
+        margin-top: -60px;
+    }
     .content-slider-nosotros{
     width: 100%;
     margin-left:0;
@@ -8637,8 +8653,9 @@ b{
     background-position-y: 92px;
     background-repeat: no-repeat;
     background-attachment: fixed!important;
-      background-size:cover;
+    background-size:cover;
     background-position: center;
+    margin-top:-60px !important;
 }
 
     .c-right{
@@ -8673,7 +8690,7 @@ b{
      .container-banner-2{
         position: relative;
         text-align: center;
-        margin-top:-180px;
+        margin-top:0px;
      }
       
         .container-banner-2 h1{
@@ -8689,7 +8706,8 @@ b{
   .content-slider-nosotros{
     width: 100%;
     margin-left:0;
-    height:220px;padding-top: 5px;
+    height:220px;
+    padding-top: 5px;
     background-color:rgba(255,255,255,0.7);
 }
 .slider-nosotros{
@@ -8717,4 +8735,23 @@ select {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
+      background-image: URL(../img/down.svg) !important;
+      background-size: 12px 12px;
+      background-repeat: no-repeat;
+      background-position-x:98%;
+      background-position-y:10px;
+      
+}
+.content-parrafo h2{
+    margin-top:10px;
+    margin-bottom: 20px;
+    color:#8e9091 !important;
+}
+.content-destacado span{
+    text-transform: none;
+    font-weight: 100 !important;
+    color:#1B7033;
+    font-size:16px;
+    font-weight: 900 !important;
+    font-family: 'MrEavesBook';
 }

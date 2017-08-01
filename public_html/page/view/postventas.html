@@ -3,8 +3,8 @@
 
         <div class="row wow fadeIn">
             <div class="col-md-5 col-md-offset-1">
-                <h2>POSTVENTAS</h2>
-                <select class="form-control" ng-model="vm.mensaje.proyecto">
+                <h2>SERVICIO AL CLIENTE</h2>
+                <select class="form-control" ng-model="vm.mensaje.proyecto" style="color:#8e9091;font-family: 'MrEavesBold'">
                     <option value="" selected disabled>ELIJA PROYECTO</option>
                     <option ng-repeat ="i in vm.proyectos" value="{{i.informacion_basica.nombre}}">{{i.informacion_basica.nombre}}</option>
                 </select>
@@ -12,7 +12,7 @@
                 <input type="number" placeholder="CÉDULA" class="form-control" ng-model="vm.mensaje.cedula">
                 <input type="email" placeholder="E-MAIL" class="form-control" ng-model="vm.mensaje.email">
                 <input type="number" placeholder="TELEFONO" class="form-control" ng-model="vm.mensaje.telefono">
-                <select class="form-control" ng-model="vm.mensaje.tipoInmueble">
+                <select class="form-control" ng-model="vm.mensaje.tipoInmueble" style="color:#8e9091;font-family: 'MrEavesBold'">
                     <option value="" selected disabled>TIPO DE INMUEBLE</option>
                     <option>CASA</option>
                     <option>APARTAMENTO</option>
@@ -20,7 +20,7 @@
                     <option>ZONA COMÚN</option>
                     <option>NO SABE</option>
                 </select>
-                <select class="form-control" ng-model="vm.mensaje.tipoPostventa">
+                <select class="form-control" ng-model="vm.mensaje.tipoPostventa" style="color:#8e9091;font-family: 'MrEavesBold'">
                     <option value="" selected disabled>TIPO DE POSTVENTA</option>
                     <option>ENCHAPES</option>
                     <option>PINTURA </option>

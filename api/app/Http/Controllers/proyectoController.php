@@ -499,7 +499,7 @@ class proyectoController extends Controller {
         if ($proyecto->ubicacion_geografica == 1) {
             $lat = $data['lat'];
             $lng = $data['lng'];
-            DB::select(DB::raw("UPDATE proyecto_ubicacion SET lat = $lat, lng = $lng  WHERE idProyecto = $id "));
+            DB::update("UPDATE proyecto_ubicacion SET lat = $lat, lng = $lng  WHERE idProyecto = $id ");
 
             return JsonResponse::create(array('message' => "Ubicación actualizada correctamente", "request" => $proyecto), 200);
         }
@@ -527,7 +527,7 @@ class proyectoController extends Controller {
 
         if ($proyecto->aviso_legal == 1) {
             $aviso = $data['aviso'];
-            DB::select(DB::raw("UPDATE aviso_legal SET text = '$aviso' WHERE idProyecto = $id "));
+            DB::update("UPDATE aviso_legal SET text = '$aviso' WHERE idProyecto = $id ");
             return JsonResponse::create(array('message' => "Aviso legal actualizado correctamente", "request" => $proyecto), 200);
         }
     }

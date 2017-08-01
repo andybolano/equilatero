@@ -6,16 +6,14 @@
         <h1>Muy pronto publicaremos contenido</h1>
     </div>
     <div class="flexslider animated bounceInLeft" ng-if="vm.banners.length > 0 && vm.banners !== 'NULL'">
-        <ul class="slides">
+        <ul class="slides" style="text-align: center; display: -webkit-flex;display: flex;">
             <li ng-repeat="i in vm.banners">
-                <img src="{{i.banner.banner_url}}" />
-                <div class="container">
-                    <div class="container-banner">
+                 <div class="container-banner">
                         <h1>{{i.banner.titulo}}</h1>  
                         <h3>{{i.banner.descripcion}}</h3>
                     </div>
-
-                </div>
+                <img src="{{i.banner.banner_url}}" />
+                   
                 <div class="footer-banner">
                     <div class="row">
                         <div class="col-md-10">
@@ -39,19 +37,19 @@
     <div class="row">
         <div class="col-sm-4 content-parrafo" >
             <img src="img/home/estructuracion.png" alt="" class="img-features wow bounceIn"/>
-            <h3>ESTRUCTURACIÓN</h3>
+            <h2>ESTRUCTURACIÓN</h2>
             <p>Conceptualizamos y diseñamos proyectos inmobiliarios que respondan a las necesidades de nuestros clientes y del mercado.</p>
             <!--p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
         </div>
         <div class="col-sm-4 content-parrafo">
             <img src="img/home/gerencia.png" alt=""  class="img-features wow bounceIn"/>
-            <h3>GERENCIA</h3>
+            <h2>GERENCIA</h2>
             <p>Gerenciamos proyectos en diferentes sectores como vivienda, VIS, comercial y hotelero.<br><br></p>
             <!--p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 content-parrafo" style="border:0">
             <img src="img/home/proyectos.png" alt="" class="img-features wow bounceIn"/>
-            <h3>VENTA DE PROYECTOS INMOBILIARIOS</h3>
+            <h2>VENTA DE PROYECTOS INMOBILIARIOS</h2>
             <p>Desarrollamos estrategias de comercialización para nuestros proyectos asegurandonos del éxito durante el proceso de venta.</p>
             <!--p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>-->
         </div>
@@ -80,12 +78,30 @@
                     <img src="{{i.banner.destacado_url}}" style="width: 100%" ng-if="i.banner.destacado_url !== ''">
                     <!--{{vm.construir_imagen(i.banner.destacado_url, $index);}}-->
                 </div>
-                <div class="col-md-5 text-center  wow fadeInRight content-destacado c-right" style=''>
-                    <div style='text-align: left'>
-                        <h4>{{i.informacion_basica.nombre}}</h4>
-                        <h4>{{i.informacion_basica.nombreTipoProyecto}}</h4>
-                        <h4>{{i.informacion_basica.direccion}}</h4>
-                        <h4>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</h4>
+                <div class="col-md-5 text-center  wow fadeInRight" style="padding-left: 20px;">
+                    <div class="content-destacado c-right" style="padding-right: 20px;">
+                        <div style='text-align: left'>
+                            <h4 style="font-weight: 900">{{i.informacion_basica.nombre}}</h4>
+                            <span>{{i.informacion_basica.nombreTipoProyecto}}</span><br>
+                            <span>{{i.informacion_basica.direccion}}</span><br>
+                            <span>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</span>
+                        </div>
+                        <div class='spacer' style='height:10px;'></div>
+                        <p>
+                            {{i.informacion_basica.descripcion}}
+                        </p>
+                        <button class="btn btn-warning" style='font-size: 18px;' ng-click="vm.verProyecto(i)">VER PROYECTO</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-if="vm.impar($index);">
+                <div class="col-md-5 col-md-offset-1 text-center  wow fadeInLeft" style="padding-right: 20px;">
+                    <div class="content-destacado c-left" style="padding-left: 20px;">
+                    <div style='text-align: left;'>
+                         <h4 style="font-weight: 900">{{i.informacion_basica.nombre}}</h4>
+                        <span>{{i.informacion_basica.nombreTipoProyecto}}</span><br>
+                        <span>{{i.informacion_basica.direccion}}</span><br>
+                        <span>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</span>
                     </div>
                     <div class='spacer' style='height:10px;'></div>
                     <p>
@@ -93,20 +109,6 @@
                     </p>
                     <button class="btn btn-warning" style='font-size: 18px;' ng-click="vm.verProyecto(i)">VER PROYECTO</button>
                 </div>
-            </div>
-            <div class="row" ng-if="vm.impar($index);">
-                <div class="col-md-5 col-md-offset-1 text-center  wow fadeInLeft content-destacado c-left">
-                    <div style='text-align: left'>
-                        <h4>{{i.informacion_basica.nombre}}</h4>
-                        <h4>{{i.informacion_basica.nombreTipoProyecto}}</h4>
-                        <h4>{{i.informacion_basica.direccion}}</h4>
-                        <h4>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</h4>
-                    </div>
-                    <div class='spacer' style='height:10px;'></div>
-                    <p>
-                        {{i.informacion_basica.descripcion}}
-                    </p>
-                    <button class="btn btn-warning" style='font-size: 18px;' ng-click="vm.verProyecto(i)">VER PROYECTO</button>
                 </div>
                 <div class="col-md-5 text-center wow fadeInRight" style="height: 400px;" id="img-destacado-{{$index}}">
                     <div ng-if="i.banner.destacado_url == ''">
