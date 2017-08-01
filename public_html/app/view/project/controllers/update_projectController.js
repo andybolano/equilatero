@@ -130,7 +130,7 @@ var _position = {};
                       var project = JSON.parse(sessionStorage.getItem('proyecto'));
                        vm.proyecto_proccess = project.proyecto;
                        vm.Project = project.informacion_basica;
-                       
+                       vm.Project.anio = parseInt(project.informacion_basica.anio);
                        if(vm.proyecto_proccess.aviso_legal == 1){
                        vm.Project.aviso_legal = project.aviso_legal[0].text;
                        }

@@ -26,7 +26,9 @@ var _position = {};
                     vm.proyecto_proccess.ubicacion_geografica = 0;
                     vm.proyecto_proccess.zonas_comunes = 0;
                     
-                    initMap();
+                    
+                     initMap();
+                     
                     vm.delete_galeria = function (imagen){
                         
                         var object ={
@@ -591,90 +593,7 @@ var _position = {};
 
 })();
 
-    /************************ map ******************/
 
-var map;
-    var markers = [];
-    function initMap() {
-        
-        
-    map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: - 34.397, lng: 150.644},
-            zoom: 8
-    });
-    var infoWindow = new google.maps.InfoWindow({map: map});
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-    var pos = {
-    lat: position.coords.latitude,
-            lng: position.coords.longitude
-    };
-
-    map.setCenter(pos);
-    
-    
-    if(sessionStorage.getItem('proyecto')){
-    var project = JSON.parse(sessionStorage.getItem('proyecto'));
-        if(project.proyecto.ubicacion_geografica){
-            var myLatlng = new google.maps.LatLng(parseFloat(project.ubicacion[0].lat),parseFloat(project.ubicacion[0].lng));
-             addMarker(myLatlng, map);
-        }
-    };
-    
-    google.maps.event.addListener(map, 'click', function (event) {
-         deleteMarkers();
-         addMarker(event.latLng, map);
-    });
-    
-    
-    }, function () {
-    handleLocationError(true, infoWindow, map.getCenter());
-    });
-    } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-    }
-    }
-    
-    
-    function addMarker(location) {
-    var marker = new google.maps.Marker({
-    position: location,
-            map: map,
-            draggable: true
-    });
-    markers.push(marker);
-    _position = {'lat':marker.getPosition().lat(), 'lng':marker.getPosition().lng()};
-
-            marker.addListener('dragend', function (event)
-            {
-            _position = {'lat':this.getPosition().lat(), 'lng':this.getPosition().lng()};
-            });
-    }
-
-    function setMapOnAll(map) {
-    for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
-    }
-    }
-    
-    function clearMarkers() {
-    setMapOnAll(null);
-    }
-    
-    function deleteMarkers() {
-    clearMarkers();
-    markers = [];
-    }
-
-
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-            'Error: The Geolocation service failed.' :
-            'Error: Your browser doesn\'t support geolocation.');
-    }
 
 
 
