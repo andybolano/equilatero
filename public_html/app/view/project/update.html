@@ -117,7 +117,7 @@
             </div>
             <div class="vertical-timeline-content" style="background-color: #FFF">
                 <div class="row">
-                     <div class="col-lg-8">
+                     <div class="col-lg-6">
                         <small>Paso 2.</small>
                         <h2 style="margin-bottom: 0;padding: 0">Banner publicitario</h2>
                         <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -136,7 +136,25 @@
                         </div>
                         
                     </div>
-                    <div class="col-lg-4" style="padding-top: 115px;">
+                    <div class="col-lg-3">
+                        <br>
+                        <h2 style="margin-bottom: 0;padding: 0">Imagen de destacado</h2>
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar imagen</span>
+                                <span class="fileinput-exists">Cambiar</span><input type="file" uploader-model="vm.Project.destacado" name="images" id="files_destacado" /></span>
+                        </div><br>
+                        <small>Recomendación: imagen de 900px X 800px</small>
+                        <div class="spacer" style="height: 10px;"></div>
+
+                        <div id="image_destacado" class="content-image">
+                            <div class="row">
+                                <div class="col-lg-12" style="text-align: center;">
+                                    <i class="fa fa-image ico-bg" style="margin-top:130px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" style="padding-top: 115px;">
                          <div class="form-group">
                             <label>Titulo de banner:</label> 
                             <input type="text" placeholder="Ingresar titulo" ng-model="vm.Project.titulo_banner"  class="form-control">
@@ -146,7 +164,7 @@
                             <textarea placeholder="Ingresar descripción simple" class="form-control" rows="5" ng-model="vm.Project.descripcion_banner"></textarea>
                         </div>
                         <div class="spacer" style="height: 10px;"></div>
-                        <button class="btn btn-success pull-right" ng-click="vm.save_banner();" id="guardar_banner"><i class="fa fa-upload"></i> Guardar banner</button>
+                        <button class="btn btn-success pull-right" ng-click="vm.save_banner();" id="guardar_banner"><i class="fa fa-upload"></i> Guardar Imagenes</button>
                     </div>
                 </div>
             </div>

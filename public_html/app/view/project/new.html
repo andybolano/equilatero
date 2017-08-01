@@ -122,7 +122,7 @@
                 <div class="row">
                     <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.informacion_basica == 0" ></div>
                     <div class="overlay animated fadeIn" ng-if="vm.proyecto_proccess.banner == 1" title="Banner guardardo"></div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-6">
                         <small>Paso 2.</small>
                         <h2 style="margin-bottom: 0;padding: 0">Banner publicitario</h2>
                         <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -141,7 +141,25 @@
                         </div>
                         
                     </div>
-                    <div class="col-lg-4" style="padding-top: 115px;">
+                    <div class="col-lg-3">
+                        <br>
+                        <h2 style="margin-bottom: 0;padding: 0">Imagen de destacado</h2>
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar imagen</span>
+                                <span class="fileinput-exists">Cambiar</span><input type="file" uploader-model="vm.Project.destacado" name="images" id="files_destacado" /></span>
+                        </div><br>
+                        <small>Recomendación: imagen de 900px X 800px</small>
+                        <div class="spacer" style="height: 10px;"></div>
+
+                        <div id="image_destacado" class="content-image">
+                            <div class="row">
+                                <div class="col-lg-12" style="text-align: center;">
+                                    <i class="fa fa-image ico-bg" style="margin-top:130px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="padding-top: 115px;">
                          <div class="form-group">
                             <label>Titulo de banner:</label> 
                             <input type="text" placeholder="Ingresar titulo" ng-model="vm.Project.titulo_banner"  class="form-control">

@@ -47,7 +47,7 @@
                 vm.construir_imagen = function(url, id){
                      $("#img-destacado-"+id).css({
                          "background-image":"url("+url+")",
-                         "background-size": "cover",
+                         "background-size": "100%",
                          "background-repeat":"no-repeat",
                      });
                  }

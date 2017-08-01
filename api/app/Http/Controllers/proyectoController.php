@@ -303,24 +303,29 @@ class proyectoController extends Controller {
                  if ($request->hasFile('banner')) {
                      $request->file('banner')->move("../images/banner", $id . ".jpg");
                  }
-                DB::select(DB::raw("UPDATE banner SET titulo = '$titulo' , descripcion = '$descripcion'  WHERE idProyecto = $id "));
+                 if ($request->hasFile('destacado')) {
+                     $request->file('destacado')->move("../images/destacados", $id . ".jpg");
+                 }
+                 
+                $url = URL_SERVER . 'images/destacados/' . $id . '.jpg' ;
+                DB::update("UPDATE banner SET titulo = '$titulo' , descripcion = '$descripcion', destacado_url = '$url'  WHERE idProyecto = $id");
 
                 return JsonResponse::create(array('message' => "Banner actualizado", "request" => json_encode($data)), 200);
                   
             }
             if($proyecto->banner == 0) {
-                 if ($request->hasFile('banner')) {
+                 if ($request->hasFile('banner') && $request->hasFile('destacado')) {
                 $proyecto->banner = 1;
                 $proyecto->save();
 
                 
                 DB::table('banner')->insert(
-                        ['titulo' => $titulo,'descripcion' => $descripcion ,'banner_url' => URL_SERVER . "images/banner/" . $id . ".jpg", 'idProyecto' => $id]
+                        ['titulo' => $titulo,'descripcion' => $descripcion ,'banner_url' => URL_SERVER . "images/banner/" . $id . ".jpg", 'destacado_url' => URL_SERVER . "images/destacado/" . $id . ".jpg",'idProyecto' => $id]
                 );
                 $request->file('banner')->move("../images/banner", $id . ".jpg");
+                $request->file('banner')->move("../images/destacados", $id . ".jpg");
 
-
-                return JsonResponse::create(array('message' => "Banner guardado Correctamente", "request" => $proyecto), 200);
+                    return JsonResponse::create(array('message' => "Banner guardado Correctamente", "request" => $proyecto), 200);
                  }
         } else {
             return JsonResponse::create(array('message' => "No se encontro banner del proyecto"), 402);
@@ -328,7 +333,7 @@ class proyectoController extends Controller {
     }
 
     private function get_banner($idProyecto) {
-        $banner = DB::select(DB::raw("SELECT id, banner_url, titulo , descripcion FROM banner WHERE idProyecto = $idProyecto "));
+        $banner = DB::select(DB::raw("SELECT id, banner_url, destacado_url,titulo , descripcion FROM banner WHERE idProyecto = $idProyecto "));
         return $banner[0];
     }
 
@@ -380,7 +385,7 @@ class proyectoController extends Controller {
         }
 
 
-        $imagen = DB::select(DB::raw("DELETE FROM proyecto_galeria WHERE id = $idImagen"));
+         DB::delete("DELETE FROM proyecto_galeria WHERE id = $idImagen");
         $galeria = $this->get_galeria($idProyecto);
         return JsonResponse::create(array('message' => "Imagen eliminada", "galeria" => $galeria), 200);
     }
@@ -459,7 +464,11 @@ class proyectoController extends Controller {
         $proyecto = Proyectos::find($id);
         $proyecto->zonas_comunes = 1;
         $proyecto->save();
-         DB::select(DB::raw("DELETE FROM proyecto_zona WHERE idProyecto = $id"));
+        
+        $z = DB::select(DB::raw("SELECT id FROM proyecto_zona WHERE idProyecto = $id"));
+        if(count($z > 0)){
+               DB::delete("DELETE FROM proyecto_zona WHERE idProyecto = $id");
+            }
         foreach ($zonas as $key => $r) {
             $array[$key] = array('idZona' => $r, 'idProyecto' => $id);
         }

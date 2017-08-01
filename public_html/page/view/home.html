@@ -74,7 +74,11 @@
         <div ng-repeat="i in vm.projects">
             <div class="row" ng-if="vm.par($index);">
                 <div class="col-md-5 col-md-offset-1 text-center wow fadeInLeft" style="height: 400px;" id="img-destacado-{{$index}}">
-                    {{vm.construir_imagen(i.banner.banner_url, $index);}}
+                    <div ng-if="i.banner.destacado_url == ''">
+                        <img src="img/picture.svg" style="width: 50%;margin-top: 10%">
+                    </div>
+                    <img src="{{i.banner.destacado_url}}" style="width: 100%" ng-if="i.banner.destacado_url !== ''">
+                    <!--{{vm.construir_imagen(i.banner.destacado_url, $index);}}-->
                 </div>
                 <div class="col-md-5 text-center  wow fadeInRight content-destacado c-right" style=''>
                     <div style='text-align: left'>
@@ -105,7 +109,11 @@
                     <button class="btn btn-warning" style='font-size: 18px;' ng-click="vm.verProyecto(i)">VER PROYECTO</button>
                 </div>
                 <div class="col-md-5 text-center wow fadeInRight" style="height: 400px;" id="img-destacado-{{$index}}">
-                    {{vm.construir_imagen(i.banner.banner_url, $index);}}
+                    <div ng-if="i.banner.destacado_url == ''">
+                        <img src="img/picture.svg" style="width: 50%;margin-top: 10%">
+                    </div>
+                    <img src="{{i.banner.destacado_url}}" style="width: 100%" ng-if="i.banner.destacado_url !== ''">
+                    <!--{{vm.construir_imagen(i.banner.destacado_url, $index);}}-->
                 </div>
             </div>
             <div class="spacer" style="height:100px;" ></div>

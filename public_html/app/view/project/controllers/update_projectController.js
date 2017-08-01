@@ -157,6 +157,9 @@ var _position = {};
                        if(vm.proyecto_proccess.banner == 1){
                            document.getElementById("image_banner").innerHTML = '<img class="animated bounceIn"  src='+project.banner.banner_url+' >';
                        }
+                       if(project.banner.destacado_url !== ''){
+                           document.getElementById("image_destacado").innerHTML = '<img class="animated bounceIn"  src='+project.banner.destacado_url+' >';
+                       }
                        if(vm.proyecto_proccess.galeria == 1){
                            vm.getGaleria();
                        }
@@ -482,7 +485,6 @@ var _position = {};
                             return 0;
                         }
                         
-                        
                         if (!vm.Project.titulo_banner) {
                             toastr['warning']("Ingresar titulo de banner");
                             return 0;
@@ -495,6 +497,7 @@ var _position = {};
                         var project = JSON.parse(sessionStorage.getItem('proyecto'))
                         var formData = new FormData();
                         formData.append('banner', vm.Project.banner);
+                        formData.append('destacado', vm.Project.destacado);
                         formData.append('titulo', vm.Project.titulo_banner);
                         formData.append('descripcion', vm.Project.descripcion_banner);
                         formData.append('idProyecto', vm.proyecto_proccess.id);
@@ -504,7 +507,7 @@ var _position = {};
                         promisePost.then(function (d) {
                             swal("Buen Trabajo!", d.data.message, "success");
                         }, function (err) {
-                            $('#guardar').attr("disabled", false);
+                             $('#guardar_banner').attr("disabled", false);
                             if (err.status == 402) {
                                 toastr["error"](err.data.respuesta);
                             } else {
@@ -743,6 +746,7 @@ var _position = {};
                         document.getElementById('files_banner').addEventListener('change', archivo_banner, false);
                         document.getElementById('files_galeria').addEventListener('change', archivo_galeria, false);
                         document.getElementById('files_plano').addEventListener('change', archivo_plano, false);
+                        document.getElementById('files_destacado').addEventListener('change', archivo_destacado, false);
                     }, 1000);
                 }]);
 
@@ -762,7 +766,6 @@ var _position = {};
             reader.readAsDataURL(f);
         }
     }
-
     function archivo_banner(evt) {
         var files = evt.target.files;
         for (var i = 0, f; f = files[i]; i++) {
@@ -778,7 +781,21 @@ var _position = {};
             reader.readAsDataURL(f);
         }
     }
-
+    function archivo_destacado(evt) {
+        var files = evt.target.files;
+        for (var i = 0, f; f = files[i]; i++) {
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    document.getElementById("image_destacado").innerHTML = ['<img class="animated bounceIn"  src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        }
+    }
     function archivo_galeria(evt) {
         var files = evt.target.files;
         for (var i = 0, f; f = files[i]; i++) {
@@ -794,7 +811,6 @@ var _position = {};
             reader.readAsDataURL(f);
         }
     }
-
     function archivo_plano(evt) {
         var files = evt.target.files;
         for (var i = 0, f; f = files[i]; i++) {
