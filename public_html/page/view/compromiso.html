@@ -3,7 +3,35 @@
         <h1 class="animated bounceInDown">COMPROMETIDOS CON LA SOCIEDAD</h1>
     </div>
 </div>
-
+<div ng-if="vm.mobile">
+    <div class="spacer" style="height:20px;" ></div>
+<section  class="container features" >
+    <div class="spacer" style="height:60px;" ></div>
+     <div ng-if="vm.compromises.length > 0 ">
+    <div ng-repeat="i in vm.compromises">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1 text-center wow fadeInLeft cont-img">
+            <img src="{{i.url}}" class="img-responsive"/>
+        </div>
+        <div class="col-md-5 text-left  wow fadeInRight"  style="padding-right: 20px;">
+            <div class='content-compromiso'>
+            <p> {{i.descripcion}}</p>
+            </div>
+        </div>
+    </div>
+        <div class="spacer" style="height:20px;" ></div>
+    </div>
+     </div>
+    <div ng-if="vm.compromises.length == 0 " class="vacio banner wow bounceIn">
+        <img src="img/crane.svg" style="width:30%">
+        <div class="spacer" style="height:20px;" ></div>
+        <h1>Pronto te mostraremos<br> informacion de nuestro compromiso social</h1>
+    </div>
+    
+</section>
+<div class="spacer" style="height:20px;" ></div>
+</div>
+<div ng-if="!vm.mobile">
 <div class="spacer" style="height:100px;" ></div>
 <section  class="container features" >
     <div class="spacer" style="height:60px;" ></div>
@@ -42,3 +70,4 @@
     
 </section>
 <div class="spacer" style="height:100px;" ></div>
+</div>

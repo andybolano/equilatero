@@ -7039,7 +7039,7 @@ color:#FFF;
   }
   .landing-page .navbar .navbar-header .navbar-toggle {
     background-color: #ffffff;
-    padding: 9px 10px;
+    margin-top:28px;
     border: none;
   }
 }
@@ -8252,8 +8252,6 @@ h1{
     height:400px;
     overflow:hidden;
     text-overflow: ellipsis;
- 
-
 }
 .content-destacado h4{
     color:#1b7033;
@@ -8275,7 +8273,7 @@ h1{
 }
 
 .input-contact{
-    width:90%;
+    width:100%;
     background-color: #FFF;
     border: 0;
     font-size: 16px;
@@ -8372,6 +8370,10 @@ h1{
     height: auto; 
     background-repeat: no-repeat;
     background-size: 100%;
+    width: 100%;
+    margin-left: 0;
+    height:495px;
+    padding-top:100px;
 }
 
 .form-control{
@@ -8631,6 +8633,11 @@ b{
 }
 @media screen and (max-width: 480px){
     
+    .content-destacado{
+    height: auto;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
 .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
     height:400px; 
@@ -8640,12 +8647,11 @@ b{
     background-position: center;
 }
 .nosotros-2{
-    background-image: url('../img/nosotros/bg-nosotros.png');
-    height:400px; 
-    background-repeat: no-repeat;
-     background-size:cover;
-    background-position: center;
+    height:360px; 
+    padding-top:70px;
 }
+
+
 
 .compromiso{
     background-image: url('../img/compromiso/bg-compromiso.png');
@@ -8715,7 +8721,7 @@ b{
    height:240px !important;
    background-color: transparent !important;
    width:100% !important;
-   margin-left: 0% !important;
+   margin: 0 !important;
 }
 .slider-nosotros h2{
    font-size: 14px; 
@@ -8728,6 +8734,26 @@ b{
 html,body{
     overflow-x: hidden;
 }
+
+.btn-verProyecto{
+   text-align: center !important;
+   margin-top:-5px;
+}
+
+.content-parrafo{
+    margin-top: 40px;
+}
+
+.content-compromiso{
+    height: auto;
+}
+.content-compromiso p{
+    height:auto;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    margin-top: 20px;
+}
+
 }
 
 
@@ -8754,4 +8780,12 @@ select {
     font-size:16px;
     font-weight: 900 !important;
     font-family: 'MrEavesBook';
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #1F7236;
+}
+
+.btn-verProyecto{
+   text-align: right;
 }

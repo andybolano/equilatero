@@ -15,6 +15,8 @@
             }
         
             vm.active = function(id){
+                $("#navbar").attr("aria-expanded","false");
+                $("#navbar").removeClass("in");
                 $('li').removeClass("active");
                 $('#'+id).addClass("active");
            }

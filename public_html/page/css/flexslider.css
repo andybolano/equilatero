@@ -113,7 +113,7 @@ html[xmlns] .flexslider .slides {
   text-decoration: none;
   display: block;
   width: 40px;
-  height: 40px;
+  height: 45px;
   margin: -20px 0 0;
   position: absolute;
   top: 50%;
@@ -344,9 +344,9 @@ html[xmlns] .flexslider .slides {
       }
      .container-banner{
           z-index:999;
-   position:relative;
-   text-align: center;
-  top: 45%;
+        position:relative;
+        text-align: center;
+       top: 45%;
      }
         .footer-banner{
             padding: 10px;
@@ -360,12 +360,17 @@ html[xmlns] .flexslider .slides {
 
         .container-banner h1{
             color:#FFF;
-            font-size:30px;
+            font-size:32px;
         }
         .container-banner h3{
             color:#FFF;
-            font-size:12px;
+            font-size:14px;
             font-weight: 100;
         }
+        
+        .flex-control-nav {
+    position: relative;
+     bottom:0px; 
+}
 }
 

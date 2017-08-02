@@ -19,7 +19,7 @@
                         <li id="2"><a class="page-scroll" id="features" href="javascript:;"   ui-sref="app.nosotros" ng-click="vm.active(2)">NOSOTROS</a></li>
                         <li id="3"><a class="page-scroll" id="features" href="javascript:;"   ui-sref="app.proyectos" ng-click="vm.active(3)">PROYECTOS</a></li>
                         <li id="4"><a class="page-scroll" id="testimonials" href="javascript:;"  ui-sref="app.postventas" ng-click="vm.active(4)">SERVICIO AL CLIENTE</a></li>
-                        <li id="5"><a class="page-scroll" id="pricing" href="javascript:;"  ui-sref="app.compromiso" ng-click="vm.active(5)">COMPRIMISO SOCIAL</a></li>
+                        <li id="5"><a class="page-scroll" id="pricing" href="javascript:;"  ui-sref="app.compromiso" ng-click="vm.active(5)">COMPROMISO SOCIAL</a></li>
                         <li class="animated bounceInRight" id="contact-menu">
                             <span class="email">
                                 <p style="color:#1B7033 !important;font-size:16px !important;">{{vm.user.email}}</p></span>
@@ -43,13 +43,13 @@
 <section id="contact" class="contact" ng-controller="templateController as vm" ng-init="vm.leerUser();">
     <div class="container">
         <div class="row">
-            <div class='col-md-5 col-md-offset-1 wow bounceInLeft'>
+            <div class='col-md-5 col-md-offset-1 wow bounceInLeft' style="">
                 <h1>CONTÁCTANOS</h1>
                 <input type='email' class='input-contact' placeholder="E-Mail" ng-model="vm.contacto.email">
                 <textarea class='input-contact' placeholder="Escríbenos un mensaje" ng-model="vm.contacto.mensaje" rows="4" style="margin-top: 20px;"></textarea>
             
-                <div style="text-align: center;margin-top:20px;">
-                    <button class='btn-contact' ng-click=" vm.contactoPost();">
+                <div style="text-align: center;margin-top:20px;width: 100%">
+                  <button class='btn-contact' ng-click=" vm.contactoPost();">
                     ENVIAR
                 </button>
                 </div>
@@ -58,13 +58,13 @@
             <div class='col-md-5 contact-info wow bounceIn'>
                 <div  style="margin-top:50px;">
                 <a href="javascript:;" ui-sref="app.terminos">Términos y condiciones</a>
-                <hr>
+                <hr style="margin-top:5px">
                 <a href="javascript:;"> {{vm.user.email}}</a>
                 <a href="javascript:;">LLAMANOS:  {{vm.user.telefono}}</a>
                 <a href="javascript:;"> {{vm.user.direccion}}</a>
                     <div class="row">
                         <div  style="margin-top:20px;">
-                        <div class="col-xs-2">
+                        <div class="col-xs-1">
                             <a href="https://twitter.com/pequilatero?lang=en" target="_blank">  <i class="fa fa-twitter ico-social"></i></a>
                         </div>
                         <div class="col-xs-1">

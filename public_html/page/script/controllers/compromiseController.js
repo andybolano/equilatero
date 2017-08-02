@@ -6,6 +6,12 @@
                     var vm = this;
                     $("html, body").animate({scrollTop: "0px"});
                     vm.compromises = [];
+                    
+                    vm.mobile = false;
+               
+               if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    vm.mobile = true;
+                 }
 
                     vm.leerCompromisos = function(){
                           var promisePost = projectService.getCompromisos();

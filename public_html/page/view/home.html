@@ -21,7 +21,7 @@
                                 {{i.informacion_basica.descripcion}}
                             </div>
                         </div>
-                        <div class="col-md-2 col-xs-12" style="text-align: right">
+                        <div class="col-md-2 col-xs-12 btn-verProyecto">
                             <button class="btn btn-warning" style="margin-top: 3px;" ng-click="vm.verProyecto(i)">VER PROYECTO</button>
                         </div>
                     </div>
@@ -68,7 +68,39 @@
         <div class="spacer" style="height:20px;" ></div>
         <h1>Pronto te mostraremos<br> nuestros proyectos destacados</h1>
     </div>
+    
+    
     <div ng-if="vm.projects.length > 0 && vm.projects !== 'NULL'">
+        <div ng-if="vm.mobile">
+            <div ng-repeat="i in vm.projects">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1 col-xs-12 text-center wow fadeInLeft" style="height:auto;" id="img-destacado-{{$index}}">
+                    <div ng-if="i.banner.destacado_url == ''">
+                        <img src="img/picture.svg" style="width: 50%;margin-top: 10%">
+                    </div>
+                    <img src="{{i.banner.destacado_url}}" style="width: 100%" ng-if="i.banner.destacado_url !== ''">
+                    <!--{{vm.construir_imagen(i.banner.destacado_url, $index);}}-->
+                </div>
+                <div class="col-md-5 text-center  col-xs-12 wow fadeInRight" style="padding-left: 20px;">
+                    <div class="content-destacado" style="padding-right: 20px;margin-top: 10px;">
+                        <div style='text-align: left'>
+                            <h4 style="font-weight: 900">{{i.informacion_basica.nombre}}</h4>
+                            <span>{{i.informacion_basica.nombreTipoProyecto}}</span><br>
+                            <span>{{i.informacion_basica.direccion}}</span><br>
+                            <span>{{i.informacion_basica.nombreMunicipio}}, {{i.informacion_basica.anio}}</span>
+                        </div>
+                        <div class='spacer' style='height:10px;'></div>
+                        <p>
+                            {{i.informacion_basica.descripcion}}
+                        </p>
+                        <button class="btn btn-warning" style='font-size: 18px;' ng-click="vm.verProyecto(i)">VER PROYECTO</button>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer" style="height:30px;" ></div>
+        </div>
+        </div>
+        <div ng-if="!vm.mobile">
         <div ng-repeat="i in vm.projects">
             <div class="row" ng-if="vm.par($index);">
                 <div class="col-md-5 col-md-offset-1 text-center wow fadeInLeft" style="height: 400px;" id="img-destacado-{{$index}}">
@@ -120,7 +152,10 @@
             </div>
             <div class="spacer" style="height:100px;" ></div>
         </div>
+        </div>
     </div>
+    
+    
 </section>
 <div class="spacer" style="height:20px;" ></div>
 

@@ -6,6 +6,11 @@
                var vm = this;
                vm.projects = [];
                vm.banners = [];
+               vm.mobile = false;
+               
+               if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    vm.mobile = true;
+                 }
                 
                 $("html, body").animate({scrollTop: "0px"});
                 
@@ -16,10 +21,7 @@
                             vm.leerDestacados();
                            setTimeout(function(){
                     $('.flexslider').flexslider({
-                      animation: "slide",
-                       start:function(slider){
-                        $('.flex-direction-nav').css({visibility:'hidden'});
-                    }
+                      animation: "slide"
                     });
                 },100);
                         }, function (err) {
