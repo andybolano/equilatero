@@ -333,7 +333,18 @@ html[xmlns] .flexslider .slides {
     right: 10px;
   }
 }
-
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)  {
+    .banner{
+       
+            width: 100%;background-color: #FFF;
+            margin: 0;
+             margin-top:-20px;
+      }
+        .flex-control-nav {
+    position: relative;
+     bottom:-30px; 
+}
+}
 @media screen and (max-width: 480px){
     .flexslider .slides img {
         height: 280px;

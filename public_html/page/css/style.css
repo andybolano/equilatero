@@ -8362,7 +8362,7 @@ h1{
     background-repeat: no-repeat;
     background-attachment: fixed!important;
     background-size: 100%;
-  
+  width: 100%;margin-left: 0;height:500px;margin-top: 80px;
 }
 
 .nosotros-2{
@@ -8582,6 +8582,77 @@ b{
 .c-left{
     border-left: 2px solid #1b7033;
 }
+
+@media only screen and (min-device-width : 760px) and (max-device-width : 1020px)  {
+    .cont-img{
+    height: auto;
+}
+.cont-img img {
+    height: auto;
+    width: 80%;
+    margin-left:10%;
+}
+.content-compromiso{
+    width: 80%;
+    margin-left: 10%;
+    margin-top:20px;
+    height: auto;
+}
+
+.content-compromiso p {
+    height: auto;
+    margin-bottom: 20px;
+}
+    .compromiso{
+        margin-top: -30px !important;
+    }
+    #contact-menu{
+        position: absolute;
+        right: 30px;
+        top:10px;
+    }
+    .navbar-right {
+    float: left !important;
+    }
+   #logo {
+        margin-left: 0; 
+     }
+     .cont-img{
+         height: auto;
+     }
+     .content-descripcion{
+         width:80%;
+     }
+   .btn-verProyecto{
+   text-align: right !important;
+   margin-top:-43px;
+}
+
+.img-nosotros{
+    width: 20%;
+    float: left;
+}
+.parrafo-nosotros{
+    padding-left: 20px;
+    padding-right: 10px;
+    width: 70%;
+    float: left;
+    height:130px;
+}
+.content-parrafo-nosotros{
+    height:150px;
+}
+.friend{
+    margin-top:-30px;
+}
+.container-banner-2{
+        position: relative;
+        text-align: center;
+        margin-top:160px;
+     }
+     
+     
+}
 @media screen and (max-width: 1400px){
     .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
@@ -8609,7 +8680,13 @@ b{
     background-position: center;
 }
 }
-
+@media screen and (min-width: 1281px) and (max-width: 1366px) {  
+    
+.nosotros-2{
+    height:510px;
+}
+    
+}
 @media screen and (max-width: 800px){
     .nosotros{
         margin-top: -60px;
@@ -8633,11 +8710,12 @@ b{
 }
 @media screen and (max-width: 480px){
     
-    .content-destacado{
+.content-destacado{
     height: auto;
     padding-left: 20px;
     padding-bottom: 20px;
 }
+
 .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
     height:400px; 
@@ -8646,12 +8724,11 @@ b{
     background-size:cover;
     background-position: center;
 }
+
 .nosotros-2{
     height:380px; 
     padding-top:70px;
 }
-
-
 
 .compromiso{
     background-image: url('../img/compromiso/bg-compromiso.png');
@@ -8664,25 +8741,30 @@ b{
     margin-top:-60px !important;
 }
 
-    .c-right{
+.c-right{
     border-right: 0px solid #1b7033;
 }
+
 .c-left{
     border-left: 0px solid #1b7033;
 }
-    #logo{
+
+#logo{
         top:0;
         margin-left: 0%;
         height: 50px;
         padding: 0;
     }
-    .content-parrafo{
+    
+.content-parrafo{
     border-right:0px;
 }
-    #contact-menu{
+
+  #contact-menu{
         width: 100%;
         text-align: right;
     }
+    
     .email{
         position: absolute;
         left:0;
@@ -8693,22 +8775,24 @@ b{
         display: none;
     }
     
-     .container-banner-2{
+   .container-banner-2{
         position: relative;
         text-align: center;
         margin-top:0px;
      }
       
-        .container-banner-2 h1{
+   .container-banner-2 h1{
             color:#FFF;
             font-size:30px;
             margin-top: 30%;
         }
-        .container-banner-2 h3{
+        
+   .container-banner-2 h3{
             color:#FFF;
             font-size:12px;
             font-weight: 100;
         }
+        
   .content-slider-nosotros{
     width: 100%;
     margin-left:0;
@@ -8716,6 +8800,7 @@ b{
     padding-top: 5px;
     background-color:rgba(255,255,255,0.7);
 }
+
 .slider-nosotros{
    text-align: center;
    height:240px !important;
@@ -8723,6 +8808,7 @@ b{
    width:100% !important;
    margin: 0 !important;
 }
+
 .slider-nosotros h2{
    font-size: 14px; 
 }
@@ -8747,6 +8833,7 @@ html,body{
 .content-compromiso{
     height: auto;
 }
+
 .content-compromiso p{
     height:auto;
     overflow:hidden;
@@ -8754,7 +8841,7 @@ html,body{
     margin-top: 20px;
 }
 
-}
+} /*--end media query---*/
 
 
 select {
@@ -8781,11 +8868,13 @@ select {
     font-weight: 900 !important;
     font-family: 'MrEavesBook';
 }
-
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #1F7236;
 }
-
 .btn-verProyecto{
    text-align: right;
+}
+
+.parrafo-nosotros{
+    margin-top: 16px;font-size:16px !important;text-align: justify;
 }

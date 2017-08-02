@@ -54,7 +54,7 @@
         </div>
         <div class="spacer" style="height:50px;"></div>
         <div class="row" ng-if="vm.proyectos.length > 0" >
-            <div class="col-lg-3" ng-repeat="i in vm.proyectos | filter:filtro | filter: vm.consulta.anio | filter:vm.consulta.ciudad | filter:vm.consulta.tipo_proyecto">
+            <div class="col-lg-3 col-md-6 col-xs-12" ng-repeat="i in vm.proyectos | filter:filtro | filter: vm.consulta.anio | filter:vm.consulta.ciudad | filter:vm.consulta.tipo_proyecto">
                 <div class="ibox">
                     <div class="ibox-content product-box wow bounceIn" style="position: relative;" ng-click="vm.verProyecto(i)">
                             <div class="product-imitation" id="img-{{$index}}">
