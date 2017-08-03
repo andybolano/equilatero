@@ -8734,7 +8734,10 @@ b{
 }
 }
 @media screen and (min-width: 1281px) and (max-width: 1366px) {  
-    
+
+    .nosotros{
+        margin-top: 80px;
+    }    
 .nosotros-2{
     height:510px;
 }
