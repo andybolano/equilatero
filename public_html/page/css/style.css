@@ -8584,6 +8584,25 @@ b{
 }
 
 @media only screen and (min-device-width : 760px) and (max-device-width : 1020px)  {
+    
+    .content-destacado {
+    background-image: url(../img/bg-destacado.png);
+    background-repeat: no-repeat;
+    background-size: 18%;
+    background-position-x: 15%;
+    height: 400px;
+    padding-left: 20px;
+    border-bottom: 2px solid #1b7033;
+}
+
+       .nosotros{
+    background-image: url('../img/nosotros/bg-nosotros.png');
+    height:400px; 
+    background-repeat: no-repeat;
+    background-attachment: fixed!important;
+    background-size:cover;
+    background-position: center;
+}
     .cont-img{
     height: auto;
 }
@@ -8599,13 +8618,22 @@ b{
     height: auto;
 }
 
+.compromiso{
+    background-image: url('../img/compromiso/bg-compromiso.png');
+    height:400px; 
+    background-position-y: 92px;
+    background-repeat: no-repeat;
+    background-attachment: fixed!important;
+    background-size:cover;
+    background-position: center;
+    margin-top:-60px !important;
+}
+
 .content-compromiso p {
     height: auto;
     margin-bottom: 20px;
 }
-    .compromiso{
-        margin-top: -30px !important;
-    }
+   
     #contact-menu{
         position: absolute;
         right: 30px;
@@ -8648,12 +8676,26 @@ b{
 .container-banner-2{
         position: relative;
         text-align: center;
-        margin-top:160px;
+        margin-top:130px;
      }
      
+   .nosotros-2{
+    background-image: url('../img/nosotros/bg-nosotros.png');
+    height:420px; 
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+}
+.content-slider-nosotros {
+    width: 90%;
+    margin-left: 5%;
+    height: 320px;
+    padding-top: 20px;
+    background-color: rgba(255,255,255,0.7);
+}  
      
 }
-@media screen and (max-width: 1400px){
+@media screen and (min-device-width : 1024px) and (max-width: 1400px){
     .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
     height:400px; 
@@ -8661,15 +8703,26 @@ b{
     background-attachment: fixed!important;
     background-size:cover;
     background-position: center;
+    margin-top:170px;
 }
 .nosotros-2{
     background-image: url('../img/nosotros/bg-nosotros.png');
-    height:400px; 
+    height:520px; 
     background-repeat: no-repeat;
-     background-size:cover;
+    background-size:cover;
     background-position: center;
 }
-
+.content-slider-nosotros {
+    width: 90%;
+    margin-left: 5%;
+    height: 320px;
+    padding-top: 20px;
+    background-color: rgba(255,255,255,0.7);
+}
+.flex-control-nav {
+    position: relative;
+    bottom: -100px;
+}
 .compromiso{
     background-image: url('../img/compromiso/bg-compromiso.png');
     height:400px; 
@@ -8726,8 +8779,11 @@ b{
 }
 
 .nosotros-2{
-    height:380px; 
-    padding-top:70px;
+    background-image: url('../img/nosotros/bg-nosotros.png');
+    height:420px; 
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
 }
 
 .compromiso{
@@ -8797,7 +8853,7 @@ b{
     width: 100%;
     margin-left:0;
     height:250px;
-    padding-top: 5px;
+    padding-top: 0px;
     background-color:rgba(255,255,255,0.7);
 }
 
