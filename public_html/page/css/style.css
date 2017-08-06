@@ -8583,6 +8583,8 @@ b{
     border-left: 2px solid #1b7033;
 }
 
+
+
 @media only screen and (min-device-width : 760px) and (max-device-width : 1020px)  {
     
     .content-destacado {
@@ -8636,8 +8638,8 @@ b{
    
     #contact-menu{
         position: absolute;
-        right: 30px;
-        top:10px;
+        right: 50px;
+        top:5px;
     }
     .navbar-right {
     float: left !important;
@@ -8692,10 +8694,13 @@ b{
     height: 320px;
     padding-top: 20px;
     background-color: rgba(255,255,255,0.7);
-}  
+}
+
+
      
 }
-@media screen and (min-device-width : 1024px) and (max-width: 1400px){
+@media screen and (min-device-width : 1024px) and (max-width: 1440px){
+  
     .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
     height:400px; 
@@ -8703,7 +8708,7 @@ b{
     background-attachment: fixed!important;
     background-size:cover;
     background-position: center;
-    margin-top:170px;
+    margin-top:90px;
 }
 .nosotros-2{
     background-image: url('../img/nosotros/bg-nosotros.png');
@@ -8744,6 +8749,12 @@ b{
     
 }
 @media screen and (max-width: 800px){
+    
+
+.landing-page .navbar .navbar-header {
+    display: block;
+    float: none;
+}
     .nosotros{
         margin-top: -60px;
     }
