@@ -23,6 +23,10 @@
                     $('.flexslider').flexslider({
                       animation: "slide"
                     });
+                    
+                  
+           
+                 
                 },100);
                         }, function (err) {
                             if (err.status == 402) {

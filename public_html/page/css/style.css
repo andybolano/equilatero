@@ -8948,3 +8948,22 @@ select {
 .parrafo-nosotros{
     margin-top: 16px;font-size:16px !important;text-align: justify;
 }
+
+.flex-box{
+   /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex; 
+ 
+}
+
+
+.flex-box > div {
+  width: 50%;
+}
+
+.flex-box > div.alt {
+	-webkit-flex-direction: row-reverse;
+	flex-direction: row-reverse;
+}

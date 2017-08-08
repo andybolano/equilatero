@@ -7,7 +7,7 @@
                     $("html, body").animate({scrollTop: "0px"});
 
                     setTimeout(function () {
-                        $('.flexslider').flexslider({
+                        $('.slider-nosotros').flexslider({
                             animation: "slide",
                             start: function (slider) {
                                 $('.flex-direction-nav').css({visibility: 'hidden'});

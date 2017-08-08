@@ -6,9 +6,9 @@
         <h1>Muy pronto publicaremos contenido</h1>
     </div>
     <div class="flexslider animated bounceInLeft" ng-if="vm.banners.length > 0 && vm.banners !== 'NULL'">
-        <ul class="slides" style="text-align: center; display: -webkit-flex;display: flex;">
+        <ul class="slides flex-box" style="text-align: center;">
             <li ng-repeat="i in vm.banners">
-                 <div class="container-banner">
+                 <div class="container-banner" >
                         <h1>{{i.banner.titulo}}</h1>  
                         <h3>{{i.banner.descripcion}}</h3>
                     </div>
@@ -30,8 +30,10 @@
         </ul>
     </div>
 </div>
-<div class='spacer'style='height:50px;'>
+<div ng-if="vm.mobile">
+<div class='spacer'style='height:40px;'>
 
+</div>
 </div>
 <section id="features" class="container services" style="text-align: center">
     <div class="row">
