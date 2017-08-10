@@ -12,31 +12,45 @@
                     <a class="navbar-brand" href="javascript:;"  ui-sref="app.home" style="padding-top: 10px;" ng-click="vm.to('page-top')">
                         <img src="img/logo.png" alt="" class="animated bounceIn" id="logo" />
                     </a>
+                    
                 </div>
-                <div id="navbar" class="navbar-collapse collapse" style="padding-right:2.8%">
+                <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right" >
                         <li id="1"><a class="page-scroll" id="home" href="javascript:;"  ui-sref="app.home" ng-click="vm.active(1)">INICIO</a></li>
                         <li id="2"><a class="page-scroll" id="features" href="javascript:;"   ui-sref="app.nosotros" ng-click="vm.active(2)">NOSOTROS</a></li>
                         <li id="3"><a class="page-scroll" id="features" href="javascript:;"   ui-sref="app.proyectos" ng-click="vm.active(3)">PROYECTOS</a></li>
                         <li id="4"><a class="page-scroll" id="testimonials" href="javascript:;"  ui-sref="app.postventas" ng-click="vm.active(4)">SERVICIO AL CLIENTE</a></li>
                         <li id="5"><a class="page-scroll" id="pricing" href="javascript:;"  ui-sref="app.compromiso" ng-click="vm.active(5)">COMPROMISO SOCIAL</a></li>
-                        <li  id="contact-menu">
-                            <span class="email">
-                                <p style="color:#1B7033 !important;font-size:16px !important;">{{vm.user.email}}</p></span>
-                            <div class="cont-phone">
-                                {{vm.user.telefono}}
-                            </div>
-                            <div class="cont-btn"  ng-click="vm.to('contact')">
-                                CONTACTO
-                            </div>
+                        <li ng-if="!vm.mobile" style="margin-top: 5px;">
+                                <table>
+                                    <tr>
+                                        <td colspan="2" class="email"><p style="color:#1B7033 !important;font-size:16px !important;">{{vm.user.email}}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cont-phone" style="width: 50%;text-align: right">{{vm.user.telefono}}</td>
+                                        <td class="cont-btn" style="width: 50%;"  ng-click="vm.to('contact')"> CONTACTO</td>
+                                    </tr>
+                                </table>
                         </li>
                     </ul>
+                     <div  ng-if="vm.mobile" class="content-contacto"> 
+                             <table style="width: 85%;margin-left:7.5%">
+                                    <tr>
+                                        <td colspan="2" class="email"><p style="color:#1B7033 !important;font-size:16px !important;">{{vm.user.email}}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cont-phone" style="width: 50%;text-align: right">{{vm.user.telefono}}</td>
+                                        <td class="cont-btn"  style="width: 50%;" ng-click="vm.to('contact')"> CONTACTO</td>
+                                    </tr>
+                                </table>
+                        </div>
                 </div>
+           
         </nav>
 </div>
 
  
-
+ 
 <div ui-view="">
 </div>
 
@@ -64,10 +78,10 @@
                 <a href="javascript:;"> {{vm.user.direccion}}</a>
                     <div class="row">
                         <div  style="margin-top:20px;">
-                        <div class="col-xs-1">
+                        <div style="float: left;margin-left:20px">
                             <a href="https://twitter.com/pequilatero?lang=en" target="_blank">  <i class="fa fa-twitter ico-social"></i></a>
                         </div>
-                        <div class="col-xs-1">
+                        <div style="float: left;margin-left:14px;">
                             <a href="https://www.facebook.com/promotoraequilatero/" target="_blank">  <i class="fa fa-facebook ico-social"></i></a>
                         </div>
                         </div>

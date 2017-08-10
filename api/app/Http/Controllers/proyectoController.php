@@ -547,5 +547,23 @@ class proyectoController extends Controller {
 
         return JsonResponse::create(array('message' => "Paso '" . $data['paso'] . "' terminado correctamente", "request" => $proyecto), 200);
     }
+    
+     public function destroy($id) {
+        try {
+            $p = Proyectos::find($id);
+            $p->delete();
+            
+            DB::delete("DELETE FROM banner WHERE idProyecto = $id");
+            DB::delete("DELETE FROM proyecto_galeria WHERE idProyecto = $id");
+            DB::delete("DELETE FROM proyecto_informacion_basica WHERE idProyecto = $id");
+            DB::delete("DELETE FROM proyecto_plano WHERE idProyecto = $id");
+            DB::delete("DELETE FROM proyecto_ubicacion WHERE idProyecto = $id");
+            DB::delete("DELETE FROM proyecto_zona WHERE idProyecto = $id");
+            
+            return JsonResponse::create(array('message' => "Proyecto eliminado con exito!", "request" => json_encode($id)), 200);
+        } catch (Exception $ex) {
+            return JsonResponse::create(array('message' => "No se pudo Eliminar el proyecto", "exception" => $ex->getMessage(), "request" => json_encode($id)), 401);
+        }
+    }
 
 }

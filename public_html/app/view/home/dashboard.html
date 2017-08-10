@@ -51,7 +51,10 @@
                                                     <a href="javascript:;" title="Click para activar" ng-if="i.proyecto.estado == 'INACTIVO'" ng-click="vm.updateProject('estado',i.proyecto,'ACTIVO');"><span class="badge badge-danger">{{i.proyecto.estado}}</span></a>
                                                     <a href="javascript:;" title="Click para desactivar" ng-if="i.proyecto.estado == 'ACTIVO'" ng-click="vm.updateProject('estado',i.proyecto,'INACTIVO');"><span class="badge badge-primary">{{i.proyecto.estado}}</span></a>
                                                 </td>
-                                                <td  style="text-align: center;"><a href="javascript:;" ng-click=" vm.viewProject(i)" title="Gestionar proyecto"><i class="fa fa-eye icon" style="color:#226B29;"></i></a></td>
+                                                <td  style="text-align: center;">
+                                                    <a href="javascript:;" ng-click=" vm.viewProject(i)" title="Gestionar proyecto"><i class="fa fa-eye icon" style="color:#226B29;"></i>
+                                                    <a href="javascript:;" ng-click=" vm.deleteProject(i.proyecto.id)" title="Eliminar Proyecto"><i class="fa fa-trash icon" style="color:#ED5565;"></i></a>
+                                                    </a></td>
                                             </tr>
                                         </tbody>
                                     </table>

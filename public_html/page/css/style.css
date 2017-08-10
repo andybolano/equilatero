@@ -962,6 +962,10 @@ fieldset[disabled] .btn-white.active {
 .progress,
 .progress-bar {
   box-shadow: none;
+    -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+  
 }
 .btn-outline {
   color: inherit;
@@ -8280,7 +8284,10 @@ h1{
     color:#F48128;
     padding:10px;
     margin-top: 10px;
-    font-weight:600
+    font-weight:600;
+     -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius: 0;
 }
 
 .btn-contact{
@@ -8365,16 +8372,7 @@ h1{
   width: 100%;margin-left: 0;height:500px;margin-top: 80px;
 }
 
-.nosotros-2{
-    background-image: url('../img/nosotros/bg-nosotros.png');
-    height: auto; 
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 100%;
-    margin-left: 0;
-    height:495px;
-    padding-top:100px;
-}
+
 
 .form-control{
     margin-top: 20px;
@@ -8399,20 +8397,7 @@ p{
     font-weight: 900;
 }
 
-.content-slider-nosotros{
-    width: 60%;
-    margin-left: 20%;
-    height:320px;
-    padding-top: 20px;
-    background-color:rgba(255,255,255,0.7);
-}
-.slider-nosotros{
-   text-align: center;
-   height:240px !important;
-   background-color: transparent !important;
-   width:90% !important;
-   margin-left: 5% !important;
-}
+
 
 .slider-planos{
    background-color: transparent !important;
@@ -8566,9 +8551,7 @@ p{
 b{
     font-weight: 900 !important;
 }
-.email{
-    position: absolute;right:0px;top:10px;
-}
+
 #logo{
     height:65px;
     margin-left:12%
@@ -8584,9 +8567,40 @@ b{
 }
 
 
+/* End hide from IE Mac */
+.nosotros-2{
+    height: 510px; 
+    background-repeat: no-repeat;
+    background-image: url('../img/nosotros/bg-nosotros.png');
+   background-size: cover;
+    width: 100%;
+    margin-left: 0;
+    padding-top: 100px;
+    background-color: #000;
+    background-position: center;
+}
+
+.content-slider-nosotros{
+    width: 60%;
+    margin-left: 20%;
+    height:300px;
+    background-color:rgba(255,255,255,0.7);
+}
+.slider-nosotros{
+   text-align: center;
+   height:100px;
+   background-color: transparent !important;
+   width:90% !important;
+   margin-left: 5% !important;
+   padding-top:30px;
+   padding-bottom: 30px;
+}
 
 @media only screen and (min-device-width : 760px) and (max-device-width : 1020px)  {
-    
+    .content-contacto{
+    width: 40%;top:10px;right:10px;
+    position: absolute;
+}
     .content-destacado {
     background-image: url(../img/bg-destacado.png);
     background-repeat: no-repeat;
@@ -8700,7 +8714,11 @@ b{
      
 }
 @media screen and (min-device-width : 1024px) and (max-width: 1440px){
-  
+  .content-contacto{
+    width: 40%;top:10px;right:10px;
+    position: absolute;
+    display: 
+}
     .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
     height:400px; 
@@ -8711,23 +8729,10 @@ b{
     margin-top:90px;
 }
 .nosotros-2{
-    background-image: url('../img/nosotros/bg-nosotros.png');
-    height:520px; 
-    background-repeat: no-repeat;
-    background-size:cover;
-    background-position: center;
+    height: 550px; 
+    
 }
-.content-slider-nosotros {
-    width: 90%;
-    margin-left: 5%;
-    height: 320px;
-    padding-top: 20px;
-    background-color: rgba(255,255,255,0.7);
-}
-.flex-control-nav {
-    position: relative;
-    bottom: -100px;
-}
+
 .compromiso{
     background-image: url('../img/compromiso/bg-compromiso.png');
     height:400px; 
@@ -8736,6 +8741,12 @@ b{
     background-attachment: fixed!important;
       background-size:cover;
     background-position: center;
+}
+.content-slider-nosotros{
+    width: 90%;
+    margin-left: 5%;
+    height:350px;
+    background-color:rgba(255,255,255,0.7);
 }
 }
 @media screen and (min-width: 1281px) and (max-width: 1366px) {  
@@ -8776,7 +8787,9 @@ b{
 }
 }
 @media screen and (max-width: 480px){
-    
+    .content-contacto{
+    width: 100%;margin-top:10px;margin-left: -2.8%
+}
 .content-destacado{
     height: auto;
     padding-left: 20px;
@@ -8793,11 +8806,7 @@ b{
 }
 
 .nosotros-2{
-    background-image: url('../img/nosotros/bg-nosotros.png');
-    height:420px; 
-    background-repeat: no-repeat;
-    background-size:cover;
-    background-position: center;
+    height:460px;   
 }
 
 .compromiso{
@@ -8830,16 +8839,8 @@ b{
     border-right:0px;
 }
 
-  #contact-menu{
-        width: 100%;
-        text-align: right;
-    }
+
     
-    .email{
-        position: absolute;
-        left:0;
-        top:10px;
-    }
     
     .content-descripcion{
         display: none;
@@ -8866,21 +8867,21 @@ b{
   .content-slider-nosotros{
     width: 100%;
     margin-left:0;
-    height:250px;
+    height:280px;
     padding-top: 0px;
     background-color:rgba(255,255,255,0.7);
 }
 
 .slider-nosotros{
    text-align: center;
-   height:240px !important;
+   height:280px !important;
    background-color: transparent !important;
    width:100% !important;
    margin: 0 !important;
 }
 
 .slider-nosotros h2{
-   font-size: 14px; 
+   font-size: 16px; 
 }
 
 .title-plano h1{
@@ -8951,6 +8952,7 @@ select {
 
 .flex-box{
    /* OLD - iOS 6-, Safari 3.1-6 */
+     display: -webkit-box; 
   display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
   display: -ms-flexbox;      /* TWEENER - IE 10 */
   display: -webkit-flex;     /* NEW - Chrome */

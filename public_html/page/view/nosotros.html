@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="spacer" style="height: 30px;"></div>
-    <div class="row" style="text-align: center">
+    <div class="row" style="text-align: center" ng-if="!vm.mobile">
         <div class="col-md-4 content-parrafo-nosotros" >
             <img src="img/nosotros/clientes.png" alt="" class="img-nosotros wow bounceIn"/>
             <p class="parrafo-nosotros">
@@ -60,17 +60,66 @@
             </p>
         </div>
     </div>
+      <div ng-if="vm.mobile">
+        <div class="flexslider-parrafo">
+            <ul class="slides flex-box" style="text-align: center;">
+                <li>
+                    <div class="content-parrafo-nosotros" >
+            <img src="img/nosotros/clientes.png" alt="" class="img-nosotros wow bounceIn"/>
+            <p class="parrafo-nosotros">
+                Nuestros clientes son la razón del
+                trabajo que realizamos día a día.
+                Nos esforzamos por ofrecerles el
+                mejor producto, adecuado a sus
+                necesidades y competitivos en el
+                mercado.
+            </p>
+        </div>
+                </li>
+                <li>
+                    <div class="content-parrafo-nosotros">
+            <img src="img/nosotros/estrategias.png" alt="" class="img-nosotros wow bounceIn"/>
+            <p class="parrafo-nosotros">
+                En equilátero buscamos los mejores
+                aliados estratégicos de la
+                industria (entidades financieras,
+                constructores, proveedores, y
+                otros) que complementen nuestro
+                trabajo, para garantizar proyectos
+                exitosos.
+            </p>
+        </div>
+                </li>
+
+                <li>
+                    <div class="content-parrafo-nosotros">
+                        <img src="img/nosotros/exito.png" alt="" class="img-nosotros wow bounceIn friend"/>
+            <p class="parrafo-nosotros">
+                El éxito de equilátero reside en
+                nuestro recurso humano. Buscamos
+                personas con ética, compromiso y
+                responsabilidad. Gracias a ellos
+                hemos venido logrando las metas
+                de crecimiento y desarrollo que nos
+                hemos trazado.
+            </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+          <div class="spacer" style="height: 20px;"></div>
+    </div>
 </div>
 
 
 <div class="spacer" style="height: 20px;"></div>
-<div class="nosotros-2">
+<div class="nosotros-2 ">
     <div class="content-slider-nosotros wow bounceInRight">
     <div class="slider-nosotros" >
         <ul class="slides">
             <li>
                 <h2>MISIÓN</h2>
-                <h2 style="text-transform: lowercase">
+                <h2 style="text-transform:none">
                    Promovemos proyectos inmobiliarios rentables y con altos estándares
 de calidad, que satisfagan las necesidades de nuestros clientes y
 accionistas, estamos comprometidos con el crecimiento personal y
@@ -80,7 +129,7 @@ estratégicas a largo plazo que contribuyan a la mejora continua.
             </li>
             <li>
                   <h2>VISIÓN</h2>
-                  <h2 style="text-transform: lowercase">
+                  <h2 style="text-transform: none">
                       Convertirnos para el año 2020 en una empresa líder en estructuración,  promoción y gerencia de proyectos inmobiliarios de Bogotá reconocida por su calidad y cumplimiento, con la capacidad de reinventarse y ofrecer dinamismo con productos acorde a las necesidades de un mercado cambiante. 
 
 Destacarnos en el sector por ofrecer proyectos sólidos, altamente rentables y con bajo riesgo, así mismo por nuestro compromiso con el medio ambiente y la mejora continua. 

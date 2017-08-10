@@ -8,7 +8,13 @@
                      vm.user = {};
                      vm.contacto = {};
       
-            
+             vm.mobile = false;
+               
+               if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    vm.mobile = true;
+                    console.log(vm.mobile)
+                  
+                 }
           vm.to = function(id){
                var posicion = $("#"+id).offset().top;
                $("html, body").animate({scrollTop:posicion+"px"});

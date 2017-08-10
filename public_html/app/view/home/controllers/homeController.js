@@ -20,6 +20,38 @@
                         });
                  }
                  
+                 vm.deleteProject = function(idProyecto){
+                     
+                     swal({
+                title: "Esta seguro?",
+                text: "Realmente desea eliminar este proyecto!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si, eliminar!",
+                cancelButtonText: "Cancelar",
+                closeOnConfirm: false
+              },
+            function(){
+                var promisePost = projectService.deleted(idProyecto);
+                        promisePost.then(function (d) {
+                               swal("Eliminado!", "El proyecto ha sido eliminado.", "success");
+                           toastr['success'](d.data.message);
+                           vm.getProjects();
+                        }, function (err) {
+                            if (err.status == 402) {
+                                toastr["error"](err.data.respuesta);
+                            } else {
+                                toastr["error"]("Ha ocurrido un problema!");
+                            }
+                        });
+           
+            });
+
+
+                      
+                 }
+                 
                  vm.viewProject = function (proyecto){
                      sessionStorage.setItem('proyecto',JSON.stringify(proyecto));
                      $location.path("/project/update");

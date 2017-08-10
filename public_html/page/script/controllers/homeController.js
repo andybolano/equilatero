@@ -10,7 +10,12 @@
                
                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                     vm.mobile = true;
-                 }
+                       setTimeout(function(){
+                     $('.flexslider-parrafo').flexslider({
+                      animation: "slide"
+                    });
+                     },100);
+                 } 
                 
                 $("html, body").animate({scrollTop: "0px"});
                 

@@ -21,11 +21,24 @@
             get_galeria:get_galeria,
             delete_galeria:delete_galeria,
             get_planos:get_planos,
-            update_plano :update_plano
+            update_plano :update_plano,
+            deleted:deleted
             
         };
         return service;
         
+        function deleted(id){
+             var defered = $q.defer();
+            var promise = defered.promise;
+            $http.delete(API_URL + '/proyectos/'+id).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+        }
         function post_aviso(object){
              var defered = $q.defer();
             var promise = defered.promise;

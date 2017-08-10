@@ -194,8 +194,7 @@ html[xmlns] .flexslider .slides {
 }
 .flex-control-nav {
   width: 100%;
-  position: absolute;
-  bottom: -40px;
+  margin-top:10px;
   text-align: center;
 }
 .flex-control-nav li {
@@ -272,8 +271,8 @@ html[xmlns] .flexslider .slides {
    position:relative;
    text-align: center;
   top: 45%;
- 
 }
+
 .container-banner h1{
     color:#FFF;
     font-size:80px;
@@ -305,7 +304,6 @@ html[xmlns] .flexslider .slides {
     padding:7px 10px 5px 10px;
     color:#1b7033;
     font-weight:600;
-    float: left;
     font-family: 'MrEavesBold';
     font-size: 16px;
 }
@@ -316,7 +314,6 @@ html[xmlns] .flexslider .slides {
     color:#FFF;
     background-color:#1b7033;
     font-weight:600;
-    float: left;
     cursor: pointer;
     font-family: 'MrEavesBold';
     font-size: 16px;
@@ -385,5 +382,8 @@ html[xmlns] .flexslider .slides {
     position: relative;
      bottom:-10px; 
 }
+
+
+
 }
 
