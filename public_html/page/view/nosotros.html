@@ -1,10 +1,22 @@
+<div ng-if="!vm.mobile">
 <div class="nosotros">
     <div class="container-banner-2">
         <h1 class="animated bounceInDown">COMPROMETIDOS CON SU BIENESTAR</h1>
     </div>
 </div>
+</div>
+<div ng-if="vm.mobile">
+<div class="banner-mobile">
+    <div id="image-banner-mobile-nosotros">
+        <div class="container-banner-mobile">
+           <h1 class="animated bounceInDown">COMPROMETIDOS CON SU BIENESTAR</h1>
+       </div>
+    </div>
+</div>
+</div> 
 
-<div class="container">
+
+<section class="container features">
     <div class="row">
         <div class="col-md-12">
             <div class="title">
@@ -109,7 +121,7 @@
         </div>
           <div class="spacer" style="height: 20px;"></div>
     </div>
-</div>
+</section>
 
 
 <div class="spacer" style="height: 20px;"></div>
@@ -140,7 +152,7 @@ Destacarnos en el sector por ofrecer proyectos sólidos, altamente rentables y c
     </div>
 </div>
 <div class="spacer" style="height: 20px;"></div>
-<div class="container">
+<section class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="title">
@@ -166,7 +178,7 @@ Destacarnos en el sector por ofrecer proyectos sólidos, altamente rentables y c
         </div>
     </div>
 
-</div>
+</section>
 
 
 

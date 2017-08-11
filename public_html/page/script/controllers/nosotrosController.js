@@ -17,6 +17,14 @@
                      },100);
                  } 
                  
+                  $(window).scroll(function() {
+                 var scrolledY = $(window).scrollTop();
+                 if(vm.mobile){
+                     $('#image-banner-mobile-nosotros').css('background-position', 'left ' + ((scrolledY)) + 'px');
+                 }
+                    
+              });
+                 
                  
                     setTimeout(function () {
                         $('.slider-nosotros').flexslider({

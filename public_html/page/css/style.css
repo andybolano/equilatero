@@ -8361,6 +8361,43 @@ h1{
     margin-top: 80px;
 }
 
+.banner-mobile{
+   width: 100%;
+   height:300px;
+   background-color: #000;
+   margin-top:80px;
+}
+
+#image-banner-mobile-compromiso{
+    background-image:url('../img/compromiso/bg-compromiso.png');
+    background-attachment:scroll;
+    background position:top;
+    background-size:cover;
+    width:100%;
+    height:300px;
+}
+
+#image-banner-mobile-nosotros{
+    background-image:url('../img/nosotros/bg-nosotros.png');
+    background-attachment:scroll;
+    background position:top;
+    background-size:cover;
+    width:100%;
+    height:300px;
+}
+
+.container-banner-mobile{
+   top: 100px;
+   position: relative;
+   text-align: center;
+}
+
+.container-banner-mobile h1{
+    color: #FFF;
+    font-size: 32px;
+    text-shadow: 6px 6px 6px rgba(0,0,0,0.7);
+    font-family: 'MrEavesBold';
+}
 
 .compromiso{
     background-image: url('../img/compromiso/bg-compromiso.png');
@@ -8597,6 +8634,29 @@ b{
 }
 
 @media only screen and (min-device-width : 760px) and (max-device-width : 1020px)  {
+    
+  .container-banner-mobile{
+   top: 190px;
+}
+
+.container-banner-mobile h1{
+    font-size: 42px;
+}
+
+.banner-mobile{
+   height:400px;
+   margin-top:80px;
+}
+
+#image-banner-mobile-compromiso{
+    height:400px;
+}
+
+#image-banner-mobile-nosotros{
+    height:400px;
+}
+
+
     .content-contacto{
     width: 40%;top:10px;right:10px;
     position: absolute;
@@ -8611,7 +8671,7 @@ b{
     border-bottom: 2px solid #1b7033;
 }
 
-       .nosotros{
+    .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
     height:400px; 
     background-repeat: no-repeat;
@@ -8809,16 +8869,6 @@ b{
     height:460px;   
 }
 
-.compromiso{
-    background-image: url('../img/compromiso/bg-compromiso.png');
-    height:400px; 
-    background-position-y: 92px;
-    background-repeat: no-repeat;
-    background-attachment: fixed!important;
-    background-size:cover;
-    background-position: center;
-    margin-top:-60px !important;
-}
 
 .c-right{
     border-right: 0px solid #1b7033;

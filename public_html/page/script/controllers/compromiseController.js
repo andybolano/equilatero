@@ -9,9 +9,20 @@
                     
                     vm.mobile = false;
                
+              
+             
+
                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                     vm.mobile = true;
                  }
+                 
+                  $(window).scroll(function() {
+                 var scrolledY = $(window).scrollTop();
+                 if(vm.mobile){
+                     $('#image-banner-mobile-compromiso').css('background-position', 'left ' + ((scrolledY)) + 'px');
+                 }
+                    
+              });
 
                     vm.leerCompromisos = function(){
                           var promisePost = projectService.getCompromisos();
