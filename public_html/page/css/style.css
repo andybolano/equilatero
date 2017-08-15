@@ -8246,7 +8246,7 @@ h1{
     background-repeat: no-repeat;
     background-size:18%;
     background-position-x:0%;
-    height: 400px;
+    height: 400px ;
    border-bottom: 2px solid #1b7033;
 }
 .content-compromiso p{
@@ -8401,7 +8401,7 @@ h1{
 .compromiso{
     background-image: url('../img/compromiso/bg-compromiso.png');
     height: auto; 
-    background-position-y: 92px;
+    background-position-y: 80px;
     background-repeat: no-repeat;
     background-attachment: fixed!important;
     background-size: 100%;
@@ -8631,12 +8631,32 @@ b{
    padding-top:30px;
    padding-bottom: 30px;
 }
+ .content-notrosotros{
+        padding-left: 40px;padding-right: 40px;
+        text-align: justify;
+    }
+    .title-nosotros{
+        padding-top:15px;padding-left:50px
+    }
+    .content-proyecto-title{
+    padding-left: 0px;
+ 
+    color:#1B7033;
+}
 
 @media only screen and (min-device-width : 760px) and (max-device-width : 1020px)  {
-    
+    .landing-page .services {
+    padding-top: 0px;
+}
   .container-banner-mobile{
    top: 190px;
 }
+
+.title-nosotros {
+    padding-top: 30px;
+    padding-left: 50px;
+}
+
 
 .container-banner-mobile h1{
     font-size: 42px;
@@ -8846,14 +8866,44 @@ b{
 }
 }
 @media screen and (max-width: 480px){
+    .content-proyecto-title{
+    padding-left: 0px;
+    padding-right: 20px;
+    color:#1B7033;
+}
+    .container-banner-mobile h1 {
+    font-size: 26px;
+}
+  .title{
+    margin-top:50px;
+    height:60px;
+    background-image: url('../img/bg-destacado.png');
+    background-repeat: no-repeat;
+    background-size:60px 50px;
+}
+    .title-nosotros{
+        padding-top:15px;padding-left:10px
+    }
+    
+    .content-notrosotros{
+        padding-left: 0px;padding-right: 0px;
+        text-align: justify;
+    }
+    .content-destacado{
+    background-size:18%;
+    background-position-x:0%;
+    height: 400px;
+    padding-left: 0px;
+}
+
+
+  .landing-page .services {
+    padding-top: 0px;
+} 
     .content-contacto{
     width: 100%;margin-top:10px;margin-left: -2.8%
 }
-.content-destacado{
-    height: auto;
-    padding-left: 20px;
-    padding-bottom: 20px;
-}
+
 
 .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
@@ -8930,7 +8980,7 @@ b{
 }
 
 .slider-nosotros h2{
-   font-size: 16px; 
+   font-size: 14px; 
 }
 
 .title-plano h1{
@@ -8958,12 +9008,12 @@ html,body{
     height:auto;
     overflow:hidden;
     text-overflow: ellipsis;
-    margin-top: 20px;
+   margin-top: 10px;
 }
 
 } /*--end media query---*/
 
-
+   
 select {
       -webkit-appearance: none;
       -moz-appearance: none;
