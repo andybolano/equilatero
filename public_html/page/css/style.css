@@ -8350,11 +8350,10 @@ h1{
 
 .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
-    height: auto; 
-    background-position-y: 92px;
     background-repeat: no-repeat;
     background-attachment: fixed!important;
-    background-size: 100%;
+    background-size: cover;
+    background-position:center;
     width: 100%;
     margin-left: 0;
     height:500px;
@@ -8381,7 +8380,7 @@ h1{
     background-image:url('../img/nosotros/bg-nosotros.png');
     background-attachment:scroll;
     background position:top;
-    background-size:cover;
+    background-size:cover !important;
     width:100%;
     height:300px;
 }
@@ -8672,12 +8671,12 @@ b{
 }
 
     .nosotros{
-    background-image: url('../img/nosotros/bg-nosotros.png');
+    background-image: url('../img/nosotros/bg-nosotros-horizontal.jpg');
     height:400px; 
     background-repeat: no-repeat;
     background-attachment: fixed!important;
-    background-size:cover;
-    background-position: center;
+    background-size:100%;
+    background-position:center;
 }
     .cont-img{
     height: auto;
@@ -8785,7 +8784,7 @@ b{
     background-repeat: no-repeat;
     background-attachment: fixed!important;
     background-size:cover;
-    background-position: center;
+    background-position: bottom;
     margin-top:90px;
 }
 .nosotros-2{

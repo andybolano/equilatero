@@ -12,13 +12,26 @@
                     vm.mobile = true;
                        setTimeout(function(){
                      $('.flexslider-parrafo').flexslider({
-                      animation: "slide"
+                      animation: "slide",
+                       
+                            start: function (slider) {
+                                $('.flex-direction-nav').css({visibility: 'hidden'});
+                            }
                     });
                      },100);
                  } 
                 
                 $("html, body").animate({scrollTop: "0px"});
                 
+                vm.centrar = function(){
+                    setTimeout(function( ){ 
+                    $('.container-banner').css({
+                        position:'absolute',
+                        'margin-left': ($('#sl').width() - $('.container-banner').outerWidth())/2,
+                        'margin-top': ($('#sl').height() - $('.container-banner').outerHeight())/2
+                   });
+                    }, 300)
+                }
                 vm.leerBanners = function(){
                      var promisePost = projectService.leerBanners();
                         promisePost.then(function (d) {

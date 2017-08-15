@@ -20,7 +20,7 @@
                   $(window).scroll(function() {
                  var scrolledY = $(window).scrollTop();
                  if(vm.mobile){
-                     $('#image-banner-mobile-nosotros').css('background-position', 'left ' + ((scrolledY)) + 'px');
+                     $('#image-banner-mobile-nosotros').css('background-position', 'left ' + ((scrolledY)) + 'px', );
                  }
                     
               });
