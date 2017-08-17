@@ -212,12 +212,12 @@ class proyectoController extends Controller {
     }
 
     //informacion básica*****************************
-    public function save_informaction_basic(Request $request) {
+     public function save_informaction_basic(Request $request) {
 
         $data = $request->all();
 
         if ($request->hasFile('logo')) {
-            if ($request->hasFile('brochure')) {
+          
                 $proyecto = new Proyectos();
                 $proyecto->informacion_basica = 1;
                 $proyecto->save();
@@ -232,19 +232,20 @@ class proyectoController extends Controller {
                 $proyecto_basic->departamento = $data['departamento'];
                 $proyecto_basic->municipio = $data['municipio'];
                 $proyecto_basic->descripcion = $data['descripcion'];
-                $proyecto_basic->brochure = URL_SERVER . "images/brochure/" . $proyecto->id . ".pdf";
+                 if ($request->hasFile('brochure')) {
+                    $proyecto_basic->brochure = URL_SERVER . "images/brochure/" . $proyecto->id . ".pdf";
+                 }
                 $proyecto_basic->idProyecto = $proyecto->id;
                 $proyecto_basic->save();
 
                 $request->file('logo')->move("../images/logos", $proyecto->id . ".png");
-                $request->file('brochure')->move("../images/brochure", $proyecto->id . ".pdf");
-
+                  if ($request->hasFile('brochure')) {
+                      $request->file('brochure')->move("../images/brochure", $proyecto->id . ".pdf");
+                  }
                 $proyecto = Proyectos::find($proyecto->id);
 
                 return JsonResponse::create(array('message' => "Proyecto '" . $proyecto_basic->nombre . "' creado Correctamente", "request" => $proyecto), 200);
-            } else {
-                return JsonResponse::create(array('message' => "No se encontro brochure del proyecto"), 402);
-            }
+           
         } else {
             return JsonResponse::create(array('message' => "No se encontro logo del proyecto"), 402);
         }

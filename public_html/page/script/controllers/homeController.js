@@ -28,9 +28,10 @@
                     $('.container-banner').css({
                         position:'absolute',
                         'margin-left': ($('#sl').width() - $('.container-banner').outerWidth())/2,
-                        'margin-top': ($('#sl').height() - $('.container-banner').outerHeight())/2
+                        'margin-top': ($('#sl').height() - $('.container-banner').outerHeight())/2,
+                        'display':'block'
                    });
-                    }, 300)
+                    }, 1000);
                 }
                 vm.leerBanners = function(){
                      var promisePost = projectService.leerBanners();

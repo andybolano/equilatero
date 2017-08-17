@@ -11,18 +11,17 @@
                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                        vm.mobile = true;
                        setTimeout(function(){
-                     $('.flexslider-parrafo').flexslider({
-                      animation: "slide"
-                    });
-                     },100);
+                        $('.flexslider-parrafo').flexslider({
+                         animation: "slide"
+                       });
+                     },1000);
                  } 
                  
-                  $(window).scroll(function() {
+             $(window).scroll(function() {
+                if(vm.mobile){
                  var scrolledY = $(window).scrollTop();
-                 if(vm.mobile){
-                     $('#image-banner-mobile-nosotros').css('background-position', 'left ' + ((scrolledY)) + 'px', );
+                   $('#image-banner-mobile-nosotros').css('background-position', 'left ' + ((scrolledY)) + 'px');
                  }
-                    
               });
                  
                  
@@ -34,7 +33,7 @@
                                 $('.flex-direction-nav').css({visibility: 'hidden'});
                             }
                         });
-                    }, 100)
+                    }, 1000)
 
                 }]);
 

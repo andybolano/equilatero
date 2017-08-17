@@ -73,8 +73,19 @@
             </div>
         </div>
         <div class="spacer" style="height: 20px;"></div>
-        <div class="row">
-            <div class="col-lg-12" style="text-align: center">
+       
+        <div class="row" ng-if="vm.proyecto.informacion_basica.brochure">
+            <div class="col-xs-6" style="text-align: right">
+                <a href="javascript:;" class="btn btn-warning" ui-sref="app.cotizacion">SOLICITAR COTIZACIÓN</a>
+            </div>
+
+            <div class="col-xs-6" style="text-align: left">
+                <a href="{{vm.proyecto.informacion_basica.brochure}}" target="_blank" class="btn btn-warning">VER BROCHURE</a>
+            </div>
+        </div>
+                   
+        <div class="row" ng-if="!vm.proyecto.informacion_basica.brochure">
+            <div class="col-xs-12" style="text-align: center">
                 <a href="javascript:;" class="btn btn-warning" ui-sref="app.cotizacion">SOLICITAR COTIZACIÓN</a>
             </div>
         </div>

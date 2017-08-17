@@ -393,7 +393,9 @@ var _position = {};
                         });
                     }
 
-                    vm.save_information_basic = function () {
+                    
+                    
+                      vm.save_information_basic = function () {
                         if (!vm.Project.logo) {
                             toastr['warning']("Cargar logo del proyecto");
                             return 0;
@@ -407,11 +409,11 @@ var _position = {};
                             return 0;
                         }
                         if (!vm.Project.anio) {
-                            toastr['warning']("Ingresar a帽o del proyecto");
+                            toastr['warning']("Ingresar año del proyecto");
                             return 0;
                         }
                         if (!vm.Project.direccion) {
-                            toastr['warning']("Ingresar direcci贸n del proyecto");
+                            toastr['warning']("Ingresar dirección del proyecto");
                             return 0;
                         }
                         if (!vm.Project.pais) {
@@ -430,10 +432,8 @@ var _position = {};
                             toastr['warning']("Ingresar descripcion del proyecto");
                             return 0;
                         }
-                        if (!vm.Project.brochure) {
-                            toastr['warning']("Cargar brochure del proyecto");
-                            return 0;
-                        }
+                        
+                        
 
                         var formData = new FormData();
                         formData.append('logo', vm.Project.logo);
@@ -445,7 +445,9 @@ var _position = {};
                         formData.append('departamento', vm.Project.departamento);
                         formData.append('municipio', vm.Project.municipio);
                         formData.append('descripcion', vm.Project.descripcion);
-                        formData.append('brochure', vm.Project.brochure);
+                          if (vm.Project.brochure) {
+                             formData.append('brochure', vm.Project.brochure);
+                        }
 
 
                         $('#guardar').attr("disabled", true);
@@ -464,6 +466,7 @@ var _position = {};
                         });
 
                     }
+                    
 
                     vm.getPaises = function () {
                         ubicacionService.getPaises().then(success, error);

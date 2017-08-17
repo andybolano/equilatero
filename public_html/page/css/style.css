@@ -8301,7 +8301,7 @@ h1{
 }
 
 .contact{
-    padding-top:100px;
+    padding-top:20px;
 }
 
 .contact a{
@@ -8370,7 +8370,7 @@ h1{
 #image-banner-mobile-compromiso{
     background-image:url('../img/compromiso/bg-compromiso.png');
     background-attachment:scroll;
-    background position:top;
+    background-position:top;
     background-size:cover;
     width:100%;
     height:300px;
@@ -8379,7 +8379,7 @@ h1{
 #image-banner-mobile-nosotros{
     background-image:url('../img/nosotros/bg-nosotros.png');
     background-attachment:scroll;
-    background position:top;
+    background-position:top;
     background-size:cover !important;
     width:100%;
     height:300px;
@@ -8417,10 +8417,11 @@ h1{
 }
 
 .title{
-    margin-top:50px;
+    margin-top:40px;
     height:100px;
     background-image: url('../img/bg-destacado.png');
     background-repeat: no-repeat;
+    
     background-size:100px 80px;
 }
 
@@ -8632,11 +8633,10 @@ b{
    padding-bottom: 30px;
 }
  .content-notrosotros{
-        padding-left: 40px;padding-right: 40px;
         text-align: justify;
     }
     .title-nosotros{
-        padding-top:15px;padding-left:50px
+        padding-top:25px;
     }
     .content-proyecto-title{
     padding-left: 0px;
@@ -8644,6 +8644,9 @@ b{
     color:#1B7033;
 }
 
+#relleno{
+    display:none;
+}
 @media only screen and (min-device-width : 760px) and (max-device-width : 1020px)  {
     .landing-page .services {
     padding-top: 0px;
@@ -8796,7 +8799,7 @@ b{
   .content-contacto{
     width: 40%;top:10px;right:10px;
     position: absolute;
-    display: 
+ 
 }
     .nosotros{
     background-image: url('../img/nosotros/bg-nosotros.png');
@@ -8866,6 +8869,16 @@ b{
 }
 }
 @media screen and (max-width: 480px){
+    
+    .cont-img{
+    height:auto;
+}
+
+.cont-img img{
+    height:auto;
+    width: 100%;
+}
+
     .content-proyecto-title{
     padding-left: 0px;
     padding-right: 20px;
@@ -9012,6 +9025,12 @@ html,body{
 }
 
 } /*--end media query---*/
+
+@media (min-height:1000){
+    #relleno{
+        display:block;
+    }
+}
 
    
 select {

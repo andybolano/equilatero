@@ -154,12 +154,14 @@ var _position = {};
                         
                       
                        document.getElementById("image_logo").innerHTML = '<img class="animated bounceIn"  src='+vm.Project.logo_url+' >';
+                      
                        if(vm.proyecto_proccess.banner == 1){
                            document.getElementById("image_banner").innerHTML = '<img class="animated bounceIn"  src='+project.banner.banner_url+' >';
-                       }
-                       if(project.banner.destacado_url !== ''){
-                           document.getElementById("image_destacado").innerHTML = '<img class="animated bounceIn"  src='+project.banner.destacado_url+' >';
-                       }
+                        if(project.banner.destacado_url !== ''){
+                            document.getElementById("image_destacado").innerHTML = '<img class="animated bounceIn"  src='+project.banner.destacado_url+' >';
+                        }
+                  }
+                      
                        if(vm.proyecto_proccess.galeria == 1){
                            vm.getGaleria();
                        }

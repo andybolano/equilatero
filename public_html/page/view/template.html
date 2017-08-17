@@ -15,13 +15,13 @@
                     
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right" >
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
                         <li id="1"><a class="page-scroll" id="home" href="javascript:;"  ui-sref="app.home" ng-click="vm.active(1)">INICIO</a></li>
                         <li id="2"><a class="page-scroll" id="features" href="javascript:;"   ui-sref="app.nosotros" ng-click="vm.active(2)">NOSOTROS</a></li>
                         <li id="3"><a class="page-scroll" id="features" href="javascript:;"   ui-sref="app.proyectos" ng-click="vm.active(3)">PROYECTOS</a></li>
                         <li id="4"><a class="page-scroll" id="testimonials" href="javascript:;"  ui-sref="app.postventas" ng-click="vm.active(4)">SERVICIO AL CLIENTE</a></li>
                         <li id="5"><a class="page-scroll" id="pricing" href="javascript:;"  ui-sref="app.compromiso" ng-click="vm.active(5)">COMPROMISO SOCIAL</a></li>
-                        <li ng-if="!vm.mobile" style="margin-top: 5px;">
+                        <li ng-if="!vm.mobile" style="padding-top: 5px;">
                                 <table>
                                     <tr>
                                         <td colspan="2" class="email"><p style="color:#1B7033 !important;font-size:16px !important;">{{vm.user.email}}</p></td>
@@ -29,6 +29,7 @@
                                     <tr>
                                         <td class="cont-phone" style="width: 50%;text-align: right">{{vm.user.telefono}}</td>
                                         <td class="cont-btn" style="width: 50%;"  ng-click="vm.to('contact')"> CONTACTO</td>
+                                        
                                     </tr>
                                 </table>
                         </li>
@@ -69,7 +70,7 @@
                 </div>
                 
             </div>
-            <div class='col-md-5 contact-info wow bounceIn'>
+            <div class='col-md-5 wow bounceIn'>
                 <div  style="margin-top:50px;">
                 <a href="javascript:;" ui-sref="app.terminos">Términos y condiciones</a>
                 <hr style="margin-top:5px">
