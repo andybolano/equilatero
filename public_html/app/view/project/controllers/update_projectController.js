@@ -24,10 +24,16 @@ var _position = {};
                     initMap();
                    vm.view_plano = function(plano){
                        vm.updatePlano = true;
-                       vm.Plano = plano;
-                       vm.Plano.desde = plano.valor_desde;
+                       vm.Plano.titulo = plano.titulo;
+                       vm.Plano.desde = parseInt(plano.valor_desde);
+                       vm.Plano.area_balcon = parseInt(plano.area_balcon);
+                       vm.Plano.area_construida = parseInt(plano.area_construida);
+                       vm.Plano.area_privada = parseInt(plano.area_privada);
+                       vm.Plano.estrato = parseInt(plano.estrato);
                        vm.Plano.tipo_plano = {id:plano.tipo};
-                     
+                       vm.Plano.url_plano = plano.url_plano;
+                       vm.Plano.id = plano.id;
+                    
                        document.getElementById("image_plano").innerHTML = '<img class="animated bounceIn"  src='+vm.Plano.url_plano+' >';
                    } 
                    
@@ -124,6 +130,19 @@ var _position = {};
                                  setTimeout(function(){
                                 document.getElementById('files_plano').addEventListener('change', archivo, false);
                             },1000)
+                   }
+                   
+                   vm.delete_plano = function(idPlano){
+                        var promisePost = projectService.delete_plano(idPlano);
+                        promisePost.then(function (d) {
+                                toastr["success"]("Plano eliminado correctamente");
+                        }, function (err) {
+                            if (err.status == 402) {
+                                toastr["error"](err.data.respuesta);
+                            } else {
+                                toastr["error"]("Ha ocurrido un problema!");
+                            }
+                        });
                    }
                    
                    vm.getProject = function(){
@@ -552,10 +571,7 @@ var _position = {};
                             toastr['warning']("Ingresar descripcion del proyecto");
                             return 0;
                         }
-                        if (!vm.Project.brochure) {
-                            toastr['warning']("Cargar brochure del proyecto");
-                            return 0;
-                        }
+                       
 
                         var formData = new FormData();
                         formData.append('id', vm.Project.id);
@@ -567,7 +583,9 @@ var _position = {};
                         formData.append('departamento', vm.Project.departamento.iddepartamento);
                         formData.append('municipio', vm.Project.municipio.idmunicipio);
                         formData.append('descripcion', vm.Project.descripcion);
-                        formData.append('brochure', vm.Project.brochure);
+                        if (vm.Project.brochure) {
+                             formData.append('brochure', vm.Project.brochure);
+                        }
 
 
                        $('#guardar').attr("disabled", true);

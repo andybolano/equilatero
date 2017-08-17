@@ -17,6 +17,7 @@ Route::post("proyectos/logo","proyectoController@update_logo");
 Route::get("proyectos/galeria/{idProyecto}","proyectoController@getter_galeria");
 Route::get("proyectos/planos/{idProyecto}","proyectoController@getter_planos");
 
+Route::delete("proyectos/plano/{idPlano}","proyectoController@delete_plano");
 //page
 Route::get("proyectos/page/destacados/show","proyectoController@leerDestacados");
 Route::get("proyectos/page/banners/show","proyectoController@leerBanners");

@@ -22,11 +22,23 @@
             delete_galeria:delete_galeria,
             get_planos:get_planos,
             update_plano :update_plano,
-            deleted:deleted
+            deleted:deleted,
+            delete_plano:delete_plano
             
         };
         return service;
-        
+         function delete_plano(id){
+             var defered = $q.defer();
+            var promise = defered.promise;
+            $http.delete(API_URL + '/proyectos/plano/'+id).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+        }
         function deleted(id){
              var defered = $q.defer();
             var promise = defered.promise;

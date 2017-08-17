@@ -317,7 +317,10 @@
                                     <td>{{$index + 1}}</td>
                                     <td>{{i.titulo}}</td>
                                     <td>{{i.nombreTipoPlano}}</td>
-                                    <td><a href="javascript:;" ng-click="vm.view_plano(i)" title="ver plano"><i class="fa fa-eye"></i> </a></td>
+                                    <td>
+                                        <a href="javascript:;" ng-click="vm.view_plano(i)" title="ver plano"><i class="fa fa-eye"></i> </a>
+                                        <a href="javascript:;" ng-click="vm.delete_plano(i.id)" title="Eliminar plano"><i class="fa fa-trash text-danger"></i> </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

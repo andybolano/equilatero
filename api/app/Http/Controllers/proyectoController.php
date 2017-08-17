@@ -262,7 +262,9 @@ class proyectoController extends Controller {
             $proyecto_basic->direccion = $data['direccion'];
             $proyecto_basic->pais = $data['pais'];
             $proyecto_basic->departamento = $data['departamento'];
-            $proyecto_basic->brochure = URL_SERVER . "images/brochure/" . $id . ".pdf";
+             if ($request->hasFile('brochure')) {
+                    $proyecto_basic->brochure = URL_SERVER . "images/brochure/" . $id . ".pdf";
+             }
             $proyecto_basic->municipio = $data['municipio'];
             $proyecto_basic->descripcion = $data['descripcion'];
             $proyecto_basic->save();
@@ -395,11 +397,17 @@ class proyectoController extends Controller {
     public function getter_planos($idProyecto) {
         return $this->get_planos($idProyecto);
     }
+    public function delete_plano($idPlano){
+         DB::delete("DELETE FROM proyecto_plano WHERE id = $idPlano");
+        return JsonResponse::create(array('message' => "Plano eliminado"), 200);
+    }
     
     private function get_planos($idProyecto) {
         $planos = DB::select(DB::raw("SELECT pp.*, tp.nombre as nombreTipoPlano FROM proyecto_plano pp INNER JOIN tipos_planos as tp ON tp.id = pp.tipo WHERE pp.idProyecto = $idProyecto "));
         return $planos;
     }
+    
+    
     
     public function save_plano(Request $request) {
         if ($request->hasFile('imagen')) {

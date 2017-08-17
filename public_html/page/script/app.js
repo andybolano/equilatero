@@ -5,8 +5,8 @@
         // Add Angular module mdr.file
         angular.module('app', ['ui.router'])
        .constant('HOME', 'app.home')
-       .constant('API_URL', 'https://birriassoccer.com/equilatero/api/public/api')
-       //.constant('API_URL', 'http://localhost/equilatero/api/public/index.php/api')
+       //.constant('API_URL', 'https://birriassoccer.com/equilatero/api/public/api')
+       .constant('API_URL', 'http://localhost/equilatero/api/public/index.php/api')
        .config(function($stateProvider, $urlRouterProvider,$compileProvider) {
 
           $compileProvider.debugInfoEnabled(false);
