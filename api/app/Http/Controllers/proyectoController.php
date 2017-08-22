@@ -231,10 +231,27 @@ class proyectoController extends Controller {
                 $proyecto_basic->pais = $data['pais'];
                 $proyecto_basic->departamento = $data['departamento'];
                 $proyecto_basic->municipio = $data['municipio'];
+              
                 $proyecto_basic->descripcion = $data['descripcion'];
+             
+                 if($data['dominio'] !== 'false'){
+                    $proyecto_basic->dominio = $data['dominio'];
+                }else{
+                    $proyecto_basic->dominio = NULL;
+                }
+                
+                if($data['descripcion_destacada'] !== 'false'){
+                     $proyecto_basic->descripcion_destacada = $data['descripcion_destacada'];
+                }else{
+                    $proyecto_basic->descripcion_destacada = NULL;
+                }
+                
                  if ($request->hasFile('brochure')) {
                     $proyecto_basic->brochure = URL_SERVER . "images/brochure/" . $proyecto->id . ".pdf";
-                 }
+                 }else{
+                    $proyecto_basic->brochure = NULL;
+                }
+                
                 $proyecto_basic->idProyecto = $proyecto->id;
                 $proyecto_basic->save();
 
@@ -262,11 +279,29 @@ class proyectoController extends Controller {
             $proyecto_basic->direccion = $data['direccion'];
             $proyecto_basic->pais = $data['pais'];
             $proyecto_basic->departamento = $data['departamento'];
+            
              if ($request->hasFile('brochure')) {
                     $proyecto_basic->brochure = URL_SERVER . "images/brochure/" . $id . ".pdf";
+             }else{
+                 $proyecto_basic->brochure = NULL;
              }
+             
             $proyecto_basic->municipio = $data['municipio'];
-            $proyecto_basic->descripcion = $data['descripcion'];
+            
+                $proyecto_basic->descripcion = $data['descripcion'];
+                
+                if($data['dominio'] !== 'false'){
+                    $proyecto_basic->dominio = $data['dominio'];
+                }else{
+                    $proyecto_basic->dominio = NULL;
+                }
+                
+                if($data['descripcion_destacada'] !== 'false'){
+                     $proyecto_basic->descripcion_destacada = $data['descripcion_destacada'];
+                }else{
+                    $proyecto_basic->descripcion_destacada = NULL;
+                }
+                
             $proyecto_basic->save();
             if ($request->hasFile('brochure')) {
                 $request->file('brochure')->move("../images/brochure", $id . ".pdf");

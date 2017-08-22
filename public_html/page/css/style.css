@@ -8368,7 +8368,7 @@ h1{
 }
 
 #image-banner-mobile-compromiso{
-    background-image:url('../img/compromiso/bg-compromiso.png');
+    background-image:url('../img/compromiso/bg-compromiso.jpg');
     background-attachment:scroll;
     background-position:top;
     background-size:cover;
@@ -8399,7 +8399,7 @@ h1{
 }
 
 .compromiso{
-    background-image: url('../img/compromiso/bg-compromiso.png');
+    background-image: url('../img/compromiso/bg-compromiso.jpg');
     height: auto; 
     background-position-y: 80px;
     background-repeat: no-repeat;
@@ -8647,6 +8647,42 @@ b{
 #relleno{
     display:none;
 }
+
+#content-descripcion-galeria{
+    width: 30%;
+    position:absolute;
+    z-index: 3000;
+    height: auto;
+    padding: 20px;
+    right:3%;
+    bottom:35%;
+    background-color: rgba(255, 255, 255, 0.8);
+    color:#f06b05;
+    font-size:16px;
+    font-family: 'MrEavesBold';
+    font-weight: 900;
+    overflow: auto;
+    text-overflow: ellipsis;
+    
+}
+
+#content-descripcion-galeria hr{
+   
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 2px solid #F48128;
+
+}
+#btn-page-mobile
+{
+    z-index: 3000;
+    display: none;
+    width: 100%; 
+    position:absolute;
+    text-align: center;
+    bottom:36%;
+}
 @media only screen and (min-device-width : 760px) and (max-device-width : 1020px)  {
     .landing-page .services {
     padding-top: 0px;
@@ -8717,7 +8753,7 @@ b{
 }
 
 .compromiso{
-    background-image: url('../img/compromiso/bg-compromiso.png');
+    background-image: url('../img/compromiso/bg-compromiso.jpg');
     height:400px; 
     background-position-y: 92px;
     background-repeat: no-repeat;
@@ -8816,13 +8852,13 @@ b{
 }
 
 .compromiso{
-    background-image: url('../img/compromiso/bg-compromiso.png');
-    height:400px; 
+    background-image: url('../img/compromiso/bg-compromiso.jpg');
+    max-height:400px; 
     background-position-y: 92px;
     background-repeat: no-repeat;
     background-attachment: fixed!important;
-      background-size:cover;
-    background-position: center;
+    background-size:cover;
+    background-position:center;
 }
 .content-slider-nosotros{
     width: 90%;
@@ -8843,6 +8879,14 @@ b{
 }
 @media screen and (max-width: 800px){
     
+
+    #content-descripcion-galeria{
+     width: 40%;  
+      height: 160px;
+      bottom:38%;
+       overflow: auto;
+    text-overflow: ellipsis;
+    }
 
 .landing-page .navbar .navbar-header {
     display: block;
@@ -8869,7 +8913,13 @@ b{
 }
 }
 @media screen and (max-width: 480px){
-    
+        #btn-page-mobile
+{
+    display: block;
+}
+    #content-descripcion-galeria{
+     display: none;   
+    }
     .cont-img{
     height:auto;
 }
@@ -9026,7 +9076,7 @@ html,body{
 
 } /*--end media query---*/
 
-@media (min-height:1000){
+@media screen and (min-height:900px){
     #relleno{
         display:block;
     }

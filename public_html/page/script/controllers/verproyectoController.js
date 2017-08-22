@@ -12,6 +12,7 @@
                 
                  vm.getProyecto = function(){
                     vm.proyecto = JSON.parse(sessionStorage.getItem('proyecto'));
+                    console.log(vm.proyecto)
                      setTimeout(function(){
                     $('#carousel').flexslider({
                      animation: "slide",

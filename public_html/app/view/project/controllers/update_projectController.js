@@ -583,6 +583,19 @@ var _position = {};
                         formData.append('departamento', vm.Project.departamento.iddepartamento);
                         formData.append('municipio', vm.Project.municipio.idmunicipio);
                         formData.append('descripcion', vm.Project.descripcion);
+                        
+                         if(vm.Project.dominio && vm.Project.dominio !== ''){
+                            formData.append('dominio', vm.Project.dominio);
+                        }else{
+                            formData.append('dominio', false);
+                        }
+                        
+                        if(vm.Project.descripcion_destacada && vm.Project.descripcion_destacada !== ''){
+                            formData.append('descripcion_destacada', vm.Project.descripcion_destacada);
+                        }else{
+                            formData.append('descripcion_destacada', false);
+                        }
+                        
                         if (vm.Project.brochure) {
                              formData.append('brochure', vm.Project.brochure);
                         }

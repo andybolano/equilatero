@@ -24,7 +24,7 @@
                 $("html, body").animate({scrollTop: "0px"});
                 
                 vm.centrar = function(){
-                    setTimeout(function( ){ 
+                    setTimeout(function(){
                     $('.container-banner').css({
                         position:'absolute',
                         'margin-left': ($('#sl').width() - $('.container-banner').outerWidth())/2,

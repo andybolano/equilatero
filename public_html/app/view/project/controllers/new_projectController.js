@@ -409,11 +409,11 @@ var _position = {};
                             return 0;
                         }
                         if (!vm.Project.anio) {
-                            toastr['warning']("Ingresar año del proyecto");
+                            toastr['warning']("Ingresar a锟�0锟�9o del proyecto");
                             return 0;
                         }
                         if (!vm.Project.direccion) {
-                            toastr['warning']("Ingresar dirección del proyecto");
+                            toastr['warning']("Ingresar direcci锟斤拷n del proyecto");
                             return 0;
                         }
                         if (!vm.Project.pais) {
@@ -445,6 +445,19 @@ var _position = {};
                         formData.append('departamento', vm.Project.departamento);
                         formData.append('municipio', vm.Project.municipio);
                         formData.append('descripcion', vm.Project.descripcion);
+                        
+                          if(vm.Project.dominio && vm.Project.dominio !== ''){
+                            formData.append('dominio', vm.Project.dominio);
+                        }else{
+                            formData.append('dominio', false);
+                        }
+                        
+                        if(vm.Project.descripcion_destacada && vm.Project.descripcion_destacada !== ''){
+                            formData.append('descripcion_destacada', vm.Project.descripcion_destacada);
+                        }else{
+                            formData.append('descripcion_destacada', false);
+                        }
+                        
                           if (vm.Project.brochure) {
                              formData.append('brochure', vm.Project.brochure);
                         }
