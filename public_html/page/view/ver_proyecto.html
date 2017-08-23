@@ -12,7 +12,7 @@
             </div>
         </div>
         <br>
-        <div class="row">
+        <div class="row" ng-if="vm.proyecto.proyecto.galeria == 1">
             <div class="col-lg-12">
                  <div id="content-descripcion-galeria"  ng-if="vm.proyecto.informacion_basica.descripcion_destacada == null && vm.proyecto.informacion_basica.dominio !== null " style="background-color:transparent !important;">
                             <div style="width: 100%; text-align: center;">
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="spacer" style="height: 20px;"></div>
-        <div class="row">
+        <div class="row" >
             <div class="col-lg-12" style="text-align: center">
                 <h2>DESCRIPCIÓN</h2>
                 <div>
@@ -61,7 +61,7 @@
         </div>
         <div ng-if="vm.proyecto.proyecto.realizado == 0" >
         <div class="spacer" style="height: 20px;"></div>
-        <div class="row">
+        <div class="row" ng-if="vm.proyecto.proyecto.planos == 1">
             <div class="col-lg-12" style="text-align: center">
                 <h2>PLANOS</h2>
                 <div class="spacer" style="height: 20px;"></div>
@@ -95,11 +95,11 @@
         <div class="spacer" style="height: 20px;"></div>
        
         <div class="row" ng-if="vm.proyecto.informacion_basica.brochure !== null ">
-            <div class="col-md-6 col-xs-12" style="text-align: center;margin-top: 10px;">
+            <div class="col-md-6 col-xs-6" style="text-align: right;margin-top: 10px;">
                 <a href="javascript:;" class="btn btn-warning" ui-sref="app.cotizacion"> SOLICITAR COTIZACIÓN</a>
             </div>
 
-            <div class="col-md-6 col-xs-12" style="text-align: center;margin-top: 10px;">
+            <div class="col-md-6 col-xs-6" style="text-align: left;margin-top: 10px;">
                 <a href="{{vm.proyecto.informacion_basica.brochure}}" target="_blank" class="btn btn-warning"> VER BROCHURE</a>
             </div>
         </div>
@@ -111,17 +111,18 @@
         </div>
         </div>
         <div class="spacer" style="height: 20px;"></div>
-        <div class="row">
+        <div class="row" ng-if="vm.proyecto.proyecto.ubicacion_geografica == 1">
             <div class="col-lg-12" style="text-align: center">
                 <h2>UBICACIÓN</h2>
-                <div id="map" style="height: 400px;"><div class="jvectormap-container" style="background-color: transparent;">
+                <div id="map" style="height: 400px;">
+                    <div class="jvectormap-container" style="background-color: transparent;">
 
                             </div>
                         </div>
             </div>
         </div>
         <div class="spacer" style="height: 20px;"></div>
-         <div class="row">
+         <div class="row" ng-if="vm.proyecto.proyecto.zonas_comunes == 1">
             <div class="col-lg-12" style="text-align: center">
                 <h2>ZONAS COMUNES</h2>
                 <div class="row">

@@ -12,7 +12,7 @@
                 
                  vm.getProyecto = function(){
                     vm.proyecto = JSON.parse(sessionStorage.getItem('proyecto'));
-                    console.log(vm.proyecto)
+             
                      setTimeout(function(){
                     $('#carousel').flexslider({
                      animation: "slide",
@@ -40,10 +40,10 @@
                         });
                         
                },100);
-               
+               setTimeout(function(){
                    initMap();
-                    
-                 }
+               },2000);
+              }
                vm.construir_imagen = function(url, id){
                      $("#img-"+id).css({
                          "background-image":"url("+url+")",

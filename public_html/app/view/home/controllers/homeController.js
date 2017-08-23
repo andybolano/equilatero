@@ -60,7 +60,7 @@
                   
                      if(param == 'estado'){
                          if(estado == 'ACTIVO'){
-                            var valid;
+                            /*var valid;
                                 valid = ( project.galeria == 0 ) ? toastr['warning']("No se puede activar, Agregar la galeria de imagenes al proyecto.") : true ;
                                 if(valid !== true){
                                         return 0;
@@ -76,7 +76,7 @@
                                 valid = ( project.zonas_comunes == 0 ) ? toastr['warning']("No se puede activa, Agregar zonas comunes al proyecto.") : true ;
                                 if(valid !== true){
                                         return 0;
-                                 }
+                                 }*/
                            
                         }
                          project.estado = estado;
@@ -94,7 +94,7 @@
                      }
                      
                      if(param == 'banner'){
-                          if(estado == 1){
+                         /* if(estado == 1){
                             var valid;
                                 valid = ( project.banner == 0 ) ? toastr['warning']("No se puede agregar al banner, Agregar imagen de banner al proyecto.") : true ;
                                 if(valid !== true){
@@ -106,7 +106,7 @@
                                         return 0;
                                  }
 
-                        }
+                        }*/
                          project.banner_show = estado;
                      }
                      
