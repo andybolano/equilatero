@@ -390,22 +390,32 @@ class proyectoController extends Controller {
             $data = $request->all();
             $id = $data['idProyecto'];
           
-            $tmpfname = time() . substr(md5(microtime()), 0, rand(5, 12));
+            $extension = $this->extension($_FILES['galeria']['name']);
+            
+           if($extension !== 'jpg' && $extension !== 'mp4' && $extension !== 'png'){
+                 return JsonResponse::create(array('message' => "Solo se aceptan formatos .jpg .png y .mp4 : formato subido: ".$extension), 402);
+            }else{
+            $tmpfname = time().substr(md5(microtime()), 0, rand(5, 12));
             DB::table('proyecto_galeria')->insert(
-                    ['galeria_url' => URL_SERVER . "images/galeria/" . $id . "_" . $tmpfname . ".jpg", 'idProyecto' => $id]
+                    ['galeria_url' => URL_SERVER . "images/galeria/" . $id . "_" . $tmpfname . ".".$extension,'ext'=>$extension, 'idProyecto' => $id]
             );
 
-            $request->file('galeria')->move("../images/galeria", $id . "_" . $tmpfname . ".jpg");
+            $request->file('galeria')->move("../images/galeria", $id . "_" . $tmpfname . ".".$extension);
 
             $galeria = DB::select(DB::raw("SELECT * FROM proyecto_galeria WHERE idProyecto = $id"));
 
-
-            return JsonResponse::create(array('message' => "Imagen guardada Correctamente", "galeria" => $galeria), 200);
-            
+               
+            return JsonResponse::create(array('message' => "Archivo guardado Correctamente", "galeria" => $galeria), 200);
+            }
            
         } else {
             return JsonResponse::create(array('message' => "No se encontro imagen"), 402);
         }
+    }
+    private function extension($archivo){
+    $partes = explode(".", $archivo);
+    $extension = end($partes);
+    return $extension;
     }
     
     public function delete_galeria(Request $request) {
