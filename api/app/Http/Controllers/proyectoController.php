@@ -358,10 +358,10 @@ class proyectoController extends Controller {
 
                 
                 DB::table('banner')->insert(
-                        ['titulo' => $titulo,'descripcion' => $descripcion ,'banner_url' => URL_SERVER . "images/banner/" . $id . ".jpg", 'destacado_url' => URL_SERVER . "images/destacado/" . $id . ".jpg",'idProyecto' => $id]
+                        ['titulo' => $titulo,'descripcion' => $descripcion ,'banner_url' => URL_SERVER . "images/banner/" . $id . ".jpg", 'destacado_url' => URL_SERVER . "images/destacados/" . $id . ".jpg",'idProyecto' => $id]
                 );
                 $request->file('banner')->move("../images/banner", $id . ".jpg");
-                $request->file('banner')->move("../images/destacados", $id . ".jpg");
+                $request->file('destacado')->move("../images/destacados", $id . ".jpg");
 
                     return JsonResponse::create(array('message' => "Banner guardado Correctamente", "request" => $proyecto), 200);
                  }
@@ -412,6 +412,7 @@ class proyectoController extends Controller {
             return JsonResponse::create(array('message' => "No se encontro imagen"), 402);
         }
     }
+    
     private function extension($archivo){
     $partes = explode(".", $archivo);
     $extension = end($partes);
