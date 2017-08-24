@@ -313,14 +313,23 @@ var _position = {};
                                     '</div>' +
                                     '</div>';
 
-                            document.getElementById('files').addEventListener('change', archivo, false);
+                            document.getElementById('files_galeria').addEventListener('change', archivo, false);
 
                             $("#loading").hide();
                             toastr['success'](d.data.message);
                         }, function (err) {
+                            
+                             document.getElementById("image_galeria").innerHTML = '<div class="row animated bounceIn">' +
+                                    '<div class="col-lg-12" style="text-align: center;">' +
+                                    '  <i class="fa fa-image ico-bg" style="font-size: 70px;margin-top: 50px;"></i>' +
+                                    '</div>' +
+                                    '</div>';
+
+                            document.getElementById('files_galeria').addEventListener('change', archivo, false);
+                            
                             $('#guardar').attr("disabled", false);
                             if (err.status == 402) {
-                                toastr["error"](err.data.respuesta);
+                                toastr["warning"](err.data.message);
                             } else {
                                 toastr["error"]("Ha ocurrido un problema!");
                             }
@@ -384,6 +393,7 @@ var _position = {};
                             vm.proyecto_proccess = d.data.request;
                             swal("Buen Trabajo!", d.data.message, "success");
                         }, function (err) {
+                            console.log(err)
                             $('#guardar_banner').attr("disabled", false);
                             if (err.status == 402) {
                                 toastr["error"](err.data.respuesta);
@@ -393,7 +403,6 @@ var _position = {};
                         });
                     }
 
-                    
                     
                       vm.save_information_basic = function () {
                         if (!vm.Project.logo) {
@@ -592,19 +601,24 @@ var _position = {};
             reader.readAsDataURL(f);
         }
     }
-    function archivo_galeria(evt) {
+      function archivo_galeria(evt) {
         var files = evt.target.files;
         for (var i = 0, f; f = files[i]; i++) {
-            if (!f.type.match('image.*')) {
-                continue;
+            if(files[i].type == 'video/mp4'){
+                document.getElementById("image_galeria").innerHTML = ['<div id="loading"></div>'];
+            }else{
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+                var reader = new FileReader();
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        document.getElementById("image_galeria").innerHTML = ['<div id="loading"></div><img class="animated bounceIn"  src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
+                    };
+                })(f);
+                 reader.readAsDataURL(f);
             }
-            var reader = new FileReader();
-            reader.onload = (function (theFile) {
-                return function (e) {
-                    document.getElementById("image_galeria").innerHTML = ['<div id="loading"></div><img class="animated bounceIn"  src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
-                };
-            })(f);
-            reader.readAsDataURL(f);
+           
         }
     }
     function archivo_plano(evt) {

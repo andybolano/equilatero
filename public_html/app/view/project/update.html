@@ -194,7 +194,7 @@
                     </div>
                     <div class="col-lg-2">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
-                            <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar imagenes</span>
+                            <span class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar imagenes o video.mp4</span>
                                 <span class="fileinput-exists">Cambiar</span><input type="file" custom-on-change="save_galeria"  name="images" id="files_galeria"/></span>
                         </div>
                             
@@ -209,10 +209,13 @@
                     <div class="col-lg-10">
                         <div style="margin-top: 40px;">
                             <div  ng-repeat="i in vm.galeria" style="float: left;margin-left:5px;margin-top: 5px;">
+                          
                                 <div class="content-image" style="border:0px;width: 120px; height: 120px;">
                                     <a href="javascript:;" ng-click="vm.delete_galeria(i)"  style="position: absolute;right:5px;top:5px;" title="Eliminar imagen"><i class="fa fa-times-circle text-danger" style="font-size:16px;"></i></a>
-                                    <img src="{{i.galeria_url}}">
+                                    <img ng-if="i.ext !== 'mp4' " src="{{i.galeria_url}}"  >
+                                     <a href="{{i.galeria_url}}" target="_blank"><img ng-if="i.ext == 'mp4' " src="images/video-player.png"></a>
                                 </div>
+                               
                             </div>
                         </div>
                     </div>

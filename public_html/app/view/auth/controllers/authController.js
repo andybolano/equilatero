@@ -6,6 +6,7 @@
                     var vm = this;
                     vm.user = {};
                     vm.login = function () {
+                        alert()
                         if (vm.user.usuario === undefined || vm.user.usuario === "" || vm.user.password === "" || vm.user.password === undefined) {
                             toastr["error"]("Ingresar Usuario y contraseña");
                         } else {
