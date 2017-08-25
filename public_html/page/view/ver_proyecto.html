@@ -35,16 +35,23 @@
                 <div id="slider" class="flexslider">
                 <ul class="slides">
                       
-                    <li ng-repeat="i in vm.proyecto.galeria">
-                       <img src="{{i.galeria_url}}" style="width: 100%"/>
-                        
+                    <li ng-repeat="i in vm.proyecto.galeria" style="vertical-align:central;max-height:500px;min-height:280px;background-color: #000000;" ng-if="i.ext == 'mp4'" >
+                       <video  height="280" controls ng-if="i.ext == 'mp4'" style="vertical-align:central">
+                            <source src="{{i.galeria_url}}" type="video/mp4">
+                         Tu navegador no soporta este video.
+                         </video>
                     </li>
+                    <li ng-repeat="i in vm.proyecto.galeria"  ng-if="i.ext !== 'mp4'" >
+                       <img src="{{i.galeria_url}}" style="width: 100%"/>
+                    </li>
+                    
                 </ul>
               </div>
               <div id="carousel" class="flexslider">
                 <ul class="slides">
-                    <li ng-repeat="i in vm.proyecto.galeria">
-                       <img src="{{i.galeria_url}}" style="height: 120px;"/>
+                    <li ng-repeat="i in vm.proyecto.galeria | orderBy:'-ext' ">
+                       <img src="{{i.galeria_url}}" style="height: 120px;" ng-if="i.ext !== 'mp4'"/>
+                       <img src="img/crane.svg" style="height: 120px;" ng-if="i.ext == 'mp4'"/>
                     </li>
                 </ul>
               </div>
